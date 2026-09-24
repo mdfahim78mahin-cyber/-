@@ -228,7 +228,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="side-menu-divider"></div>
 <button class="side-menu-item danger" onclick="menuLogout()"><div class="menu-icon"><i data-lucide="log-out"></i></div><span class="menu-label">লগআউট</span></button>
 </div>
-<div class="side-menu-footer"><p>টাকা কামাও • ভার্সন 5.0</p></div>
+<div class="side-menu-footer"><p>টাকা কামাও • ভার্সন 5.1</p></div>
 </div>
 
 <!-- AUTH -->
@@ -245,7 +245,15 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <input id="login-email" type="email" placeholder="ইমেইল" class="input-field mb-4">
 <input id="login-password" type="password" placeholder="পাসওয়ার্ড" class="input-field mb-4">
 <button id="login-btn" class="btn-accent w-full text-lg">লগইন করুন</button>
-<p class="text-center text-gray-400 mt-4 text-sm">অ্যাকাউন্ট নেই? <a href="#" id="show-signup" class="font-semibold text-accent hover:underline">সাইন আপ</a></p>
+
+<!-- ✅ Forgot Password Link -->
+<p class="text-center mt-3 text-sm">
+<a href="#" id="forgot-password" class="font-semibold text-emerald-400 hover:underline">
+🔑 পাসওয়ার্ড ভুলে গেছেন?
+</a>
+</p>
+
+<p class="text-center text-gray-400 mt-2 text-sm">অ্যাকাউন্ট নেই? <a href="#" id="show-signup" class="font-semibold text-accent hover:underline">সাইন আপ</a></p>
 </div>
 
 <!-- SIGNUP VIEW -->
@@ -883,7 +891,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <script type="module">
 const firebaseConfig={apiKey:"AIzaSyBwgI3TdxEGPPLfRzHV3RvyB4IHkegCTig",authDomain:"reward-97f38.firebaseapp.com",databaseURL:"https://reward-97f38-default-rtdb.firebaseio.com",projectId:"reward-97f38",storageBucket:"reward-97f38.firebasestorage.app",messagingSenderId:"1093073480282",appId:"1:1093073480282:web:4fc1f12e52f5f055090663"};
 import{initializeApp}from"firebase-app";
-import{getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut}from"firebase-auth";
+import{getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail}from"firebase-auth";
 import{getFirestore,doc,setDoc,getDoc,updateDoc,collection,addDoc,serverTimestamp,query,where,getDocs,orderBy,limit,increment,onSnapshot,runTransaction}from"firebase-firestore";
 import{getStorage,ref,uploadBytes,getDownloadURL}from"firebase-storage";
 const app=initializeApp(firebaseConfig);
@@ -957,6 +965,7 @@ else if(m.includes('সমস্যা')||m.includes('❌')||m.includes('ভু�
 else if(m.includes('অপেক্ষা')||m.includes('⏳')){icon='⏳';title='অপেক্ষা';c1='#f59e0b';}
 else if(m.includes('লগইন')){icon='🔐';title='লগইন';c1='#3b82f6';c2='#8b5cf6';}
 else if(m.includes('টাকা')||m.includes('৳')){icon='💰';title='টাকা';}
+else if(m.includes('পাসওয়ার্ড')||m.includes('রিসেট')){icon='🔑';title='পাসওয়ার্ড রিসেট';c1='#3b82f6';c2='#8b5cf6';}
 const o=`<div class="premium-popup-overlay" id="premium-alert-overlay" onclick="if(event.target===this)closePremiumAlert()"><div class="premium-popup-box" onclick="event.stopPropagation()"><div class="popup-top-bar" style="background:linear-gradient(90deg,transparent,${c1},${c2},${c1},transparent)"></div><div class="popup-icon-wrap"><div class="popup-icon-circle" style="background:linear-gradient(135deg,${c1}22,${c2}15);border-color:${c1}55;box-shadow:0 0 40px ${c1}44">${icon}</div></div><h2 class="popup-title-v2" style="background:linear-gradient(135deg,${c1},${c2});-webkit-background-clip:text;background-clip:text;color:transparent">${title}</h2><div class="popup-divider" style="background:linear-gradient(90deg,transparent,${c1}88,${c2}88,transparent)"></div><p class="popup-msg-v2">${escapeHtml(message).replace(/\n/g,'<br>')}</p><button onclick="closePremiumAlert()" class="popup-btn-v2" style="background:linear-gradient(135deg,${c1},${c2})">✓ ঠিক আছে</button></div></div>`;
 document.getElementById('premium-alert-overlay')?.remove();
 document.body.insertAdjacentHTML('beforeend',o);
@@ -1311,7 +1320,7 @@ window.closeSideMenu=function(){document.getElementById('side-menu').classList.r
 window.menuNavigate=function(p){closeSideMenu();setTimeout(()=>navigateTo(p),250);};
 window.menuLogout=function(){closeSideMenu();setTimeout(()=>{if(confirm('লগআউট?'))handleLogout();},250);};
 window.menuTelegramChannel=function(){closeSideMenu();setTimeout(()=>window.open(TELEGRAM_CHANNEL_URL,'_blank'),250);};
-window.showAboutApp=function(){closeSideMenu();setTimeout(()=>showAlert(`ℹ️ টাকা কামাও\n📱 ভার্সন: 5.0`),250);};
+window.showAboutApp=function(){closeSideMenu();setTimeout(()=>showAlert(`ℹ️ টাকা কামাও\n📱 ভার্সন: 5.1`),250);};
 window.showContactInfo=function(){closeSideMenu();setTimeout(()=>showAlert(`📞 যোগাযোগ\n📢 t.me/takaincomebot26`),250);};
 
 function updateSideMenuUserInfo(){
@@ -1747,11 +1756,65 @@ document.getElementById('home-withdraw-btn')?.addEventListener('click',()=>navig
 document.getElementById('bost-circle')?.addEventListener('click',handleBostClick);
 document.getElementById('daily-bonus-btn')?.addEventListener('click',claimDailyBonus);
 const tb=document.getElementById('telegram-claim-btn');if(tb)tb.addEventListener('click',claimTelegramBonus);
+
+// ✅ Forgot Password
+document.getElementById('forgot-password')?.addEventListener('click',handleForgotPassword);
+
 setInterval(()=>{checkAutoApprovePending();},60000);
 }
 
 // ═══════════════════════════════════════════
-// ✅ SIGNUP HANDLER — Referral Code আগেই Verify হবে
+// ✅ FORGOT PASSWORD — Firebase Auto
+// ═══════════════════════════════════════════
+async function handleForgotPassword(e){
+e.preventDefault();
+
+const email=document.getElementById('login-email').value.trim();
+
+if(!email){
+showAlert("⚠️ প্রথমে আপনার ইমেইল লিখুন।\n\nLogin form-এর Email field-এ ইমেইল দিয়ে আবার চেষ্টা করুন।");
+return;
+}
+
+if(!email.includes('@')||!email.includes('.')){
+showAlert("❌ সঠিক ইমেইল দিন!");
+return;
+}
+
+if(!confirm(`🔑 Password Reset\n\n📧 ${email} এ reset link পাঠানো হবে?\n\nআপনার Email inbox চেক করে link-এ tap করুন।`)){
+return;
+}
+
+loader.style.display='flex';
+
+try{
+await sendPasswordResetEmail(auth, email);
+
+loader.style.display='none';
+
+showAlert(`✅ Reset Email পাঠানো হয়েছে!\n\n📧 ${email} চেক করুন।\n\n📌 Spam folder-ও চেক করুন।\n\nলিংকে tap করে নতুন পাসওয়ার্ড সেট করুন।`);
+
+}catch(error){
+loader.style.display='none';
+
+let msg=error.message||'সমস্যা হয়েছে';
+
+if(msg.includes('user-not-found')){
+msg='❌ এই ইমেইলে কোনো অ্যাকাউন্ট নেই!\n\nসঠিক ইমেইল দিন।';
+}
+else if(msg.includes('invalid-email')){
+msg='❌ ইমেইল সঠিক নয়!';
+}
+else if(msg.includes('too-many-requests')){
+msg='⏳ অনেকবার চেষ্টা করেছেন!\n\n১ মিনিট অপেক্ষা করে আবার চেষ্টা করুন।';
+}
+
+showAlert(msg);
+}
+}
+
+// ═══════════════════════════════════════════
+// SIGNUP HANDLER — Referral Code আগেই Verify হবে
 // ═══════════════════════════════════════════
 async function handleSignup(){
 const n=document.getElementById('signup-name').value.trim();
@@ -1787,10 +1850,7 @@ if(!pw||pw.length<6)return showAlert("⚠️ পাসওয়ার্ড ৬+
 loader.style.display='flex';
 
 try{
-// ═══════════════════════════════════════════
 // ✅ STEP 1: Referral Code আগেই Verify করো
-// (Account create করার আগেই)
-// ═══════════════════════════════════════════
 const q=query(collection(db,"users"),where("referralCode","==",rc));
 const qs=await getDocs(q);
 
@@ -1806,9 +1866,7 @@ const referrerDoc=qs.docs[0];
 const referrerId=referrerDoc.id;
 const rdata=referrerDoc.data();
 
-// ═══════════════════════════════════════════
 // ✅ STEP 2: এখন Account Create করো
-// ═══════════════════════════════════════════
 const uc=await createUserWithEmailAndPassword(auth,em,pw);
 const orc=Math.random().toString(36).substring(2,8).toUpperCase();
 const ur=doc(db,"users",uc.user.uid);
@@ -1816,9 +1874,7 @@ const dd={uid:uc.user.uid,name:n,email:em,taka:REWARD_REFERRAL,referralCode:orc,
 await setDoc(ur,dd);
 userData=dd;
 
-// ═══════════════════════════════════════════
 // ✅ STEP 3: Referrer কে ৳50 bonus দাও
-// ═══════════════════════════════════════════
 const ch=rdata.referralHistory||[];
 ch.push({id:uc.user.uid,name:n,joinedAt:new Date().toISOString()});
 
@@ -1832,9 +1888,6 @@ referralHistory:ch
 
 sessionStorage.removeItem('pendingReferralCode');
 
-// ═══════════════════════════════════════════
-// ✅ STEP 4: Success message + Auto sign-in
-// ═══════════════════════════════════════════
 showAlert(`🎉 অ্যাকাউন্ট তৈরি সফল!\n\n🎁 Referral Bonus: ৳${REWARD_REFERRAL}\n✅ আপনি সফলভাবে রেফার হয়েছেন!`);
 await signInWithEmailAndPassword(auth,em,pw);
 
@@ -2363,7 +2416,7 @@ showMainPage('auth-section');
 }
 }
 
-console.log("✅ User Panel v5.0 — Referral Code Mandatory (Verified Before Signup) Loaded!");
+console.log("✅ User Panel v5.1 — Forgot Password + Referral Mandatory Loaded!");
 </script>
 </body>
 </html>
