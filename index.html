@@ -183,6 +183,35 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 .quiz-slot-info .slot-value{color:#10b981;font-weight:900}
 .quiz-slot-bar{height:6px;background:rgba(255,255,255,.08);border-radius:20px;overflow:hidden;margin-top:6px}
 .quiz-slot-bar .fill{height:100%;background:linear-gradient(90deg,#10b981,#fbbf24);border-radius:20px;transition:width .6s ease}
+/* ✅ Custom Confirm Modal */
+.confirm-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(16px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .3s ease}
+.confirm-modal-box{position:relative;background:linear-gradient(165deg,#14142a 0%,#0a0a16 100%);border:1px solid rgba(59,130,246,.3);border-radius:28px;padding:32px 24px 24px;max-width:380px;width:100%;box-shadow:0 40px 100px rgba(0,0,0,.8),0 0 60px rgba(59,130,246,.15);animation:popupSlideUp .4s cubic-bezier(.34,1.4,.64,1)}
+.confirm-modal-icon{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(139,92,246,.15));border:2px solid rgba(59,130,246,.4);display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 18px;box-shadow:0 0 40px rgba(59,130,246,.3)}
+.confirm-modal-title{font-size:22px;font-weight:900;text-align:center;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px;letter-spacing:-.5px}
+.confirm-modal-divider{height:1.5px;width:60%;margin:0 auto 20px;border-radius:10px;background:linear-gradient(90deg,transparent,#3b82f688,#8b5cf688,transparent)}
+.confirm-modal-email-box{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.05));border:1.5px solid rgba(16,185,129,.3);border-radius:14px;padding:14px 16px;margin-bottom:16px;text-align:center}
+.confirm-modal-email-label{font-size:11px;color:#34d399;font-weight:700;margin-bottom:4px}
+.confirm-modal-email-value{font-size:14px;color:#fff;font-weight:800;word-break:break-all;font-family:'Courier New',monospace}
+.confirm-modal-msg{color:#d1d5db;font-size:13.5px;line-height:1.7;text-align:center;margin-bottom:22px}
+.confirm-modal-buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.confirm-btn-cancel{background:rgba(255,255,255,.05);color:#9ca3af;font-weight:700;padding:14px 20px;border-radius:14px;border:1.5px solid rgba(255,255,255,.1);font-size:14px;cursor:pointer;transition:all .25s}
+.confirm-btn-cancel:hover{background:rgba(255,255,255,.08);color:#e5e7eb}
+.confirm-btn-ok{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-weight:800;padding:14px 20px;border-radius:14px;border:none;font-size:14px;cursor:pointer;box-shadow:0 8px 24px rgba(59,130,246,.4);transition:all .25s}
+.confirm-btn-ok:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(59,130,246,.5)}
+/* ✅ Success Modal */
+.success-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(20px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .3s ease}
+.success-modal-box{position:relative;background:linear-gradient(165deg,#0f1f1a 0%,#0a0a16 100%);border:1px solid rgba(16,185,129,.4);border-radius:32px;padding:36px 26px 28px;max-width:400px;width:100%;box-shadow:0 40px 100px rgba(0,0,0,.8),0 0 80px rgba(16,185,129,.2);animation:popupSlideUp .5s cubic-bezier(.34,1.4,.64,1)}
+.success-modal-icon{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,rgba(16,185,129,.25),rgba(5,150,105,.15));border:3px solid rgba(16,185,129,.5);display:flex;align-items:center;justify-content:center;font-size:48px;margin:0 auto 22px;box-shadow:0 0 60px rgba(16,185,129,.4);animation:pulse-success 2s ease-in-out infinite}
+@keyframes pulse-success{0%,100%{transform:scale(1);box-shadow:0 0 60px rgba(16,185,129,.4)}50%{transform:scale(1.05);box-shadow:0 0 80px rgba(16,185,129,.6)}}
+.success-modal-title{font-size:24px;font-weight:900;text-align:center;background:linear-gradient(135deg,#10b981,#34d399);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px;letter-spacing:-.5px}
+.success-modal-divider{height:1.5px;width:60%;margin:0 auto 20px;border-radius:10px;background:linear-gradient(90deg,transparent,#10b98188,#34d39988,transparent)}
+.success-email-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:100px;background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(5,150,105,.08));border:1.5px solid rgba(16,185,129,.4);font-size:12.5px;font-weight:800;color:#fff;margin:0 auto 18px;display:flex;justify-content:center;word-break:break-all;max-width:100%}
+.success-steps{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px;margin-bottom:20px}
+.success-step{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:12.5px;color:#d1d5db;line-height:1.6}
+.success-step .step-num{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.success-warn-box{background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(245,158,11,.06));border:1.5px solid rgba(251,191,36,.35);border-radius:14px;padding:12px 14px;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start}
+.success-warn-box .icon{font-size:20px;flex-shrink:0}
+.success-warn-box .text{font-size:11.5px;color:#fde68a;line-height:1.55;font-weight:500}
 </style>
 </head>
 <body>
@@ -228,7 +257,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="side-menu-divider"></div>
 <button class="side-menu-item danger" onclick="menuLogout()"><div class="menu-icon"><i data-lucide="log-out"></i></div><span class="menu-label">লগআউট</span></button>
 </div>
-<div class="side-menu-footer"><p>টাকা কামাও • ভার্সন 5.1</p></div>
+<div class="side-menu-footer"><p>টাকা কামাও • ভার্সন 5.2</p></div>
 </div>
 
 <!-- AUTH -->
@@ -246,7 +275,6 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <input id="login-password" type="password" placeholder="পাসওয়ার্ড" class="input-field mb-4">
 <button id="login-btn" class="btn-accent w-full text-lg">লগইন করুন</button>
 
-<!-- ✅ Forgot Password Link -->
 <p class="text-center mt-3 text-sm">
 <a href="#" id="forgot-password" class="font-semibold text-emerald-400 hover:underline">
 🔑 পাসওয়ার্ড ভুলে গেছেন?
@@ -1320,7 +1348,7 @@ window.closeSideMenu=function(){document.getElementById('side-menu').classList.r
 window.menuNavigate=function(p){closeSideMenu();setTimeout(()=>navigateTo(p),250);};
 window.menuLogout=function(){closeSideMenu();setTimeout(()=>{if(confirm('লগআউট?'))handleLogout();},250);};
 window.menuTelegramChannel=function(){closeSideMenu();setTimeout(()=>window.open(TELEGRAM_CHANNEL_URL,'_blank'),250);};
-window.showAboutApp=function(){closeSideMenu();setTimeout(()=>showAlert(`ℹ️ টাকা কামাও\n📱 ভার্সন: 5.1`),250);};
+window.showAboutApp=function(){closeSideMenu();setTimeout(()=>showAlert(`ℹ️ টাকা কামাও\n📱 ভার্সন: 5.2`),250);};
 window.showContactInfo=function(){closeSideMenu();setTimeout(()=>showAlert(`📞 যোগাযোগ\n📢 t.me/takaincomebot26`),250);};
 
 function updateSideMenuUserInfo(){
@@ -1756,15 +1784,12 @@ document.getElementById('home-withdraw-btn')?.addEventListener('click',()=>navig
 document.getElementById('bost-circle')?.addEventListener('click',handleBostClick);
 document.getElementById('daily-bonus-btn')?.addEventListener('click',claimDailyBonus);
 const tb=document.getElementById('telegram-claim-btn');if(tb)tb.addEventListener('click',claimTelegramBonus);
-
-// ✅ Forgot Password
 document.getElementById('forgot-password')?.addEventListener('click',handleForgotPassword);
-
 setInterval(()=>{checkAutoApprovePending();},60000);
 }
 
 // ═══════════════════════════════════════════
-// ✅ FORGOT PASSWORD — Firebase Auto
+// ✅ FORGOT PASSWORD — Beautiful Custom Modals
 // ═══════════════════════════════════════════
 async function handleForgotPassword(e){
 e.preventDefault();
@@ -1781,37 +1806,104 @@ showAlert("❌ সঠিক ইমেইল দিন!");
 return;
 }
 
-if(!confirm(`🔑 Password Reset\n\n📧 ${email} এ reset link পাঠানো হবে?\n\nআপনার Email inbox চেক করে link-এ tap করুন।`)){
-return;
+// ✅ Beautiful Custom Confirm Modal
+showForgotPasswordConfirm(email);
 }
 
+function showForgotPasswordConfirm(email){
+document.getElementById('forgot-confirm-modal')?.remove();
+const modal=`
+<div class="confirm-modal-overlay" id="forgot-confirm-modal">
+<div class="confirm-modal-box" onclick="event.stopPropagation()">
+<div class="confirm-modal-icon">🔑</div>
+<h3 class="confirm-modal-title">Password Reset</h3>
+<div class="confirm-modal-divider"></div>
+<div class="confirm-modal-email-box">
+<p class="confirm-modal-email-label">📧 এই ইমেইলে পাঠানো হবে</p>
+<p class="confirm-modal-email-value">${escapeHtml(email)}</p>
+</div>
+<p class="confirm-modal-msg">আপনার Email inbox চেক করে<br>reset link-এ tap করুন।</p>
+<div class="confirm-modal-buttons">
+<button class="confirm-btn-cancel" onclick="closeForgotConfirm()">বাতিল</button>
+<button class="confirm-btn-ok" onclick="sendResetEmail('${escapeHtml(email)}')">✓ পাঠান</button>
+</div>
+</div>
+</div>
+`;
+document.body.insertAdjacentHTML('beforeend',modal);
+}
+window.closeForgotConfirm=function(){
+const m=document.getElementById('forgot-confirm-modal');
+if(m){m.style.opacity='0';setTimeout(()=>m.remove(),250);}
+};
+
+window.sendResetEmail=async function(email){
+closeForgotConfirm();
 loader.style.display='flex';
-
 try{
-await sendPasswordResetEmail(auth, email);
-
+await sendPasswordResetEmail(auth,email);
 loader.style.display='none';
-
-showAlert(`✅ Reset Email পাঠানো হয়েছে!\n\n📧 ${email} চেক করুন।\n\n📌 Spam folder-ও চেক করুন।\n\nলিংকে tap করে নতুন পাসওয়ার্ড সেট করুন।`);
-
+showForgotPasswordSuccess(email);
 }catch(error){
 loader.style.display='none';
-
 let msg=error.message||'সমস্যা হয়েছে';
-
-if(msg.includes('user-not-found')){
-msg='❌ এই ইমেইলে কোনো অ্যাকাউন্ট নেই!\n\nসঠিক ইমেইল দিন।';
-}
-else if(msg.includes('invalid-email')){
-msg='❌ ইমেইল সঠিক নয়!';
-}
-else if(msg.includes('too-many-requests')){
-msg='⏳ অনেকবার চেষ্টা করেছেন!\n\n১ মিনিট অপেক্ষা করে আবার চেষ্টা করুন।';
-}
-
+if(msg.includes('user-not-found')){msg='❌ এই ইমেইলে কোনো অ্যাকাউন্ট নেই!\n\nসঠিক ইমেইল দিন।';}
+else if(msg.includes('invalid-email')){msg='❌ ইমেইল সঠিক নয়!';}
+else if(msg.includes('too-many-requests')){msg='⏳ অনেকবার চেষ্টা করেছেন!\n\n১ মিনিট অপেক্ষা করে আবার চেষ্টা করুন।';}
 showAlert(msg);
 }
+};
+
+function showForgotPasswordSuccess(email){
+document.getElementById('forgot-success-modal')?.remove();
+const modal=`
+<div class="success-modal-overlay" id="forgot-success-modal">
+<div class="success-modal-box" onclick="event.stopPropagation()">
+<div class="success-modal-icon">✅</div>
+<h3 class="success-modal-title">Email পাঠানো হয়েছে!</h3>
+<div class="success-modal-divider"></div>
+<div class="success-email-chip">
+<span>📧</span>
+<span>${escapeHtml(email)}</span>
+</div>
+<div class="success-steps">
+<div class="success-step">
+<span class="step-num">1</span>
+<span>আপনার Email inbox খুলুন</span>
+</div>
+<div class="success-step">
+<span class="step-num">2</span>
+<span>Firebase থেকে পাঠানো Email খুঁজুন</span>
+</div>
+<div class="success-step">
+<span class="step-num">3</span>
+<span>"Reset Password" link-এ tap করুন</span>
+</div>
+<div class="success-step">
+<span class="step-num">4</span>
+<span>নতুন পাসওয়ার্ড সেট করুন (৬+ অক্ষর)</span>
+</div>
+</div>
+<div class="success-warn-box">
+<span class="icon">⚠️</span>
+<div class="text">
+<b>Email না পেলে:</b><br>
+📂 Spam / Junk folder চেক করুন<br>
+📂 Promotions / Updates tab চেক করুন<br>
+🔍 Search: <code style="background:rgba(0,0,0,.3);padding:2px 6px;border-radius:4px;font-size:10px">from:firebaseapp.com</code>
+</div>
+</div>
+<button class="popup-btn-v2" style="background:linear-gradient(135deg,#10b981,#34d399)" onclick="closeForgotSuccess()">✓ বুঝেছি</button>
+</div>
+</div>
+`;
+document.body.insertAdjacentHTML('beforeend',modal);
+if(typeof lucide!=='undefined')lucide.createIcons();
 }
+window.closeForgotSuccess=function(){
+const m=document.getElementById('forgot-success-modal');
+if(m){m.style.opacity='0';setTimeout(()=>m.remove(),300);}
+};
 
 // ═══════════════════════════════════════════
 // SIGNUP HANDLER — Referral Code আগেই Verify হবে
@@ -1822,51 +1914,30 @@ const em=document.getElementById('signup-email').value.trim();
 const pw=document.getElementById('signup-password').value;
 let rc=document.getElementById('signup-referral').value.trim().toUpperCase();
 
-// Backup from Telegram / URL / session
-if(!rc){
-const tgRef=getTelegramReferralCode();
-if(tgRef)rc=tgRef;
-}
-if(!rc){
-const urlParams=new URLSearchParams(window.location.search);
-const urlRef=urlParams.get('ref');
-if(urlRef)rc=urlRef.toUpperCase().trim();
-}
-if(!rc){
-const sessionRef=sessionStorage.getItem('pendingReferralCode');
-if(sessionRef)rc=sessionRef;
-}
+if(!rc){const tgRef=getTelegramReferralCode();if(tgRef)rc=tgRef;}
+if(!rc){const urlParams=new URLSearchParams(window.location.search);const urlRef=urlParams.get('ref');if(urlRef)rc=urlRef.toUpperCase().trim();}
+if(!rc){const sessionRef=sessionStorage.getItem('pendingReferralCode');if(sessionRef)rc=sessionRef;}
 
-// ❌ Referral Code না থাকলে Block
-if(!rc){
-showAlert("❌ Referral Code দিতে হবে!\n\n🎁 Referral Code Field-এ বন্ধুর কোড লিখুন।\n\nকোড ছাড়া Account খোলা যাবে না।");
-return;
-}
-
+if(!rc){showAlert("❌ Referral Code দিতে হবে!\n\n🎁 Referral Code Field-এ বন্ধুর কোড লিখুন।\n\nকোড ছাড়া Account খোলা যাবে না।");return;}
 if(!n)return showAlert("⚠️ নাম দিন।");
 if(!em)return showAlert("⚠️ ইমেইল দিন।");
 if(!pw||pw.length<6)return showAlert("⚠️ পাসওয়ার্ড ৬+ অক্ষর।");
 
 loader.style.display='flex';
-
 try{
-// ✅ STEP 1: Referral Code আগেই Verify করো
 const q=query(collection(db,"users"),where("referralCode","==",rc));
 const qs=await getDocs(q);
 
 if(qs.empty){
-// ❌ Referral Code সিস্টেমে নেই — Account create-ই করব না
 loader.style.display='none';
 showAlert("❌ ভুল Referral Code!\n\nআপনি যে কোড দিয়েছেন ("+rc+") সেটা সিস্টেমে নেই।\n\nবন্ধুর কাছ থেকে সঠিক কোড নিন।");
 return;
 }
 
-// ✅ Referral Code সিস্টেমে আছে
 const referrerDoc=qs.docs[0];
 const referrerId=referrerDoc.id;
 const rdata=referrerDoc.data();
 
-// ✅ STEP 2: এখন Account Create করো
 const uc=await createUserWithEmailAndPassword(auth,em,pw);
 const orc=Math.random().toString(36).substring(2,8).toUpperCase();
 const ur=doc(db,"users",uc.user.uid);
@@ -1874,7 +1945,6 @@ const dd={uid:uc.user.uid,name:n,email:em,taka:REWARD_REFERRAL,referralCode:orc,
 await setDoc(ur,dd);
 userData=dd;
 
-// ✅ STEP 3: Referrer কে ৳50 bonus দাও
 const ch=rdata.referralHistory||[];
 ch.push({id:uc.user.uid,name:n,joinedAt:new Date().toISOString()});
 
@@ -1893,7 +1963,6 @@ await signInWithEmailAndPassword(auth,em,pw);
 
 }catch(e){
 loader.style.display='none';
-console.error('Signup error:',e);
 let msg=e.message||'সমস্যা হয়েছে';
 if(msg.includes('email-already-in-use'))msg='এই ইমেইলে আগেই অ্যাকাউন্ট আছে!';
 else if(msg.includes('invalid-email'))msg='ইমেইল সঠিক নয়!';
@@ -1908,7 +1977,12 @@ const pw=document.getElementById('login-password').value;
 if(!em||!pw)return showAlert("সব দিন।");
 loader.style.display='flex';
 try{await signInWithEmailAndPassword(auth,em,pw);}
-catch(e){showAlert(e.message);loader.style.display='none';}
+catch(e){
+loader.style.display='none';
+let msg=e.message||'সমস্যা';
+if(msg.includes('invalid-login-credentials'))msg='❌ ইমেইল বা পাসওয়ার্ড ভুল!\n\n💡 পাসওয়ার্ড ভুলে গেলে "🔑 পাসওয়ার্ড ভুলে গেছেন?" tap করুন।';
+showAlert(msg);
+}
 }
 async function handleLogout(){await signOut(auth);}
 
@@ -2416,7 +2490,7 @@ showMainPage('auth-section');
 }
 }
 
-console.log("✅ User Panel v5.1 — Forgot Password + Referral Mandatory Loaded!");
+console.log("✅ User Panel v5.2 — Beautiful Forgot Password Modals Loaded!");
 </script>
 </body>
 </html>
