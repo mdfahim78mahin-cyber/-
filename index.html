@@ -245,7 +245,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <button class="side-menu-item" onclick="menuNavigate('events-user-page')"><div class="menu-icon"><i data-lucide="gift"></i></div><span class="menu-label">ইভেন্ট ও বোনাস</span><i data-lucide="chevron-right" class="menu-arrow"></i></button>
 <button class="side-menu-item" onclick="menuNavigate('support-page')"><div class="menu-icon"><i data-lucide="headphones"></i></div><span class="menu-label">সাপোর্ট সেন্টার</span><i data-lucide="chevron-right" class="menu-arrow"></i></button>
 <button class="side-menu-item" onclick="menuNavigate('leaderboard-page')"><div class="menu-icon"><i data-lucide="trophy"></i></div><span class="menu-label">লিডারবোর্ড</span><i data-lucide="chevron-right" class="menu-arrow"></i></button>
-<button class="side-menu-item" onclick="menuNavigate('bost-page')"><div class="menu-icon"><i data-lucide="zap"></i></div><span class="menu-label">Boost Earn</span><i data-lucide="chevron-right" class="menu-arrow"></i></button>
+<button class="side-menu-item" onclick="menuNavigate('bost-page')"><div class="menu-icon"><i data-lucide="zap"></i></div><span class="menu-label" id="menu-boost-label">Boost Earn</span><i data-lucide="chevron-right" class="menu-arrow"></i></button>
 <button class="side-menu-item" onclick="menuTelegramChannel()"><div class="menu-icon"><i data-lucide="send"></i></div><span class="menu-label">টেলিগ্রাম চ্যানেল</span><i data-lucide="external-link" class="menu-arrow"></i></button>
 <button class="side-menu-item" onclick="menuNavigate('refer-page')"><div class="menu-icon"><i data-lucide="users"></i></div><span class="menu-label">রেফারেল প্রোগ্রাম</span><i data-lucide="chevron-right" class="menu-arrow"></i></button>
 <div class="side-menu-divider"></div>
@@ -255,7 +255,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="side-menu-divider"></div>
 <button class="side-menu-item danger" onclick="menuLogout()"><div class="menu-icon"><i data-lucide="log-out"></i></div><span class="menu-label">লগআউট</span></button>
 </div>
-<div class="side-menu-footer"><p>টাকা কামাও • ভার্সন 6.0</p></div>
+<div class="side-menu-footer"><p>টাকা কামাও • ভার্সন 7.0</p></div>
 </div>
 
 <!-- AUTH -->
@@ -267,39 +267,31 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 </div>
 <div id="auth-container" class="max-w-sm mx-auto w-full">
 
-<!-- LOGIN VIEW -->
 <div id="login-view">
 <input id="login-email" type="email" placeholder="ইমেইল" class="input-field mb-4">
 <input id="login-password" type="password" placeholder="পাসওয়ার্ড" class="input-field mb-4">
 <button id="login-btn" class="btn-accent w-full text-lg">লগইন করুন</button>
-
 <p class="text-center mt-3 text-sm">
 <a href="#" id="forgot-password" class="font-semibold text-emerald-400 hover:underline">
 🔑 পাসওয়ার্ড ভুলে গেছেন?
 </a>
 </p>
-
 <p class="text-center text-gray-400 mt-2 text-sm">অ্যাকাউন্ট নেই? <a href="#" id="show-signup" class="font-semibold text-accent hover:underline">সাইন আপ</a></p>
 </div>
 
-<!-- SIGNUP VIEW -->
 <div id="signup-view" class="hidden">
-
 <div id="ref-banner" class="hidden mb-4" style="background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(251,191,36,.08));border:1.5px solid rgba(16,185,129,.35);border-radius:14px;padding:12px 14px">
 <p class="text-xs text-emerald-400 font-bold mb-1">🎁 আপনি Referral হয়েছেন!</p>
 <p class="text-[11px] text-gray-300">কোড: <span id="ref-banner-code" class="font-mono font-bold text-white">-----</span></p>
 </div>
-
 <input id="signup-name" type="text" placeholder="পূর্ণ নাম" class="input-field mb-4">
 <input id="signup-email" type="email" placeholder="ইমেইল" class="input-field mb-4">
 <input id="signup-password" type="password" placeholder="পাসওয়ার্ড (৬+ অক্ষর)" class="input-field mb-4">
-
 <div class="mb-4">
 <label class="text-xs text-red-400 font-bold mb-2 block">🎁 Referral Code <span class="text-red-500">*</span></label>
 <input id="signup-referral" type="text" placeholder="যেমন: YQFJ1K" class="input-field uppercase tracking-widest font-bold" maxlength="10" autocomplete="off">
 <p id="ref-status" class="text-[10px] text-gray-500 mt-1">⚠️ বন্ধুর Referral কোড দিতে হবে</p>
 </div>
-
 <button id="signup-btn" class="btn-accent w-full text-lg">সাইন আপ করুন</button>
 <p class="text-center text-gray-400 mt-4 text-sm">ইতিমধ্যে আছে? <a href="#" id="show-login" class="font-semibold text-accent hover:underline">লগইন</a></p>
 </div>
@@ -708,7 +700,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div id="bost-page" class="p-4 space-y-5 sub-page">
 <div class="text-center">
 <h2 class="text-3xl font-black bg-gradient-to-r from-emerald-400 to-pink-500 bg-clip-text text-transparent">🚀 Boost Earn</h2>
-<p class="text-xs text-gray-500 mt-1">গোল সার্কেল ক্লিক করে ৳<span id="bost-reward-display">2</span></p>
+<p class="text-xs text-gray-500 mt-1" id="bost-page-subtitle">গোল সার্কেল ক্লিক করে ৳<span id="bost-reward-display">2</span></p>
 </div>
 <div id="bost-verify-warning" class="bg-red-500/10 border border-red-500/20 rounded-2xl p-3 text-center">
 <p class="text-red-400 text-xs font-medium">🔒 <strong>ভেরিফাইড</strong> হলে ক্লিক করতে পারবেন।</p>
@@ -927,19 +919,17 @@ const db=getFirestore(app);
 const storage=getStorage(app);
 
 let currentUser=null,userData=null,appConfig={},selectedMethod='Bkash',verificationStatus=null,verificationEnabled=true;
+let BOOST_ENABLED=true;
 let taskCooldowns={},unsubscribeNotifications=null,unsubscribeConfigListener=null,unsubscribeTasksListener=null,unsubscribeSocialTasks=null,currentUserTicketId=null;
 let dynamicTasks=[],socialTasks=[],currentSocialTask=null,currentTaskFilter='all',taskTimerInterval=null,taskLinkOpened=false,taskTimerCompleted=false;
 let userEvents=[],unsubscribeUserEvents=null;
 let bostState={isCooldown:false,isVerified:false};
 let telegramClaimInProgress=false;
-
 let REWARD_AD_WATCH=5,REWARD_BOST_CLICK=2,REWARD_DAILY_BONUS=3,REWARD_REFERRAL=20,REWARD_TELEGRAM=10;
 let PASSIVE_COMMISSION_RATE=20;
-
 const LIVE_WITHDRAWAL_LIMITS={'Bkash':{min:50,max:100,label:'বিকাশ'},'Nagad':{min:50,max:100,label:'নগদ'},'Mobile Recharge':{min:20,max:100,label:'মোবাইল রিচার্জ'}};
 let WITHDRAW_LIMITS={...LIVE_WITHDRAWAL_LIMITS};
 function getWithdrawalLimit(method){return WITHDRAW_LIMITS[method]||WITHDRAW_LIMITS['Bkash'];}
-
 const DAILY_CLICK_LIMIT=500,DAILY_CLICK_LIMIT_VERIFIED=800;
 const TELEGRAM_CHANNEL_URL="https://t.me/takaincomebot26";
 const TELEGRAM_BOT_USERNAME="takaincome100k_bot";
@@ -954,9 +944,6 @@ const FALLBACK_TASKS=[
 function escapeHtml(str){if(!str)return'';return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 window.escapeHtml=escapeHtml;
 
-// ═══════════════════════════════════════════
-// DEVICE FINGERPRINT (NEW)
-// ═══════════════════════════════════════════
 function getDeviceFingerprint(){
 try{
 const tgUser=window.Telegram?.WebApp?.initDataUnsafe?.user;
@@ -973,16 +960,119 @@ return 'DEV_'+Math.abs(hash).toString(36)+'_'+tgId;
 window.getDeviceFingerprint=getDeviceFingerprint;
 
 // ═══════════════════════════════════════════
-// TELEGRAM FUNCTIONS
+// ACTIVITY TRACKING
+// ═══════════════════════════════════════════
+let activitySession={sessionId:null,startTime:null,lastPing:null,heartbeatInterval:null,isActive:true};
+
+function genSessionId(){return 'sess_'+Date.now()+'_'+Math.random().toString(36).substring(2,10);}
+function isAppVisible(){return document.visibilityState==='visible';}
+
+async function startActivitySession(){
+if(!currentUser||!userData)return;
+activitySession.sessionId=genSessionId();
+activitySession.startTime=Date.now();
+activitySession.lastPing=Date.now();
+activitySession.isActive=true;
+const deviceId=getDeviceFingerprint();
+const today=new Date().toISOString().split('T')[0];
+try{
+await setDoc(doc(db,"activity_sessions",activitySession.sessionId),{
+userId:currentUser.uid,
+userName:userData.name||'User',
+userEmail:userData.email||'',
+deviceId:deviceId,
+startTime:serverTimestamp(),
+startTimeMs:Date.now(),
+lastPingMs:Date.now(),
+endTime:null,
+duration:0,
+isActive:true,
+pageViews:1,
+platform:window.Telegram?.WebApp?'telegram':'web',
+date:today
+});
+await updateDoc(doc(db,"users",currentUser.uid),{
+lastActive:serverTimestamp(),
+lastActiveMs:Date.now(),
+lastActiveDevice:deviceId,
+currentSessionId:activitySession.sessionId,
+isOnline:true
+});
+const dailyRef=doc(db,"user_daily_stats",`${currentUser.uid}_${today}`);
+const dailySnap=await getDoc(dailyRef);
+if(dailySnap.exists()){
+await updateDoc(dailyRef,{sessions:increment(1),lastSessionStart:serverTimestamp()});
+}else{
+await setDoc(dailyRef,{
+userId:currentUser.uid,userName:userData.name||'User',date:today,
+sessions:1,totalDuration:0,firstSeen:serverTimestamp(),lastSessionStart:serverTimestamp(),
+tasksCompleted:0,quizzesPlayed:0,adsWatched:0,clicksEarned:0,takaEarned:0
+});
+}
+startHeartbeat();
+}catch(e){console.error('Session start error:',e);}
+}
+
+function startHeartbeat(){
+if(activitySession.heartbeatInterval)clearInterval(activitySession.heartbeatInterval);
+activitySession.heartbeatInterval=setInterval(async()=>{
+if(!currentUser||!activitySession.sessionId)return;
+if(!isAppVisible())return;
+const now=Date.now();
+const elapsed=Math.round((now-activitySession.startTime)/1000);
+activitySession.lastPing=now;
+try{
+await updateDoc(doc(db,"activity_sessions",activitySession.sessionId),{lastPingMs:now,duration:elapsed,isActive:true});
+await updateDoc(doc(db,"users",currentUser.uid),{lastActive:serverTimestamp(),lastActiveMs:now,isOnline:true});
+}catch(e){console.error('Heartbeat:',e);}
+},30000);
+}
+
+async function endActivitySession(){
+if(!currentUser||!activitySession.sessionId)return;
+const elapsed=Math.round((Date.now()-activitySession.startTime)/1000);
+const today=new Date().toISOString().split('T')[0];
+try{
+await updateDoc(doc(db,"activity_sessions",activitySession.sessionId),{endTime:serverTimestamp(),endTimeMs:Date.now(),duration:elapsed,isActive:false});
+const dailyRef=doc(db,"user_daily_stats",`${currentUser.uid}_${today}`);
+await updateDoc(dailyRef,{totalDuration:increment(elapsed),lastSessionEnd:serverTimestamp()}).catch(()=>{});
+await updateDoc(doc(db,"users",currentUser.uid),{isOnline:false,currentSessionId:null,lastSessionDuration:elapsed,lastSessionEnd:serverTimestamp()});
+}catch(e){console.error('Session end:',e);}
+if(activitySession.heartbeatInterval){clearInterval(activitySession.heartbeatInterval);activitySession.heartbeatInterval=null;}
+}
+
+async function trackPageView(pageName){
+if(!currentUser||!activitySession.sessionId)return;
+try{await updateDoc(doc(db,"activity_sessions",activitySession.sessionId),{pageViews:increment(1),lastPage:pageName,lastPageAt:serverTimestamp()});}catch(e){}
+}
+
+async function trackActivity(type,details){
+if(!currentUser)return;
+const today=new Date().toISOString().split('T')[0];
+try{
+await addDoc(collection(db,"activity_logs"),{
+userId:currentUser.uid,userName:userData?.name||'User',
+deviceId:getDeviceFingerprint(),type:type,details:details||{},
+sessionId:activitySession.sessionId,timestamp:serverTimestamp(),
+timestampMs:Date.now(),date:today
+});
+const dailyRef=doc(db,"user_daily_stats",`${currentUser.uid}_${today}`);
+const fieldMap={task:'tasksCompleted',quiz:'quizzesPlayed',boost:'clicksEarned',withdraw:'withdrawals',referral:'referrals',daily_bonus:'dailyBonus',telegram:'telegramBonus',ad:'adsWatched'};
+const field=fieldMap[type];
+if(field){
+await updateDoc(dailyRef,{[field]:increment(1),takaEarned:increment(details?.taka||0)}).catch(()=>{});
+}
+}catch(e){console.error('trackActivity:',e);}
+}
+
+// ═══════════════════════════════════════════
+// TELEGRAM
 // ═══════════════════════════════════════════
 function getTelegramReferralCode(){
 try{
 if(!window.Telegram||!window.Telegram.WebApp)return null;
-const tg=window.Telegram.WebApp;
-const startParam=tg.initDataUnsafe?.start_param;
-if(startParam&&typeof startParam==='string'&&startParam.trim().length>0){
-return startParam.trim().toUpperCase();
-}
+const startParam=window.Telegram.WebApp.initDataUnsafe?.start_param;
+if(startParam&&typeof startParam==='string'&&startParam.trim().length>0)return startParam.trim().toUpperCase();
 }catch(e){}
 return null;
 }
@@ -992,8 +1082,7 @@ function initTelegramApp(){
 try{
 if(window.Telegram&&window.Telegram.WebApp){
 const tg=window.Telegram.WebApp;
-tg.ready();
-tg.expand();
+tg.ready();tg.expand();
 try{tg.setHeaderColor('#05050a');tg.setBackgroundColor('#05050a');}catch(e){}
 }
 }catch(e){}
@@ -1007,10 +1096,11 @@ let icon='💬',title='বিজ্ঞপ্তি',c1='#10b981',c2='#fbbf24';
 const m=(message||'').toLowerCase();
 if(m.includes('সফল')||m.includes('🎉')||m.includes('+৳')){icon='🎉';title='অভিনন্দন!';}
 else if(m.includes('সমস্যা')||m.includes('❌')||m.includes('ভুল')){icon='⚠️';title='সমস্যা';c1='#ef4444';c2='#f97316';}
+else if(m.includes('বন্ধ')){icon='🔒';title='বন্ধ';c1='#ef4444';c2='#f97316';}
 else if(m.includes('অপেক্ষা')||m.includes('⏳')){icon='⏳';title='অপেক্ষা';c1='#f59e0b';}
 else if(m.includes('লগইন')){icon='🔐';title='লগইন';c1='#3b82f6';c2='#8b5cf6';}
 else if(m.includes('টাকা')||m.includes('৳')){icon='💰';title='টাকা';}
-else if(m.includes('পাসওয়ার্ড')||m.includes('রিসেট')){icon='🔑';title='পাসওয়ার্ড রিসেট';c1='#3b82f6';c2='#8b5cf6';}
+else if(m.includes('ভেরিফাই')){icon='🔐';title='ভেরিফিকেশন';c1='#3b82f6';c2='#8b5cf6';}
 else if(m.includes('ডিভাইস')){icon='📱';title='ডিভাইস লিমিট';c1='#ef4444';c2='#f97316';}
 const o=`<div class="premium-popup-overlay" id="premium-alert-overlay" onclick="if(event.target===this)closePremiumAlert()"><div class="premium-popup-box" onclick="event.stopPropagation()"><div class="popup-top-bar" style="background:linear-gradient(90deg,transparent,${c1},${c2},${c1},transparent)"></div><div class="popup-icon-wrap"><div class="popup-icon-circle" style="background:linear-gradient(135deg,${c1}22,${c2}15);border-color:${c1}55;box-shadow:0 0 40px ${c1}44">${icon}</div></div><h2 class="popup-title-v2" style="background:linear-gradient(135deg,${c1},${c2});-webkit-background-clip:text;background-clip:text;color:transparent">${title}</h2><div class="popup-divider" style="background:linear-gradient(90deg,transparent,${c1}88,${c2}88,transparent)"></div><p class="popup-msg-v2">${escapeHtml(message).replace(/\n/g,'<br>')}</p><button onclick="closePremiumAlert()" class="popup-btn-v2" style="background:linear-gradient(135deg,${c1},${c2})">✓ ঠিক আছে</button></div></div>`;
 document.getElementById('premium-alert-overlay')?.remove();
@@ -1048,12 +1138,8 @@ const noQuizBox=document.getElementById('quiz-no-quiz-box');
 const startBtn=document.getElementById('start-quiz-btn');
 const infoText=document.getElementById('quiz-info-text');
 const slotDisplay=document.getElementById('quiz-slot-display');
-pendingBox.classList.add('hidden');
-approvedBox.classList.add('hidden');
-noQuizBox.classList.add('hidden');
-startBtn.classList.remove('hidden');
-startBtn.disabled=false;
-startBtn.style.opacity='1';
+pendingBox.classList.add('hidden');approvedBox.classList.add('hidden');noQuizBox.classList.add('hidden');
+startBtn.classList.remove('hidden');startBtn.disabled=false;startBtn.style.opacity='1';
 startBtn.textContent='🚀 কুইজ শুরু করুন';
 const hist=(userData.quizHistory||{})[today];
 if(hist){
@@ -1070,8 +1156,7 @@ return;
 }
 }
 if(!snap.exists()||snap.data().isActive===false){
-noQuizBox.classList.remove('hidden');
-startBtn.classList.add('hidden');
+noQuizBox.classList.remove('hidden');startBtn.classList.add('hidden');
 infoText.textContent='আজ কুইজ আপলোড হয়নি';
 document.getElementById('quiz-total-display').textContent='০';
 if(slotDisplay)slotDisplay.classList.add('hidden');
@@ -1103,7 +1188,7 @@ const remaining=maxP-currentP;
 const pct=(currentP/maxP)*100;
 document.getElementById('quiz-slot-text').textContent=`${currentP}/${maxP}`;
 document.getElementById('quiz-slot-bar-fill').style.width=pct+'%';
-document.getElementById('quiz-slot-remaining').textContent=`🎯 বাকি আছে ${remaining} স্লট (আগে এলে সুযোগ!)`;
+document.getElementById('quiz-slot-remaining').textContent=`🎯 বাকি আছে ${remaining} স্লট`;
 infoText.innerHTML=`${quizState.totalQuestions}টি প্রশ্ন • প্রতি সঠিক ৳${quizState.rewardPerQ}`;
 }else if(slotDisplay){
 slotDisplay.classList.add('hidden');
@@ -1136,10 +1221,7 @@ loader.style.display='flex';
 try{
 const quizRef=doc(db,"quiz_daily",today);
 const freshSnap=await getDoc(quizRef);
-if(!freshSnap.exists()){
-loader.style.display='none';
-return showAlert("📭 কুইজ নেই!");
-}
+if(!freshSnap.exists()){loader.style.display='none';return showAlert("📭 কুইজ নেই!");}
 const quizData=freshSnap.data();
 const maxP=quizData.maxParticipants||0;
 const currentP=quizData.currentParticipants||0;
@@ -1151,21 +1233,13 @@ document.getElementById('quiz-no-quiz-box').classList.remove('hidden');
 return;
 }
 loader.style.display='none';
-quizState.currentIdx=0;
-quizState.correct=0;
-quizState.wrong=0;
-quizState.answers=[];
-quizState.isAnswered=false;
+quizState.currentIdx=0;quizState.correct=0;quizState.wrong=0;quizState.answers=[];quizState.isAnswered=false;
 document.getElementById('quiz-start-card').classList.add('hidden');
 document.getElementById('quiz-result-card').classList.add('hidden');
 document.getElementById('quiz-game-card').classList.remove('hidden');
 document.getElementById('qtotal').textContent=quizState.totalQuestions;
 showQuizQuestion();
-}catch(e){
-loader.style.display='none';
-console.error(e);
-showAlert("❌ সমস্যা হয়েছে!");
-}
+}catch(e){loader.style.display='none';console.error(e);showAlert("❌ সমস্যা!");}
 };
 
 function showQuizQuestion(){
@@ -1212,8 +1286,7 @@ quizState.isAnswered=true;
 if(quizState.timer)clearInterval(quizState.timer);
 const q=quizState.questions[quizState.currentIdx];
 const isCorrect=idx===q.correctIndex;
-if(isCorrect)quizState.correct++;
-else quizState.wrong++;
+if(isCorrect)quizState.correct++;else quizState.wrong++;
 quizState.answers.push({questionId:q.id||('q'+(quizState.currentIdx+1)),selectedIndex:idx,correctIndex:q.correctIndex,isCorrect});
 markQuestionUI(idx,q.correctIndex);
 advanceQuestion(1500);
@@ -1246,7 +1319,7 @@ document.getElementById('result-reward').textContent=expectedReward.toFixed(2);
 document.getElementById('quiz-result-card').classList.remove('hidden');
 const today=new Date().toISOString().split('T')[0];
 try{
-const txResult=await runTransaction(db,async(transaction)=>{
+await runTransaction(db,async(transaction)=>{
 const quizRef=doc(db,"quiz_daily",today);
 const userRef=doc(db,"users",currentUser.uid);
 const quizSnap=await transaction.get(quizRef);
@@ -1257,13 +1330,9 @@ const quizData=quizSnap.data();
 const uData=userSnap.data();
 const maxP=quizData.maxParticipants||0;
 const currentP=quizData.currentParticipants||0;
-if(maxP>0&&currentP>=maxP){
-throw new Error("SLOT_FULL");
-}
+if(maxP>0&&currentP>=maxP)throw new Error("SLOT_FULL");
 const existingHistory=uData.quizHistory||{};
-if(existingHistory[today]){
-throw new Error("ALREADY_PLAYED");
-}
+if(existingHistory[today])throw new Error("ALREADY_PLAYED");
 const newHistory={...existingHistory};
 newHistory[today]={status:'pending',submissionId:null};
 transaction.update(quizRef,{currentParticipants:currentP+1});
@@ -1280,6 +1349,7 @@ userData.quizTotalCorrect=(userData.quizTotalCorrect||0)+correct;
 userData.quizPendingReward=(userData.quizPendingReward||0)+expectedReward;
 updateQuizStatus();
 updateUI();
+try{await trackActivity('quiz',{correct:correct,total:quizState.totalQuestions,taka:expectedReward});}catch(e){}
 }catch(e){
 console.error('Quiz submit error:',e);
 if(e.message==="SLOT_FULL"){
@@ -1288,23 +1358,43 @@ document.getElementById('quiz-start-card').classList.remove('hidden');
 showAlert("❌ স্লট শেষ!\n\n২০ জন ইতিমধ্যে খেলেছে।");
 loadTodayQuiz();
 }
-else if(e.message==="ALREADY_PLAYED"){
-showAlert("⚠️ আপনি আজ ইতিমধ্যে খেলেছেন!");
-setTimeout(()=>navigateTo('home-page'),1500);
-}
-else if(e.message==="QUIZ_NOT_FOUND"){
-showAlert("❌ কুইজ পাওয়া যায়নি!");
-}
-else{
-showAlert("❌ সমস্যা: "+e.message);
-}
+else if(e.message==="ALREADY_PLAYED"){showAlert("⚠️ আপনি আজ ইতিমধ্যে খেলেছেন!");setTimeout(()=>navigateTo('home-page'),1500);}
+else if(e.message==="QUIZ_NOT_FOUND"){showAlert("❌ কুইজ পাওয়া যায়নি!");}
+else{showAlert("❌ সমস্যা: "+e.message);}
 }
 }
 
 function setupTasksListener(){
-if(unsubscribeTasksListener)unsubscribeTasksListener();
-try{unsubscribeTasksListener=onSnapshot(query(collection(db,"tasks"),orderBy("order","asc")),(snap)=>{dynamicTasks=snap.docs.map(d=>({id:d.id,...d.data()})).filter(t=>t.isActive!==false);renderTasks();},(e)=>console.error(e));}catch(e){console.error(e);}
+if(unsubscribeTasksListener){try{unsubscribeTasksListener();}catch(e){}unsubscribeTasksListener=null;}
+const fallbackToAll=()=>{
+try{
+return onSnapshot(collection(db,"tasks"),(snap)=>{
+dynamicTasks=snap.docs.map(d=>({id:d.id,...d.data()})).filter(t=>t.isActive!==false)
+.sort((a,b)=>{const oa=a.order??999999;const ob=b.order??999999;if(oa!==ob)return oa-ob;const ca=a.createdAt?.toDate?.()||0;const cb=b.createdAt?.toDate?.()||0;return ca-cb;});
+renderTasks();
+},(e)=>console.error("tasks fallback error:",e));
+}catch(e){console.error("fallback failed:",e);return null;}
+};
+try{
+unsubscribeTasksListener=onSnapshot(
+query(collection(db,"tasks"),orderBy("order","asc")),
+(snap)=>{
+dynamicTasks=snap.docs.map(d=>({id:d.id,...d.data()})).filter(t=>t.isActive!==false)
+.sort((a,b)=>(a.order||0)-(b.order||0));
+renderTasks();
+},
+(err)=>{
+console.warn("tasks orderBy failed, fallback:",err.message);
+if(unsubscribeTasksListener){try{unsubscribeTasksListener();}catch(e){}}
+unsubscribeTasksListener=fallbackToAll();
 }
+);
+}catch(e){
+console.error("setupTasksListener:",e);
+unsubscribeTasksListener=fallbackToAll();
+}
+}
+
 function setupSocialTasksListener(){
 if(unsubscribeSocialTasks){try{unsubscribeSocialTasks();}catch(e){}unsubscribeSocialTasks=null;}
 try{unsubscribeSocialTasks=onSnapshot(query(collection(db,"campaigns"),orderBy("createdAt","desc")),(snap)=>{socialTasks=snap.docs.map(d=>({id:d.id,...d.data()})).filter(t=>t.isActive!==false);renderSocialTasks();updateHomeTaskPreview();},(e)=>console.error(e));}catch(e){console.error(e);}
@@ -1357,16 +1447,28 @@ userData.taka=(userData.taka||0)+bt;userData.totalEarned=(userData.totalEarned||
 loader.style.display='none';
 const o=document.createElement('div');o.className='celebration-overlay';o.innerHTML=`<div class="celebration-box"><div class="celebration-icon">🎉</div><div class="celebration-taka">৳${bt}</div><div class="celebration-success">✅ ক্লেইম সফল!</div><button onclick="this.closest('.celebration-overlay').remove()" class="btn-accent mt-5 px-6 py-2.5 rounded-xl text-sm font-bold">দারুণ! 🎊</button></div>`;document.body.appendChild(o);
 setTimeout(()=>{o.style.transition='opacity .5s';o.style.opacity='0';setTimeout(()=>o.remove(),500);},6000);
+try{await trackActivity('event_claim',{eventId:eventId,taka:bt});}catch(e){}
 updateUI();renderUserEvents();
 }catch(e){loader.style.display='none';showAlert("❌ "+e.message);}
 };
 
-window.openSideMenu=function(){document.getElementById('side-menu').classList.add('open');document.getElementById('side-menu-overlay').classList.add('open');document.body.style.overflow='hidden';updateSideMenuUserInfo();lucide.createIcons();};
+window.openSideMenu=function(){
+document.getElementById('side-menu').classList.add('open');
+document.getElementById('side-menu-overlay').classList.add('open');
+document.body.style.overflow='hidden';
+updateSideMenuUserInfo();
+// Boost menu label update
+try{
+const boostLabel=document.getElementById('menu-boost-label');
+if(boostLabel){boostLabel.textContent=BOOST_ENABLED?'Boost Earn':'Boost Earn (বন্ধ)';}
+}catch(e){}
+lucide.createIcons();
+};
 window.closeSideMenu=function(){document.getElementById('side-menu').classList.remove('open');document.getElementById('side-menu-overlay').classList.remove('open');document.body.style.overflow='';};
 window.menuNavigate=function(p){closeSideMenu();setTimeout(()=>navigateTo(p),250);};
-window.menuLogout=function(){closeSideMenu();setTimeout(()=>{if(confirm('লগআউট?'))handleLogout();},250);};
+window.menuLogout=function(){closeSideMenu();setTimeout(async()=>{if(confirm('লগআউট?')){try{await endActivitySession();}catch(e){}handleLogout();}},250);};
 window.menuTelegramChannel=function(){closeSideMenu();setTimeout(()=>window.open(TELEGRAM_CHANNEL_URL,'_blank'),250);};
-window.showAboutApp=function(){closeSideMenu();setTimeout(()=>showAlert(`ℹ️ টাকা কামাও\n📱 ভার্সন: 6.0`),250);};
+window.showAboutApp=function(){closeSideMenu();setTimeout(()=>showAlert(`ℹ️ টাকা কামাও\n📱 ভার্সন: 7.0`),250);};
 window.showContactInfo=function(){closeSideMenu();setTimeout(()=>showAlert(`📞 যোগাযোগ\n📢 t.me/takaincomebot26`),250);};
 
 function updateSideMenuUserInfo(){
@@ -1399,9 +1501,7 @@ if(cb){cb.disabled=true;cb.style.opacity='0.6';cb.textContent='⏳ যাচা�
 try{
 const freshSnap=await getDoc(doc(db,"users",currentUser.uid));
 if(freshSnap.exists()&&freshSnap.data().telegramBonusClaimed){
-userData.telegramBonusClaimed=true;
-updateTelegramBonusUI();
-telegramClaimInProgress=false;
+userData.telegramBonusClaimed=true;updateTelegramBonusUI();telegramClaimInProgress=false;
 if(cb){cb.disabled=false;cb.style.opacity='1';cb.textContent='জয়েন';}
 return showAlert("❌ আপনি ইতিমধ্যে বোনাস নিয়েছেন!");
 }
@@ -1412,29 +1512,19 @@ setTimeout(async()=>{
 try{
 const freshSnap=await getDoc(doc(db,"users",currentUser.uid));
 if(freshSnap.exists()&&freshSnap.data().telegramBonusClaimed){
-userData.telegramBonusClaimed=true;
-updateTelegramBonusUI();
-telegramClaimInProgress=false;
-loader.style.display='none';
+userData.telegramBonusClaimed=true;updateTelegramBonusUI();telegramClaimInProgress=false;loader.style.display='none';
 if(cb){cb.disabled=false;cb.style.opacity='1';cb.textContent='জয়েন';}
 return;
 }
 const freshData=freshSnap.data();
 const nt=(freshData.taka||0)+REWARD_TELEGRAM;
 await updateDoc(doc(db,"users",currentUser.uid),{taka:nt,telegramBonusClaimed:true,telegramBonusClaimedAt:serverTimestamp(),totalEarned:increment(REWARD_TELEGRAM)});
-userData.taka=nt;
-userData.telegramBonusClaimed=true;
-userData.totalEarned=(userData.totalEarned||0)+REWARD_TELEGRAM;
-updateUI();
-updateLevelAndStreak();
-updateTelegramBonusUI();
+userData.taka=nt;userData.telegramBonusClaimed=true;userData.totalEarned=(userData.totalEarned||0)+REWARD_TELEGRAM;
+try{await trackActivity('telegram',{taka:REWARD_TELEGRAM});}catch(e){}
+updateUI();updateLevelAndStreak();updateTelegramBonusUI();
 showAlert(`🎉 +৳${REWARD_TELEGRAM} বোনাস পেয়েছেন!`);
-}catch(e){
-showAlert('❌ সমস্যা হয়েছে!');
-if(cb){cb.disabled=false;cb.style.opacity='1';cb.textContent='জয়েন';}
-}
-telegramClaimInProgress=false;
-loader.style.display='none';
+}catch(e){showAlert('❌ সমস্যা হয়েছে!');if(cb){cb.disabled=false;cb.style.opacity='1';cb.textContent='জয়েন';}}
+telegramClaimInProgress=false;loader.style.display='none';
 },5000);
 };
 
@@ -1442,8 +1532,7 @@ function updateTelegramBonusUI(){
 const c=document.getElementById('telegram-bonus-card');const cb=document.getElementById('telegram-claim-btn');const cbd=document.getElementById('telegram-claimed-btn');
 if(!c||!userData)return;
 c.classList.remove('hidden');
-const trd=document.getElementById('telegram-reward-display');
-if(trd)trd.textContent=REWARD_TELEGRAM;
+const trd=document.getElementById('telegram-reward-display');if(trd)trd.textContent=REWARD_TELEGRAM;
 if(userData.telegramBonusClaimed){cb.classList.add('hidden');cbd.classList.remove('hidden');}
 else{cb.classList.remove('hidden');cbd.classList.add('hidden');}
 }
@@ -1546,6 +1635,7 @@ unsubscribeConfigListener=onSnapshot(doc(db,"config","main"),(snap)=>{
 if(snap.exists()){
 const d=snap.data();
 verificationEnabled=d.verificationEnabled!==false;
+BOOST_ENABLED=d.boostEnabled!==false;
 if(d.rewardAd!==undefined) REWARD_AD_WATCH=parseFloat(d.rewardAd)||5;
 if(d.rewardBost!==undefined) REWARD_BOST_CLICK=parseFloat(d.rewardBost)||2;
 if(d.rewardDaily!==undefined) REWARD_DAILY_BONUS=parseFloat(d.rewardDaily)||3;
@@ -1558,7 +1648,7 @@ const rb=document.getElementById('rule-min-bkash');if(rb)rb.textContent=WITHDRAW
 const rmb=document.getElementById('rule-max-bkash');if(rmb)rmb.textContent=WITHDRAW_LIMITS.Bkash.max;
 const rr=document.getElementById('rule-min-recharge');if(rr)rr.textContent=WITHDRAW_LIMITS['Mobile Recharge'].min;
 const rmr=document.getElementById('rule-max-recharge');if(rmr)rmr.textContent=WITHDRAW_LIMITS['Mobile Recharge'].max;
-if(typeof selectPayment==='function')selectPayment(selectedMethod);
+updateWithdrawLimitHint();
 }
 const rad=document.getElementById('refer-amount-display');if(rad)rad.textContent=REWARD_REFERRAL;
 const rbd=document.getElementById('refer-bonus-display');if(rbd)rbd.textContent=REWARD_REFERRAL;
@@ -1605,6 +1695,15 @@ function copyToClipboard(text){if(navigator.clipboard)navigator.clipboard.writeT
 function fbCopy(text){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.top='-100px';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
 window.copyToClipboard=copyToClipboard;
 
+function updateWithdrawLimitHint(){
+const m=selectedMethod||'Bkash';
+const limit=getWithdrawalLimit(m);
+const hint=document.getElementById('withdraw-limit-hint');
+const amtInput=document.getElementById('withdraw-amount');
+if(hint){hint.innerHTML=`💡 <b>${limit.label}</b> — সর্বনিম্ন ৳${limit.min}, সর্বোচ্চ ৳${limit.max}`;hint.className='text-[10px] text-emerald-400 mt-1 font-medium';}
+if(amtInput){amtInput.min=limit.min;amtInput.max=limit.max;amtInput.placeholder=`সর্বনিম্ন ৳${limit.min} – সর্বোচ্চ ৳${limit.max}`;}
+}
+
 window.selectPayment=function(m){
 selectedMethod=m;
 document.querySelectorAll('.payment-card').forEach(c=>c.classList.remove('selected'));
@@ -1613,11 +1712,7 @@ const d=document.getElementById('selected-method-text');
 if(d){d.textContent=m;d.className='text-accent font-bold text-lg';}
 const opBox=document.getElementById('operator-select-box');
 if(opBox){if(m==='Mobile Recharge')opBox.classList.remove('hidden');else opBox.classList.add('hidden');}
-const limit=getWithdrawalLimit(m);
-const hint=document.getElementById('withdraw-limit-hint');
-const amtInput=document.getElementById('withdraw-amount');
-if(hint){hint.innerHTML=`💡 <b>${limit.label}</b> — সর্বনিম্ন ৳${limit.min}, সর্বোচ্চ ৳${limit.max}`;hint.className='text-[10px] text-emerald-400 mt-1 font-medium';}
-if(amtInput){amtInput.min=limit.min;amtInput.max=limit.max;amtInput.placeholder=`সর্বনিম্ন ৳${limit.min} – সর্বোচ্চ ৳${limit.max}`;amtInput.value='';}
+updateWithdrawLimitHint();
 };
 
 function updateWithdrawCycleUI(){
@@ -1667,6 +1762,7 @@ const nt=(userData.taka||0)+r;
 await updateDoc(doc(db,"users",currentUser.uid),{totalTasksCompleted:tt,adWatchCount:aw,totalEarned:increment(r),taskHistory:userData.taskHistory,taka:nt});
 userData.totalTasksCompleted=tt;userData.adWatchCount=aw;userData.totalEarned=(userData.totalEarned||0)+r;userData.taka=nt;
 await sendPassiveCommission(r);
+try{await trackActivity('task',{taskId:tid,taskLabel:t.label||'',taka:r});}catch(e){}
 showAlert(`🎉 +৳${r}!`);
 renderTasks();updateUI();updateLevelAndStreak();
 }catch(e){showAlert("সমস্যা!");}
@@ -1690,7 +1786,7 @@ if(referralCodeEl)referralCodeEl.textContent=userData.referralCode||'...';
 if(userData.photoURL)updateProfilePhoto(userData.photoURL);
 const tpt=document.getElementById('task-page-taka');if(tpt)tpt.textContent=tb.toFixed(2);
 updateVerificationUI(iv,ip);renderTasks();renderSocialTasks();updateHomeTaskPreview();
-selectPayment(selectedMethod);loadReferralStats();updateBostUI();updateDailyBonusUI();
+updateWithdrawLimitHint();loadReferralStats();updateBostUI();updateDailyBonusUI();
 updateLevelAndStreak();checkVerificationNotification();updateClickProgress();updateTelegramBonusUI();
 updateSideMenuUserInfo();renderUserEvents();updateQuizStatus();updateWithdrawCycleUI();
 }
@@ -1707,27 +1803,88 @@ if(be)be.style.width=Math.min((tc/l)*100,100)+'%';
 
 function updateBostUI(){
 if(!userData)return;
+
+// Boost System OFF হলে circle disable
+if(!BOOST_ENABLED){
+const circle=document.getElementById('bost-circle');
+const st=document.getElementById('bost-status-text');
+const warnBox=document.getElementById('bost-verify-warning');
+if(circle)circle.classList.add('disabled');
+if(st){st.textContent='⚡ Boost System বন্ধ';st.className='text-xs text-red-400 mt-3 font-medium';}
+if(warnBox){
+warnBox.style.display='block';
+warnBox.innerHTML=`<p class="text-red-400 text-xs font-medium">⚡ <strong>Boost Earn</strong> এখন অ্যাডমিন বন্ধ রেখেছেন।</p>`;
+}
 const bc=userData.bostClicks||0;
 const ee=document.getElementById('bost-total-earned');if(ee)ee.textContent=(userData.bostEarned||0).toFixed(2);
 const ce=document.getElementById('bost-total-clicks');if(ce)ce.textContent=bc;
 const ae=document.getElementById('bost-ad-count');if(ae)ae.textContent=userData.bostAdCount||0;
 const ne=document.getElementById('bost-next-ad');if(ne)ne.textContent=userData.bostNextAd||5;
 const cce=document.getElementById('bost-click-count');if(cce)cce.textContent=bc+' বার';
+const subEl=document.getElementById('bost-page-subtitle');
+if(subEl)subEl.innerHTML=`🔒 <span class="text-red-400 font-bold">Boost Earn বন্ধ</span>`;
+updateClickProgress();
+return;
+}
+
+// Boost ON — verification warning
+const warnBox=document.getElementById('bost-verify-warning');
+if(warnBox){
+if(userData.isVerified){
+warnBox.style.display='none';
+}else{
+warnBox.style.display='block';
+warnBox.innerHTML=`<p class="text-red-400 text-xs font-medium">🔒 <strong>Boost Earn</strong> ব্যবহার করতে আগে ভেরিফাই করুন!</p>`;
+}
+}
+
+const bc=userData.bostClicks||0;
+const ee=document.getElementById('bost-total-earned');if(ee)ee.textContent=(userData.bostEarned||0).toFixed(2);
+const ce=document.getElementById('bost-total-clicks');if(ce)ce.textContent=bc;
+const ae=document.getElementById('bost-ad-count');if(ae)ae.textContent=userData.bostAdCount||0;
+const ne=document.getElementById('bost-next-ad');if(ne)ne.textContent=userData.bostNextAd||5;
+const cce=document.getElementById('bost-click-count');if(cce)cce.textContent=bc+' বার';
+
+// Subtitle
+const subEl=document.getElementById('bost-page-subtitle');
+if(subEl){
+subEl.innerHTML=`গোল সার্কেল ক্লিক করে ৳<span id="bost-reward-display">${REWARD_BOST_CLICK}</span>`;
+}
+
 const circle=document.getElementById('bost-circle');const st=document.getElementById('bost-status-text');
 if(!circle)return;
-if(!bostState.isVerified){circle.classList.add('disabled');if(st){st.textContent='⚠️ ভেরিফাইড নন!';st.className='text-xs text-red-400 mt-3 font-medium';}}
-else if(bostState.isCooldown){circle.classList.add('disabled');if(st){st.textContent='⏳ কুলডাউন';st.className='text-xs text-yellow-400 mt-3 font-medium';}}
-else{circle.classList.remove('disabled');if(st){st.textContent='✅ প্রস্তুত';st.className='text-xs text-green-400 mt-3 font-medium';}}
+if(!bostState.isVerified){
+circle.classList.add('disabled');
+if(st){st.textContent='⚠️ ভেরিফাইড নন!';st.className='text-xs text-red-400 mt-3 font-medium';}
+}else if(bostState.isCooldown){
+circle.classList.add('disabled');
+if(st){st.textContent='⏳ কুলডাউন';st.className='text-xs text-yellow-400 mt-3 font-medium';}
+}else{
+circle.classList.remove('disabled');
+if(st){st.textContent='✅ প্রস্তুত';st.className='text-xs text-green-400 mt-3 font-medium';}
+}
 updateClickProgress();
 }
+
 async function handleBostClick(){
 if(!currentUser)return showAlert("লগইন!");
-if(!bostState.isVerified)return showAlert("🔒 ভেরিফাই করুন!");
-if(bostState.isCooldown)return showAlert("⏳ ৫ সেকেন্ড!");
+
+// Boost System OFF চেক
+if(!BOOST_ENABLED){
+return showAlert("⚡ Boost Earn এখন বন্ধ!\n\nঅ্যাডমিন কিছুক্ষণ পর চালু করবেন।\n\n💡 এর মধ্যে Task/Quiz থেকে টাকা কামাতে পারেন!");
+}
+
+// Verification চেক
+if(!userData?.isVerified){
+return showAlert("🔒 Boost Earn-এর জন্য আগে ভেরিফাই করুন!\n\n✅ ভেরিফাই করার পর প্রতিবার ক্লিকে টাকা পাবেন।");
+}
+
+if(bostState.isCooldown)return showAlert("⏳ ৫ সেকেন্ড অপেক্ষা করুন!");
+
 const today=new Date().toISOString().split('T')[0];
 const tc=(userData.bostHistory||{})[today]||0;
 const l=(userData.isVerified?DAILY_CLICK_LIMIT_VERIFIED:DAILY_CLICK_LIMIT);
-if(tc>=l)return showAlert(`⚠️ লিমিট!`);
+if(tc>=l)return showAlert(`⚠️ আজকের ক্লিক লিমিট শেষ!`);
 const r=REWARD_BOST_CLICK;const nt=(userData.taka||0)+r;
 try{
 await updateDoc(doc(db,"users",currentUser.uid),{bostEarned:increment(r),bostClicks:increment(1),taka:nt,totalEarned:increment(r),[`bostHistory.${today}`]:tc+1});
@@ -1735,6 +1892,7 @@ userData.bostEarned=(userData.bostEarned||0)+r;userData.bostClicks=(userData.bos
 userData.totalEarned=(userData.totalEarned||0)+r;
 if(!userData.bostHistory)userData.bostHistory={};userData.bostHistory[today]=tc+1;
 await sendPassiveCommission(r);
+try{await trackActivity('boost',{taka:r});}catch(e){}
 updateBostUI();updateUI();updateLevelAndStreak();
 showAlert(`💵 +৳${r}!`);
 bostState.isCooldown=true;setTimeout(()=>{bostState.isCooldown=false;updateBostUI();},5000);
@@ -1745,7 +1903,7 @@ function navigateTo(p){
 document.querySelectorAll('.sub-page').forEach(x=>x.classList.remove('active'));
 const t=document.getElementById(p);if(t)t.classList.add('active');
 document.querySelectorAll('.nav-link').forEach(l=>{l.classList.remove('active','text-accent');if(l.dataset&&l.dataset.page===p)l.classList.add('active','text-accent');});
-if(p==='wallet-page'){loadWithdrawalHistory();selectPayment(selectedMethod);updateWithdrawCycleUI();}
+if(p==='wallet-page'){loadWithdrawalHistory();updateWithdrawCycleUI();}
 if(p==='refer-page'){loadReferralStats();}
 if(p==='notifications-page')loadUserNotifications();
 if(p==='bost-page'){updateBostUI();updateClickProgress();}
@@ -1762,6 +1920,7 @@ document.getElementById('quiz-result-card').classList.add('hidden');
 loadTodayQuiz();
 updateQuizStatus();
 }
+try{trackPageView(p);}catch(e){}
 }
 window.navigateTo=navigateTo;
 
@@ -1770,7 +1929,6 @@ const tgRef=getTelegramReferralCode();
 const urlParams=new URLSearchParams(window.location.search);
 const urlRef=urlParams.get('ref');
 const finalRef=tgRef||(urlRef?urlRef.toUpperCase().trim():null);
-
 if(finalRef){
 const refInput=document.getElementById('signup-referral');
 if(refInput)refInput.value=finalRef;
@@ -1782,11 +1940,9 @@ sessionStorage.setItem('pendingReferralCode',finalRef);
 const refStatus=document.getElementById('ref-status');
 if(refStatus){refStatus.textContent='✅ Auto-filled: '+finalRef;refStatus.className='text-[10px] text-emerald-400 mt-1';}
 }
-
 document.getElementById('signup-referral')?.addEventListener('input',function(){
 this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
 });
-
 const sl=document.getElementById('show-signup');const ll=document.getElementById('show-login');
 if(sl)sl.addEventListener('click',e=>{e.preventDefault();document.getElementById('login-view').classList.add('hidden');document.getElementById('signup-view').classList.remove('hidden');});
 if(ll)ll.addEventListener('click',e=>{e.preventDefault();document.getElementById('signup-view').classList.add('hidden');document.getElementById('login-view').classList.remove('hidden');});
@@ -1804,27 +1960,20 @@ document.getElementById('forgot-password')?.addEventListener('click',handleForgo
 setInterval(()=>{checkAutoApprovePending();},60000);
 }
 
-// ═══════════════════════════════════════════
-// ✅ SIGNUP — Referral Code + Device Restriction
-// ═══════════════════════════════════════════
 async function handleSignup(){
 const n=document.getElementById('signup-name').value.trim();
 const em=document.getElementById('signup-email').value.trim();
 const pw=document.getElementById('signup-password').value;
 let rc=document.getElementById('signup-referral').value.trim().toUpperCase();
-
 if(!rc){const tgRef=getTelegramReferralCode();if(tgRef)rc=tgRef;}
 if(!rc){const urlParams=new URLSearchParams(window.location.search);const urlRef=urlParams.get('ref');if(urlRef)rc=urlRef.toUpperCase().trim();}
 if(!rc){const sessionRef=sessionStorage.getItem('pendingReferralCode');if(sessionRef)rc=sessionRef;}
-
 if(!rc){showAlert("❌ Referral Code দিতে হবে!\n\n🎁 Referral Code Field-এ বন্ধুর কোড লিখুন।\n\nকোড ছাড়া Account খোলা যাবে না।");return;}
 if(!n)return showAlert("⚠️ নাম দিন।");
 if(!em)return showAlert("⚠️ ইমেইল দিন।");
 if(!pw||pw.length<6)return showAlert("⚠️ পাসওয়ার্ড ৬+ অক্ষর।");
-
 loader.style.display='flex';
 try{
-// ✅ Step 1: Device Fingerprint Check
 const deviceId = getDeviceFingerprint();
 const devQ = query(collection(db,"users"),where("deviceId","==",deviceId));
 const devSnap = await getDocs(devQ);
@@ -1833,8 +1982,6 @@ loader.style.display='none';
 showAlert(`❌ এই ডিভাইসে ইতিমধ্যে ২টি Account আছে!\n\n📱 এক ডিভাইসে সর্বোচ্চ ২টি Account খোলা যাবে।\n\n💡 Telegram ID: ${window.Telegram?.WebApp?.initDataUnsafe?.user?.id||'N/A'}`);
 return;
 }
-
-// ✅ Step 2: Referral Code Verify
 const q=query(collection(db,"users"),where("referralCode","==",rc));
 const qs=await getDocs(q);
 if(qs.empty){
@@ -1842,62 +1989,27 @@ loader.style.display='none';
 showAlert("❌ ভুল Referral Code!\n\nআপনি যে কোড দিয়েছেন ("+rc+") সেটা সিস্টেমে নেই।\n\nবন্ধুর কাছ থেকে সঠিক কোড নিন।");
 return;
 }
-
 const referrerDoc=qs.docs[0];
 const referrerId=referrerDoc.id;
 const rdata=referrerDoc.data();
-
-// ✅ Step 3: Account Create
 const uc=await createUserWithEmailAndPassword(auth,em,pw);
 const orc=Math.random().toString(36).substring(2,8).toUpperCase();
 const ur=doc(db,"users",uc.user.uid);
 const dd={
-uid:uc.user.uid,
-name:n,
-email:em,
-taka:0,
-referralCode:orc,
-referredBy:rc,
-referralCommission:0,
-totalReferrals:0,
-createdAt:serverTimestamp(),
-deviceId:deviceId,
-deviceBlocked:false,
-totalTasksCompleted:0,
-isBlocked:false,
-isVerified:false,
-adWatchCount:{},
-taskHistory:{},
-totalEarned:0,
-dailyBonus:{lastClaimed:null,streak:0},
-bostHistory:{},
-photoURL:null,
-telegramBonusClaimed:false,
-withdrawCycle:0,
-cycleReferrals:0,
-cycleVerifiedReferrals:0,
-badges:[],
-claimedEvents:[],
-referralHistory:[],
-passiveIncomeTotal:0,
-completedSocialTasks:[],
-pendingSocialTasks:[],
-eventBaselines:{},
-bostEarned:0,
-bostClicks:0,
-bostAdCount:0,
-bostNextAd:5,
-welcomeShown:false,
-quizHistory:{},
-quizTotalPlayed:0,
-quizTotalCorrect:0,
-quizPendingReward:0,
-quizEarnedTotal:0
+uid:uc.user.uid,name:n,email:em,taka:0,referralCode:orc,referredBy:rc,
+referralCommission:0,totalReferrals:0,createdAt:serverTimestamp(),
+deviceId:deviceId,deviceBlocked:false,totalTasksCompleted:0,
+isBlocked:false,isVerified:false,adWatchCount:{},taskHistory:{},totalEarned:0,
+dailyBonus:{lastClaimed:null,streak:0},bostHistory:{},photoURL:null,
+telegramBonusClaimed:false,withdrawCycle:0,cycleReferrals:0,cycleVerifiedReferrals:0,
+badges:[],claimedEvents:[],referralHistory:[],passiveIncomeTotal:0,
+completedSocialTasks:[],pendingSocialTasks:[],eventBaselines:{},
+bostEarned:0,bostClicks:0,bostAdCount:0,bostNextAd:5,welcomeShown:false,
+quizHistory:{},quizTotalPlayed:0,quizTotalCorrect:0,quizPendingReward:0,quizEarnedTotal:0,
+isOnline:false,lastActiveMs:Date.now()
 };
 await setDoc(ur,dd);
 userData=dd;
-
-// ✅ Step 4: Referrer কে ৳20 bonus
 const ch=rdata.referralHistory||[];
 ch.push({id:uc.user.uid,name:n,joinedAt:new Date().toISOString()});
 await updateDoc(doc(db,"users",referrerId),{
@@ -1907,12 +2019,18 @@ cycleReferrals:(rdata.cycleReferrals||0)+1,
 totalEarned:increment(REWARD_REFERRAL),
 referralHistory:ch
 });
-
+try{
+await addDoc(collection(db,"activity_logs"),{
+userId:referrerId,userName:rdata.name||'User',
+deviceId:rdata.deviceId||'unknown',type:'referral',
+details:{newUserId:uc.user.uid,newUserName:n,taka:REWARD_REFERRAL},
+sessionId:'signup',timestamp:serverTimestamp(),
+timestampMs:Date.now(),date:new Date().toISOString().split('T')[0]
+});
+}catch(e){}
 sessionStorage.removeItem('pendingReferralCode');
-
 showAlert(`🎉 অ্যাকাউন্ট তৈরি সফল!\n\n✅ আপনি সফলভাবে রেফার হয়েছেন!\n\n💡 এখন কুইজ খেলে এবং টাস্ক করে টাকা আয় শুরু করুন!`);
 await signInWithEmailAndPassword(auth,em,pw);
-
 }catch(e){
 loader.style.display='none';
 let msg=e.message||'সমস্যা হয়েছে';
@@ -1936,7 +2054,10 @@ if(msg.includes('invalid-login-credentials'))msg='❌ ইমেইল বা প
 showAlert(msg);
 }
 }
-async function handleLogout(){await signOut(auth);}
+async function handleLogout(){
+try{await endActivitySession();}catch(e){}
+await signOut(auth);
+}
 
 async function loadWithdrawalHistory(){
 const hl=document.getElementById('withdrawal-history-list');if(!hl)return;
@@ -2020,6 +2141,7 @@ const withdrawalData={userId:currentUser.uid,userName:userData.name,userEmail:us
 if(selectedMethod==='Mobile Recharge'){withdrawalData.operator=operator;withdrawalData.type='recharge';}else{withdrawalData.type='cash';}
 await addDoc(collection(db,"withdrawals"),withdrawalData);
 if(wc===0){await updateDoc(doc(db,"users",currentUser.uid),{withdrawCycle:1,firstWithdrawAt:serverTimestamp()});userData.withdrawCycle=1;}
+try{await trackActivity('withdraw',{amount:amount,method:selectedMethod});}catch(e){}
 showAlert(`✅ জমা!\n\n💰 ৳${amount}\n📱 ${selectedMethod}`);
 document.getElementById('withdraw-amount').value='';
 document.getElementById('payment-number').value='';
@@ -2201,7 +2323,7 @@ try{
 const us=await getDoc(ur);
 if(us.exists()){
 userData=us.data();
-const defaults={isVerified:false,totalTasksCompleted:0,referralCommission:0,totalReferrals:0,adWatchCount:{},taskHistory:{},taka:0,balance:0,totalEarned:0,dailyBonus:{lastClaimed:null,streak:0},bostHistory:{},photoURL:null,totalWithdrawals:0,telegramBonusClaimed:false,withdrawCycle:0,cycleReferrals:0,cycleVerifiedReferrals:0,badges:[],claimedEvents:[],referralHistory:[],passiveIncomeTotal:0,completedSocialTasks:[],pendingSocialTasks:[],eventBaselines:{},bostEarned:0,bostClicks:0,bostAdCount:0,bostNextAd:5,welcomeShown:false,quizHistory:{},quizTotalPlayed:0,quizTotalCorrect:0,quizPendingReward:0,quizEarnedTotal:0,deviceId:null,deviceBlocked:false};
+const defaults={isVerified:false,totalTasksCompleted:0,referralCommission:0,totalReferrals:0,adWatchCount:{},taskHistory:{},taka:0,balance:0,totalEarned:0,dailyBonus:{lastClaimed:null,streak:0},bostHistory:{},photoURL:null,totalWithdrawals:0,telegramBonusClaimed:false,withdrawCycle:0,cycleReferrals:0,cycleVerifiedReferrals:0,badges:[],claimedEvents:[],referralHistory:[],passiveIncomeTotal:0,completedSocialTasks:[],pendingSocialTasks:[],eventBaselines:{},bostEarned:0,bostClicks:0,bostAdCount:0,bostNextAd:5,welcomeShown:false,quizHistory:{},quizTotalPlayed:0,quizTotalCorrect:0,quizPendingReward:0,quizEarnedTotal:0,deviceId:null,deviceBlocked:false,isOnline:false,lastActiveMs:0};
 let nu=false;
 for(const[k,v]of Object.entries(defaults)){if(userData[k]===undefined){userData[k]=v;nu=true;}}
 if(nu)await updateDoc(ur,userData);
@@ -2214,6 +2336,7 @@ const cs=await getDoc(doc(db,"config","main"));
 if(cs.exists()){
 appConfig=cs.data();
 verificationEnabled=appConfig.verificationEnabled!==false;
+BOOST_ENABLED=appConfig.boostEnabled!==false;
 if(appConfig.rewardAd!==undefined) REWARD_AD_WATCH=parseFloat(appConfig.rewardAd)||5;
 if(appConfig.rewardBost!==undefined) REWARD_BOST_CLICK=parseFloat(appConfig.rewardBost)||2;
 if(appConfig.rewardDaily!==undefined) REWARD_DAILY_BONUS=parseFloat(appConfig.rewardDaily)||3;
@@ -2237,13 +2360,17 @@ verificationStatus=qs.empty?'unverified':'pending';
 }
 
 function updateVerificationUI(iv,ip){
+// ✅ Boost-এর verified requirement সবসময় active থাকবে (verification toggle যাই হোক)
+bostState.isVerified=iv;
+updateBostUI();
+
 if(!verificationEnabled){
 const hb=document.getElementById('home-verified-badge');if(hb)hb.outerHTML='<span id="home-verified-badge"></span>';
 const wb=document.getElementById('wallet-verified-badge');if(wb)wb.outerHTML='<span id="wallet-verified-badge"></span>';
 const pb=document.getElementById('profile-verified-badge');if(pb)pb.style.display='none';
 const pt=document.getElementById('profile-verified-text');if(pt)pt.style.display='none';
 const vb=document.getElementById('verify-notification-banner');if(vb)vb.style.display='none';
-bostState.isVerified=true;updateBostUI();lucide.createIcons();
+lucide.createIcons();
 return;
 }
 let bh='';
@@ -2266,7 +2393,7 @@ if(iv){pt.className='mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-full 
 else if(ip){pt.className='mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/30';pt.innerHTML=`<i data-lucide="clock" class="w-3 h-3 text-yellow-400"></i><span class="text-[8px] font-black text-yellow-400 uppercase">অপেক্ষমান</span>`;}
 else{pt.className='mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-500/20 border border-red-500/30';pt.innerHTML=`<i data-lucide="shield-off" class="w-3 h-3 text-red-400"></i><span class="text-[8px] font-black text-red-400 uppercase">আনভেরিফাইড</span>`;}
 }
-bostState.isVerified=iv;updateBostUI();lucide.createIcons();
+lucide.createIcons();
 }
 function showMainPage(p){
 document.querySelectorAll('.main-page').forEach(x=>x.classList.remove('active'));
@@ -2344,14 +2471,11 @@ document.getElementById('total-earned-display').textContent=te.toFixed(2);
 
 async function claimDailyBonus(){
 if(!currentUser||!userData)return showAlert("লগইন!");
-
-// ✅ Total ২টা Referral Check
 const totalRef=userData.totalReferrals||0;
 if(totalRef<2){
 showAlert(`🔒 Daily Bonus-এর জন্য শর্ত!\n\n👥 প্রয়োজন: ২টা Referral\n📊 আপনার: ${totalRef}টা\n\n🔗 Refer page থেকে বন্ধুদের Refer করুন!\n\n💡 ২টা Referral হলে প্রতিদিন ৳${REWARD_DAILY_BONUS} পাবেন!`);
 return;
 }
-
 const today=new Date().toISOString().split('T')[0];
 const db_=userData.dailyBonus||{lastClaimed:null,streak:0};
 if(db_.lastClaimed===today)return showAlert("আজ ক্লেইম করেছেন!");
@@ -2363,6 +2487,7 @@ await showAdWithFallback();
 const nt=(userData.taka||0)+REWARD_DAILY_BONUS;
 await updateDoc(doc(db,"users",currentUser.uid),{taka:nt,totalEarned:(userData.totalEarned||0)+REWARD_DAILY_BONUS,dailyBonus:{lastClaimed:today,streak:ns}});
 userData.taka=nt;userData.totalEarned=(userData.totalEarned||0)+REWARD_DAILY_BONUS;userData.dailyBonus={lastClaimed:today,streak:ns};
+try{await trackActivity('daily_bonus',{taka:REWARD_DAILY_BONUS,streak:ns});}catch(e){}
 updateUI();updateDailyBonusUI();updateLevelAndStreak();
 showAlert(`🎉 +৳${REWARD_DAILY_BONUS} Daily Bonus!\n\n🔥 Streak: ${ns} দিন`);
 }catch(e){showAlert("সমস্যা!");}
@@ -2419,29 +2544,10 @@ showForgotPasswordConfirm(email);
 
 function showForgotPasswordConfirm(email){
 document.getElementById('forgot-confirm-modal')?.remove();
-const modal=`
-<div class="confirm-modal-overlay" id="forgot-confirm-modal">
-<div class="confirm-modal-box" onclick="event.stopPropagation()">
-<div class="confirm-modal-icon">🔑</div>
-<h3 class="confirm-modal-title">Password Reset</h3>
-<div class="confirm-modal-divider"></div>
-<div class="confirm-modal-email-box">
-<p class="confirm-modal-email-label">📧 এই ইমেইলে পাঠানো হবে</p>
-<p class="confirm-modal-email-value">${escapeHtml(email)}</p>
-</div>
-<p class="confirm-modal-msg">আপনার Email inbox চেক করে<br>reset link-এ tap করুন।</p>
-<div class="confirm-modal-buttons">
-<button class="confirm-btn-cancel" onclick="closeForgotConfirm()">বাতিল</button>
-<button class="confirm-btn-ok" onclick="sendResetEmail('${escapeHtml(email)}')">✓ পাঠান</button>
-</div>
-</div>
-</div>`;
+const modal=`<div class="confirm-modal-overlay" id="forgot-confirm-modal"><div class="confirm-modal-box" onclick="event.stopPropagation()"><div class="confirm-modal-icon">🔑</div><h3 class="confirm-modal-title">Password Reset</h3><div class="confirm-modal-divider"></div><div class="confirm-modal-email-box"><p class="confirm-modal-email-label">📧 এই ইমেইলে পাঠানো হবে</p><p class="confirm-modal-email-value">${escapeHtml(email)}</p></div><p class="confirm-modal-msg">আপনার Email inbox চেক করে<br>reset link-এ tap করুন।</p><div class="confirm-modal-buttons"><button class="confirm-btn-cancel" onclick="closeForgotConfirm()">বাতিল</button><button class="confirm-btn-ok" onclick="sendResetEmail('${escapeHtml(email)}')">✓ পাঠান</button></div></div></div>`;
 document.body.insertAdjacentHTML('beforeend',modal);
 }
-window.closeForgotConfirm=function(){
-const m=document.getElementById('forgot-confirm-modal');
-if(m){m.style.opacity='0';setTimeout(()=>m.remove(),250);}
-};
+window.closeForgotConfirm=function(){const m=document.getElementById('forgot-confirm-modal');if(m){m.style.opacity='0';setTimeout(()=>m.remove(),250);}};
 
 window.sendResetEmail=async function(email){
 closeForgotConfirm();
@@ -2462,41 +2568,11 @@ showAlert(msg);
 
 function showForgotPasswordSuccess(email){
 document.getElementById('forgot-success-modal')?.remove();
-const modal=`
-<div class="success-modal-overlay" id="forgot-success-modal">
-<div class="success-modal-box" onclick="event.stopPropagation()">
-<div class="success-modal-icon">✅</div>
-<h3 class="success-modal-title">Email পাঠানো হয়েছে!</h3>
-<div class="success-modal-divider"></div>
-<div class="success-email-chip">
-<span>📧</span>
-<span>${escapeHtml(email)}</span>
-</div>
-<div class="success-steps">
-<div class="success-step"><span class="step-num">1</span><span>আপনার Email inbox খুলুন</span></div>
-<div class="success-step"><span class="step-num">2</span><span>Firebase থেকে পাঠানো Email খুঁজুন</span></div>
-<div class="success-step"><span class="step-num">3</span><span>"Reset Password" link-এ tap করুন</span></div>
-<div class="success-step"><span class="step-num">4</span><span>নতুন পাসওয়ার্ড সেট করুন (৬+ অক্ষর)</span></div>
-</div>
-<div class="success-warn-box">
-<span class="icon">⚠️</span>
-<div class="text">
-<b>Email না পেলে:</b><br>
-📂 Spam / Junk folder চেক করুন<br>
-📂 Promotions / Updates tab চেক করুন<br>
-🔍 Search: <code style="background:rgba(0,0,0,.3);padding:2px 6px;border-radius:4px;font-size:10px">from:firebaseapp.com</code>
-</div>
-</div>
-<button class="popup-btn-v2" style="background:linear-gradient(135deg,#10b981,#34d399)" onclick="closeForgotSuccess()">✓ বুঝেছি</button>
-</div>
-</div>`;
+const modal=`<div class="success-modal-overlay" id="forgot-success-modal"><div class="success-modal-box" onclick="event.stopPropagation()"><div class="success-modal-icon">✅</div><h3 class="success-modal-title">Email পাঠানো হয়েছে!</h3><div class="success-modal-divider"></div><div class="success-email-chip"><span>📧</span><span>${escapeHtml(email)}</span></div><div class="success-steps"><div class="success-step"><span class="step-num">1</span><span>আপনার Email inbox খুলুন</span></div><div class="success-step"><span class="step-num">2</span><span>Firebase থেকে পাঠানো Email খুঁজুন</span></div><div class="success-step"><span class="step-num">3</span><span>"Reset Password" link-এ tap করুন</span></div><div class="success-step"><span class="step-num">4</span><span>নতুন পাসওয়ার্ড সেট করুন (৬+ অক্ষর)</span></div></div><div class="success-warn-box"><span class="icon">⚠️</span><div class="text"><b>Email না পেলে:</b><br>📂 Spam / Junk folder চেক করুন<br>📂 Promotions / Updates tab চেক করুন<br>🔍 Search: <code style="background:rgba(0,0,0,.3);padding:2px 6px;border-radius:4px;font-size:10px">from:firebaseapp.com</code></div></div><button class="popup-btn-v2" style="background:linear-gradient(135deg,#10b981,#34d399)" onclick="closeForgotSuccess()">✓ বুঝেছি</button></div></div>`;
 document.body.insertAdjacentHTML('beforeend',modal);
 if(typeof lucide!=='undefined')lucide.createIcons();
 }
-window.closeForgotSuccess=function(){
-const m=document.getElementById('forgot-success-modal');
-if(m){m.style.opacity='0';setTimeout(()=>m.remove(),300);}
-};
+window.closeForgotSuccess=function(){const m=document.getElementById('forgot-success-modal');if(m){m.style.opacity='0';setTimeout(()=>m.remove(),300);}};
 
 window.onload=()=>{
 initTelegramApp();
@@ -2519,6 +2595,7 @@ try{setupSocialTasksListener();}catch(e){}
 try{setupUserEventsListener();}catch(e){}
 try{updateUI();}catch(e){}
 showMainPage('app-container');navigateTo('home-page');loader.style.display='none';
+try{await startActivitySession();}catch(e){console.error('Session start:',e);}
 try{updateDailyBonusUI();}catch(e){}
 try{updateLevelAndStreak();}catch(e){}
 try{await loadLeaderboard();}catch(e){}
@@ -2538,6 +2615,7 @@ sessionStorage.setItem('welcomeShownThisSession','1');
 },800);
 }else{
 currentUser=null;userData=null;
+try{await endActivitySession();}catch(e){}
 try{if(unsubscribeNotifications)unsubscribeNotifications();}catch(e){}
 try{if(unsubscribeConfigListener)unsubscribeConfigListener();}catch(e){}
 try{if(unsubscribeTasksListener){unsubscribeTasksListener();unsubscribeTasksListener=null;}}catch(e){}
@@ -2550,7 +2628,18 @@ showMainPage('auth-section');
 }
 }
 
-console.log("✅ User Panel v6.0 — Welcome Bonus বাদ + Device Restriction + All New Rates Loaded!");
+window.addEventListener('beforeunload',()=>{try{endActivitySession();}catch(e){}});
+document.addEventListener('visibilitychange',()=>{
+if(!currentUser||!activitySession.sessionId)return;
+if(document.visibilityState==='visible'){
+activitySession.lastPing=Date.now();
+updateDoc(doc(db,"activity_sessions",activitySession.sessionId),{isActive:true,lastResumeMs:Date.now()}).catch(()=>{});
+}else{
+updateDoc(doc(db,"activity_sessions",activitySession.sessionId),{isActive:false,lastPauseMs:Date.now()}).catch(()=>{});
+}
+});
+
+console.log("✅ User Panel v7.0 — Boost Toggle + Activity Tracking + Home Task Fix + All Features!");
 </script>
 </body>
 </html>
