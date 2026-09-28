@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>টাকা কামাও</title>
+<title>টাকা কামাও — Dollar Edition</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -223,14 +223,16 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 .quiz-slot-bar{height:6px;background:rgba(255,255,255,.08);border-radius:20px;overflow:hidden;margin-top:6px}
 .quiz-slot-bar .fill{height:100%;background:linear-gradient(90deg,#10b981,#fbbf24);border-radius:20px;transition:width .6s ease}
 .ref-banner{background:linear-gradient(135deg,rgba(16,185,129,.18),rgba(251,191,36,.12));border:1px solid rgba(16,185,129,.4);border-radius:16px;padding:12px 14px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.exchange-info{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(139,92,246,.08));border:1px solid rgba(59,130,246,.3);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.exchange-info .rate{font-size:13px;font-weight:800;color:#60a5fa}
 </style>
 </head>
 <body>
 
 <div id="loader" class="fixed inset-0 dark-bg flex items-center justify-center z-50">
 <div class="text-center">
-<div class="loader-ring mx-auto"><span class="inner-text">৳</span></div>
-<p class="text-gray-400 text-sm mt-3 font-medium">টাকা কামাও 💵💰</p>
+<div class="loader-ring mx-auto"><span class="inner-text">$</span></div>
+<p class="text-gray-400 text-sm mt-3 font-medium">টাকা কামাও 💵💵</p>
 </div>
 </div>
 
@@ -244,7 +246,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="side-menu-user-info">
 <div class="name" id="menu-user-name">লোড হচ্ছে...</div>
 <div class="email" id="menu-user-email">...</div>
-<div class="balance">💰 ৳<span id="menu-user-taka">০</span></div>
+<div class="balance">💵 $<span id="menu-user-taka">0.00</span></div>
 </div>
 </div>
 </div>
@@ -268,14 +270,14 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="side-menu-divider"></div>
 <button class="side-menu-item danger" onclick="menuLogout()"><div class="menu-icon"><i data-lucide="log-out"></i></div><span class="menu-label">লগআউট</span></button>
 </div>
-<div class="side-menu-footer"><p>টাকা কামাও • ভার্সন 4.7.0</p></div>
+<div class="side-menu-footer"><p>টাকা কামাও • ভার্সন 5.0.0 • USD</p></div>
 </div>
 
 <!-- AUTH -->
 <div id="auth-section" class="min-h-screen p-6 flex-col justify-center main-page relative z-10">
 <div class="text-center mb-10">
-<div class="text-7xl mb-4">💰</div>
-<h1 class="text-4xl font-black bg-gradient-to-r from-emerald-400 via-yellow-400 to-emerald-400 bg-clip-text text-transparent">টাকা কামাও</h1>
+<div class="text-7xl mb-4">💵</div>
+<h1 class="text-4xl font-black bg-gradient-to-r from-emerald-400 via-yellow-400 to-emerald-400 bg-clip-text text-transparent">ডলার কামাও</h1>
 <p class="text-gray-400 mt-2 text-sm">চালিয়ে যেতে লগইন বা সাইন আপ করুন</p>
 </div>
 <div id="auth-container" class="max-w-sm mx-auto w-full">
@@ -301,7 +303,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <header class="flex items-center justify-between p-4 sticky top-0 glass z-20 border-b border-white/5">
 <div class="flex items-center gap-2">
 <button class="menu-btn-header" onclick="openSideMenu()"><i data-lucide="menu" style="width:20px;height:20px"></i></button>
-<h1 class="text-lg font-black bg-gradient-to-r from-emerald-400 to-yellow-400 bg-clip-text text-transparent">টাকা কামাও</h1>
+<h1 class="text-lg font-black bg-gradient-to-r from-emerald-400 to-yellow-400 bg-clip-text text-transparent">ডলার কামাও</h1>
 </div>
 <div class="flex items-center space-x-2">
 <div class="relative cursor-pointer p-2 rounded-xl hover:bg-white/5 transition" onclick="navigateTo('notifications-page')">
@@ -325,8 +327,9 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <span id="home-verified-badge"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] bg-red-500/20 text-red-400 font-bold"><i data-lucide="shield-off" class="w-3 h-3"></i> আনভেরিফাইড</span></span>
 </div>
 <div class="flex items-end gap-2 mt-2">
-<p class="text-5xl font-black text-white" style="text-shadow:0 0 30px rgba(16,185,129,.5)">৳<span id="home-taka-balance">0.00</span></p>
+<p class="text-5xl font-black text-white" style="text-shadow:0 0 30px rgba(16,185,129,.5)">$<span id="home-taka-balance">0.00</span></p>
 </div>
+<p class="text-xs text-gray-400 mt-2">≈ ৳<span id="home-taka-converted">0</span> (1$ = <span id="home-rate-display">110</span>৳)</p>
 <div class="flex gap-3 mt-5">
 <button id="home-withdraw-btn" class="flex-1 bg-white text-black font-bold px-4 py-3 rounded-2xl hover:bg-gray-200 transition text-sm shadow-lg">উত্তোলন</button>
 <button onclick="navigateTo('refer-page')" class="flex-1 btn-accent px-4 py-3 rounded-2xl text-sm">রেফার করুন</button>
@@ -341,7 +344,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <span class="text-3xl">🧠</span>
 <div>
 <p class="text-xs text-purple-400 font-bold">আজকের কুইজ</p>
-<p class="text-sm font-bold text-white" id="quiz-home-title">প্রশ্ন • টাকা জিতুন</p>
+<p class="text-sm font-bold text-white" id="quiz-home-title">প্রশ্ন • ডলার জিতুন</p>
 <p class="text-[10px] text-gray-400" id="quiz-status-text">🎯 এখনই খেলুন!</p>
 </div>
 </div>
@@ -371,38 +374,11 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <button class="btn-verify-now" onclick="showVerificationPopup()">ভেরিফাই</button>
 </div>
 
-<div class="bg-gradient-to-br from-[#1a1a2e] to-[#0d0d1a] border border-yellow-500/30 rounded-2xl p-5" id="daily-bonus-card">
-<div class="flex items-center justify-between">
-<div>
-<p class="text-xs text-gray-400">📅 ডেইলি বোনাস</p>
-<p class="text-3xl font-bold text-yellow-400" id="daily-bonus-amount">৳১০</p>
-<p class="text-xs text-gray-500" id="daily-bonus-status">আজকে ক্লেইম করুন!</p>
-</div>
-<div class="text-right">
-<div class="flex items-center gap-1">
-<span class="text-2xl">🔥</span>
-<span class="text-xl font-bold text-yellow-400" id="daily-bonus-streak">0</span>
-<span class="text-xs text-gray-400">দিন</span>
-</div>
-<button id="daily-bonus-btn" class="btn-accent text-xs px-4 py-2 mt-1 rounded-xl">ক্লেইম</button>
-</div>
-</div>
-<div class="mt-2 flex gap-1">
-<div class="h-1 flex-1 rounded-full bg-gray-700" id="streak-dot-0"></div>
-<div class="h-1 flex-1 rounded-full bg-gray-700" id="streak-dot-1"></div>
-<div class="h-1 flex-1 rounded-full bg-gray-700" id="streak-dot-2"></div>
-<div class="h-1 flex-1 rounded-full bg-gray-700" id="streak-dot-3"></div>
-<div class="h-1 flex-1 rounded-full bg-gray-700" id="streak-dot-4"></div>
-<div class="h-1 flex-1 rounded-full bg-gray-700" id="streak-dot-5"></div>
-<div class="h-1 flex-1 rounded-full bg-gray-700" id="streak-dot-6"></div>
-</div>
-</div>
-
 <section>
 <div class="flex justify-between items-center mb-4">
 <div>
 <h2 class="text-lg font-bold">💼 দৈনিক কাজ</h2>
-<p class="text-sm text-gray-400">টাস্ক শেষ করে টাকা আয় করুন</p>
+<p class="text-sm text-gray-400">টাস্ক শেষ করে ডলার আয় করুন</p>
 </div>
 </div>
 <div class="space-y-3" id="tasks-container"></div>
@@ -413,7 +389,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <span class="text-2xl">📢</span>
 <div class="tg-text">
 <p class="title">টেলিগ্রাম চ্যানেল</p>
-<p class="desc">জয়েন করলে <span class="text-yellow-400 font-bold">৳<span id="telegram-reward-display">20</span></span></p>
+<p class="desc">জয়েন করলে <span class="text-yellow-400 font-bold">$<span id="telegram-reward-display">0.20</span></span></p>
 </div>
 </div>
 <button id="telegram-claim-btn" class="btn-telegram">জয়েন</button>
@@ -431,13 +407,13 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 </div>
 <div class="text-right">
 <p class="text-xs text-gray-400">পরবর্তী</p>
-<p class="text-sm font-bold text-yellow-400" id="next-level-progress">৳0 / ৳100</p>
+<p class="text-sm font-bold text-yellow-400" id="next-level-progress">$0 / $1</p>
 </div>
 </div>
 <div class="h-2 bg-[#2a2a4e] rounded-full overflow-hidden mt-2">
 <div class="h-full bg-gradient-to-r from-emerald-500 to-yellow-500 rounded-full" id="level-progress-fill" style="width:0%"></div>
 </div>
-<p class="text-[10px] text-gray-500 mt-1">মোট আয়: ৳<span id="total-earned-display">0.00</span></p>
+<p class="text-[10px] text-gray-500 mt-1">মোট আয়: $<span id="total-earned-display">0.00</span></p>
 </div>
 </div>
 
@@ -445,13 +421,13 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div id="quiz-page" class="p-4 space-y-4 sub-page">
 <div class="text-center">
 <h2 class="text-2xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 bg-clip-text text-transparent">🧠 কুইজ গেম</h2>
-<p class="text-xs text-gray-500 mt-1">সঠিক উত্তরে টাকা জিতুন</p>
+<p class="text-xs text-gray-500 mt-1">সঠিক উত্তরে ডলার জিতুন</p>
 </div>
 <div class="card-bg p-4 rounded-2xl border border-purple-500/30">
 <div class="grid grid-cols-3 gap-3 text-center">
 <div><p class="text-[10px] text-gray-400">প্রশ্ন</p><p class="text-xl font-black text-emerald-400" id="quiz-total-display">০</p></div>
-<div><p class="text-[10px] text-gray-400">প্রতি সঠিক</p><p class="text-xl font-black text-yellow-400">৳<span id="quiz-reward-display">০</span></p></div>
-<div><p class="text-[10px] text-gray-400">সর্বোচ্চ</p><p class="text-xl font-black text-purple-400">৳<span id="quiz-max-display">০</span></p></div>
+<div><p class="text-[10px] text-gray-400">প্রতি সঠিক</p><p class="text-xl font-black text-yellow-400">$<span id="quiz-reward-display">০</span></p></div>
+<div><p class="text-[10px] text-gray-400">সর্বোচ্চ</p><p class="text-xl font-black text-purple-400">$<span id="quiz-max-display">০</span></p></div>
 </div>
 </div>
 <div id="quiz-start-card" class="card-bg p-6 rounded-3xl border border-purple-500/30 text-center">
@@ -468,12 +444,12 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 </div>
 <div id="quiz-pending-box" class="hidden bg-yellow-500/10 border border-yellow-500/30 rounded-2xl p-4 mb-4 mt-4">
 <p class="text-yellow-400 font-bold text-sm">⏳ Pending রিভিউ</p>
-<p class="text-xs text-gray-400 mt-1">অ্যাডমিন Approve করলে টাকা যোগ হবে।</p>
-<p class="text-lg font-black text-yellow-400 mt-2">💰 সম্ভাব্য: ৳<span id="quiz-pending-amount">০</span></p>
+<p class="text-xs text-gray-400 mt-1">অ্যাডমিন Approve করলে ডলার যোগ হবে।</p>
+<p class="text-lg font-black text-yellow-400 mt-2">💵 সম্ভাব্য: $<span id="quiz-pending-amount">০</span></p>
 </div>
 <div id="quiz-approved-box" class="hidden bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-4 mb-4 mt-4">
 <p class="text-emerald-400 font-bold text-sm">✅ আজ সম্পন্ন!</p>
-<p class="text-lg font-black text-emerald-400 mt-2">পেয়েছেন: ৳<span id="quiz-earned-amount">০</span></p>
+<p class="text-lg font-black text-emerald-400 mt-2">পেয়েছেন: $<span id="quiz-earned-amount">০</span></p>
 </div>
 <div id="quiz-no-quiz-box" class="hidden bg-gray-500/10 border border-gray-500/30 rounded-2xl p-4 mb-4 mt-4">
 <p class="text-gray-400 font-bold text-sm">📭 আজ কোনো কুইজ নেই</p>
@@ -498,10 +474,10 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="card-bg p-6 rounded-3xl border-2 border-yellow-500/40 text-center">
 <div class="text-7xl mb-3">📤</div>
 <h3 class="text-2xl font-black text-white mb-2">উত্তর জমা হয়েছে!</h3>
-<p class="text-gray-400 text-sm mb-4">অ্যাডমিন Approve করলে টাকা যোগ হবে</p>
+<p class="text-gray-400 text-sm mb-4">অ্যাডমিন Approve করলে ডলার যোগ হবে</p>
 <div class="bg-gradient-to-r from-yellow-500/20 to-emerald-500/20 rounded-2xl p-4 mb-4">
 <p class="text-xs text-gray-400 mb-1">সম্ভাব্য পুরস্কার</p>
-<p class="text-4xl font-black text-yellow-400">৳<span id="result-reward">০</span></p>
+<p class="text-4xl font-black text-yellow-400">$<span id="result-reward">০</span></p>
 </div>
 <div class="grid grid-cols-2 gap-3 mb-4">
 <div class="bg-emerald-500/10 rounded-xl p-3"><p class="text-[10px] text-gray-400">সঠিক</p><p class="text-2xl font-black text-emerald-400"><span id="result-correct">০</span></p></div>
@@ -517,9 +493,9 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <h3 class="text-sm font-bold text-blue-400 mb-2">💡 নিয়মাবলী</h3>
 <ul class="text-xs text-gray-300 space-y-1 pl-4 list-disc">
 <li>প্রতিদিন <strong class="text-emerald-400">একবার</strong> খেলতে পারবেন</li>
-<li>সঠিক উত্তরে <strong class="text-emerald-400">৳ টাকা</strong></li>
+<li>সঠিক উত্তরে <strong class="text-emerald-400">$ ডলার</strong></li>
 <li><strong class="text-yellow-400">সীমিত স্লট</strong> — আগে এলে খেলতে পারবেন</li>
-<li>অ্যাডমিন Approve করলে টাকা যোগ</li>
+<li>অ্যাডমিন Approve করলে ডলার যোগ</li>
 </ul>
 </div>
 </div>
@@ -532,7 +508,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="grid grid-cols-3 gap-2">
 <div class="card-bg p-3 rounded-2xl border border-white/5 text-center"><p class="text-[10px] text-gray-400">মোট</p><p class="text-xl font-black text-emerald-400" id="ev-total">০</p></div>
 <div class="card-bg p-3 rounded-2xl border border-white/5 text-center"><p class="text-[10px] text-gray-400">ক্লেইম</p><p class="text-xl font-black text-emerald-400" id="ev-claimed">০</p></div>
-<div class="card-bg p-3 rounded-2xl border border-white/5 text-center"><p class="text-[10px] text-gray-400">বোনাস</p><p class="text-xl font-black text-yellow-400">৳<span id="ev-bonus">০</span></p></div>
+<div class="card-bg p-3 rounded-2xl border border-white/5 text-center"><p class="text-[10px] text-gray-400">বোনাস</p><p class="text-xl font-black text-yellow-400">$<span id="ev-bonus">০</span></p></div>
 </div>
 <div id="events-user-list" class="space-y-3"><p class="text-gray-500 text-sm text-center py-8">⏳ লোড হচ্ছে...</p></div>
 </div>
@@ -541,11 +517,11 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div id="like-task-page" class="p-4 space-y-4 sub-page">
 <div class="text-center">
 <h2 class="text-2xl font-black bg-gradient-to-r from-pink-400 via-emerald-400 to-yellow-400 bg-clip-text text-transparent">🎯 Like/Comment Task</h2>
-<p class="text-xs text-gray-500 mt-1">টাস্ক করে <span class="text-emerald-400 font-bold">৳ টাকা</span> আয় করুন</p>
+<p class="text-xs text-gray-500 mt-1">টাস্ক করে <span class="text-emerald-400 font-bold">$ ডলার</span> আয় করুন</p>
 </div>
 <div class="card-bg p-4 rounded-2xl border border-emerald-500/20 text-center">
-<p class="text-xs text-gray-400">💰 আপনার টাকা</p>
-<p class="text-3xl font-black text-emerald-400">৳<span id="task-page-taka">0.00</span></p>
+<p class="text-xs text-gray-400">💵 আপনার ব্যালেন্স</p>
+<p class="text-3xl font-black text-emerald-400">$<span id="task-page-taka">0.00</span></p>
 </div>
 <div class="flex gap-2 overflow-x-auto pb-1" id="task-filter-tabs">
 <button onclick="setTaskFilter('all')" data-filter="all" class="task-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 whitespace-nowrap">🌐 সব</button>
@@ -565,12 +541,21 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 
 <!-- WALLET PAGE -->
 <div id="wallet-page" class="p-4 space-y-5 sub-page">
-<div class="text-center"><h2 class="text-2xl font-black bg-gradient-to-r from-emerald-400 to-indigo-400 bg-clip-text text-transparent">💳 আমার ওয়ালেট</h2><p class="text-xs text-gray-500 mt-1">টাকা উত্তোলন করুন</p></div>
+<div class="text-center"><h2 class="text-2xl font-black bg-gradient-to-r from-emerald-400 to-indigo-400 bg-clip-text text-transparent">💳 আমার ওয়ালেট</h2><p class="text-xs text-gray-500 mt-1">ডলার → টাকায় কনভার্ট করে উত্তোলন</p></div>
 <div class="balance-glow">
 <div class="relative z-10 text-center">
 <p class="text-gray-300 text-sm font-medium">বর্তমান ব্যালেন্স</p>
-<p class="text-5xl font-black text-white mt-2" style="text-shadow:0 0 30px rgba(16,185,129,.5)">৳<span id="wallet-taka-balance">০</span></p>
+<p class="text-5xl font-black text-white mt-2" style="text-shadow:0 0 30px rgba(16,185,129,.5)">$<span id="wallet-taka-balance">0.00</span></p>
+<p class="text-sm text-emerald-400 mt-2 font-bold">≈ ৳<span id="wallet-taka-converted">0</span></p>
 <div class="mt-3"><span id="wallet-verified-badge"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] bg-red-500/20 text-red-400 font-bold"><i data-lucide="shield-off" class="w-3 h-3"></i> আনভেরিফাইড</span></span></div>
+</div>
+</div>
+
+<div class="exchange-info">
+<span class="text-2xl">💱</span>
+<div class="flex-1">
+<p class="text-[11px] text-gray-400">এক্সচেঞ্জ রেট</p>
+<p class="rate">১ ডলার = ৳<span id="exchange-rate-display">110</span> টাকা</p>
 </div>
 </div>
 
@@ -630,9 +615,12 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="card-bg p-5 rounded-2xl border border-white/5">
 <div class="space-y-4">
 <div>
-<label class="text-xs text-gray-400 font-medium">টাকার পরিমাণ (৳)</label>
-<input id="withdraw-amount" type="number" min="20" max="100" placeholder="সর্বনিম্ন: ২০৳ (রিচার্জ) / ৫০৳ (বিকাশ-নগদ)" class="input-field mt-1">
-<p id="withdraw-limit-hint" class="text-[10px] text-emerald-400 mt-1 font-medium">💡 মেথড সিলেক্ট করলে লিমিট দেখাবে</p>
+<label class="text-xs text-gray-400 font-medium">ডলার পরিমাণ ($)</label>
+<input id="withdraw-amount-usd" type="number" min="0" step="0.01" placeholder="যেমন: 0.50" class="input-field mt-1">
+<p id="withdraw-conversion-hint" class="text-[10px] text-emerald-400 mt-1 font-medium">💡 ডলার লিখলে অটো টাকায় কনভার্ট হবে</p>
+</div>
+<div><label class="text-xs text-gray-400 font-medium">টাকার পরিমাণ (৳)</label>
+<input id="withdraw-amount" type="number" min="20" max="20000" placeholder="স্বয়ংক্রিয় হিসাব" class="input-field mt-1 bg-white/5" readonly>
 </div>
 <div><label class="text-xs text-gray-400 font-medium">সিলেক্টেড মেথড</label>
 <div class="p-4 rounded-xl bg-[#1a1a2e] border border-white/5 text-center mt-1">
@@ -667,17 +655,17 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 
 <!-- REFER PAGE -->
 <div id="refer-page" class="p-4 space-y-5 sub-page">
-<div class="text-center"><h2 class="text-2xl font-black bg-gradient-to-r from-emerald-400 to-yellow-400 bg-clip-text text-transparent">👥 রেফার ও আয় করুন</h2><p class="text-xs text-gray-500 mt-1">প্রতি রেফারে ৳<span id="refer-bonus-display">০</span>!</p></div>
+<div class="text-center"><h2 class="text-2xl font-black bg-gradient-to-r from-emerald-400 to-yellow-400 bg-clip-text text-transparent">👥 রেফার ও আয় করুন</h2><p class="text-xs text-gray-500 mt-1">প্রতি রেফারে $<span id="refer-bonus-display">0.00</span>!</p></div>
 <div class="bg-gradient-to-r from-emerald-500/10 to-yellow-500/10 p-5 rounded-2xl border border-emerald-500/20">
 <div class="flex items-center justify-between">
-<div><p class="text-xs text-gray-400">🎯 প্রতি রেফারে</p><p class="text-4xl font-black text-emerald-400">৳<span id="refer-amount-display">০</span></p></div>
-<div class="text-right"><p class="text-xs text-gray-400">মোট কমিশন</p><p class="text-3xl font-bold text-yellow-400">৳<span id="referral-commission-total">0</span></p></div>
+<div><p class="text-xs text-gray-400">🎯 প্রতি রেফারে</p><p class="text-4xl font-black text-emerald-400">$<span id="refer-amount-display">0.00</span></p></div>
+<div class="text-right"><p class="text-xs text-gray-400">মোট কমিশন</p><p class="text-3xl font-bold text-yellow-400">$<span id="referral-commission-total">0.00</span></p></div>
 </div>
 </div>
 <div class="grid grid-cols-3 gap-3">
 <div class="bg-[#1a1a2e] p-3 rounded-xl text-center border border-white/5"><div class="text-2xl font-black text-accent" id="total-referrals">0</div><div class="text-[10px] text-gray-400">মোট রেফার</div></div>
-<div class="bg-[#1a1a2e] p-3 rounded-xl text-center border border-white/5"><div class="text-xl font-black text-yellow-400">৳<span id="referral-earnings">0</span></div><div class="text-[10px] text-gray-400">বোনাস</div></div>
-<div class="bg-[#1a1a2e] p-3 rounded-xl text-center border border-white/5"><div class="text-xl font-black text-green-400">৳<span id="referral-commission-display">0</span></div><div class="text-[10px] text-gray-400">কমিশন</div></div>
+<div class="bg-[#1a1a2e] p-3 rounded-xl text-center border border-white/5"><div class="text-xl font-black text-yellow-400">$<span id="referral-earnings">0.00</span></div><div class="text-[10px] text-gray-400">বোনাস</div></div>
+<div class="bg-[#1a1a2e] p-3 rounded-xl text-center border border-white/5"><div class="text-xl font-black text-green-400">$<span id="referral-commission-display">0.00</span></div><div class="text-[10px] text-gray-400">কমিশন</div></div>
 </div>
 <div class="card-bg p-6 rounded-2xl text-center border border-white/5">
 <p class="text-gray-400 text-sm mb-3">🎯 আপনার রেফারেল কোড</p>
@@ -702,7 +690,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div id="bost-page" class="p-4 space-y-5 sub-page">
 <div class="text-center">
 <h2 class="text-3xl font-black bg-gradient-to-r from-emerald-400 to-pink-500 bg-clip-text text-transparent">🚀 Boost Earn</h2>
-<p class="text-xs text-gray-500 mt-1">গোল সার্কেল ক্লিক করে ৳<span id="bost-reward-display">5</span></p>
+<p class="text-xs text-gray-500 mt-1">গোল সার্কেল ক্লিক করে $<span id="bost-reward-display">0.02</span></p>
 </div>
 <div id="bost-verify-warning" class="bg-red-500/10 border border-red-500/20 rounded-2xl p-3 text-center">
 <p class="text-red-400 text-xs font-medium">🔒 <strong>ভেরিফাইড</strong> হলে ক্লিক করতে পারবেন।</p>
@@ -713,7 +701,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="pulse-ring"></div>
 <div class="pulse-ring"></div>
 <span style="font-size:56px;margin-bottom:4px">💵</span>
-<span style="font-size:32px;font-weight:900;color:#fff">৳<span id="bost-circle-amount">5</span></span>
+<span style="font-size:32px;font-weight:900;color:#fff">$<span id="bost-circle-amount">0.02</span></span>
 <span style="font-size:13px;color:rgba(255,255,255,.85);font-weight:600;background:rgba(0,0,0,.2);padding:2px 16px;border-radius:30px;margin-top:2px">ক্লিক করুন</span>
 <span style="position:absolute;bottom:18px;font-size:12px;color:rgba(255,255,255,.7);background:rgba(0,0,0,.3);padding:2px 14px;border-radius:30px" id="bost-click-count">০ বার</span>
 </div>
@@ -727,7 +715,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 </div>
 </div>
 <div class="bost-stats-grid">
-<div class="bost-stat-card"><div class="number">৳<span id="bost-total-earned">০</span></div><div class="label">মোট আয়</div></div>
+<div class="bost-stat-card"><div class="number">$<span id="bost-total-earned">0.00</span></div><div class="label">মোট আয়</div></div>
 <div class="bost-stat-card"><div class="number" id="bost-total-clicks">০</div><div class="label">মোট ক্লিক</div></div>
 <div class="bost-stat-card"><div class="number" id="bost-ad-count">০</div><div class="label">অ্যাড দেখা</div></div>
 <div class="bost-stat-card"><div class="number" id="bost-next-ad">৫</div><div class="label">পরবর্তী অ্যাডে</div></div>
@@ -783,8 +771,9 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 </div>
 </div>
 <div class="card-bg p-5 rounded-2xl text-center border border-emerald-500/20">
-<p class="text-xs text-gray-400 mb-1">💰 মোট ব্যালেন্স</p>
-<p class="text-4xl font-black text-emerald-400">৳<span id="profile-taka">০</span></p>
+<p class="text-xs text-gray-400 mb-1">💵 মোট ব্যালেন্স</p>
+<p class="text-4xl font-black text-emerald-400">$<span id="profile-taka">0.00</span></p>
+<p class="text-xs text-gray-500 mt-1">≈ ৳<span id="profile-taka-converted">0</span></p>
 </div>
 <div class="space-y-2">
 <div class="card-bg p-3 rounded-2xl flex items-center justify-between border border-white/5"><div class="flex items-center gap-3"><i data-lucide="user" class="w-4 h-4 text-emerald-400"></i><span class="text-sm">ইউজারনেম</span></div><span id="profile-username" class="text-sm text-gray-300">---</span></div>
@@ -793,7 +782,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="card-bg p-3 rounded-2xl flex items-center justify-between border border-blue-500/20"><div class="flex items-center gap-3"><i data-lucide="users" class="w-4 h-4 text-blue-400"></i><span class="text-sm">মোট রেফারেল</span></div><span id="profile-referral-count" class="text-sm font-bold text-blue-400">০ জন</span></div>
 </div>
 <button id="logout-btn" class="w-full py-4 rounded-2xl bg-red-500/10 hover:bg-red-500/20 text-red-400 font-bold border border-red-500/20 transition-all flex items-center justify-center gap-2"><i data-lucide="log-out" class="w-5 h-5"></i> লগআউট</button>
-<div class="text-center pt-2 border-t border-white/5"><p class="text-[10px] text-zinc-600">© ২০২৬ টাকা কামাও 💰</p></div>
+<div class="text-center pt-2 border-t border-white/5"><p class="text-[10px] text-zinc-600">© ২০২৬ টাকা কামাও • USD Edition 💵</p></div>
 </div>
 
 <!-- NOTIFICATIONS -->
@@ -830,7 +819,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 <div class="mb-3" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:12px">
 <p class="text-xs text-gray-400 mb-1">টাস্ক:</p>
 <p class="text-sm font-bold" id="su-task-name">-</p>
-<p class="text-sm text-emerald-400 mt-2 font-bold">💰 পাবেন: <strong id="su-reward">৳0</strong></p>
+<p class="text-sm text-emerald-400 mt-2 font-bold">💵 পাবেন: <strong id="su-reward">$0</strong></p>
 </div>
 <div class="warning-box mb-3">
 <div class="flex items-start gap-2">
@@ -927,50 +916,62 @@ let userEvents=[],unsubscribeUserEvents=null;
 let bostState={isCooldown:false,isVerified:false};
 let telegramClaimInProgress=false;
 
-let REWARD_AD_WATCH=10,REWARD_BOST_CLICK=5,REWARD_DAILY_BONUS=10,REWARD_REFERRAL=0,REWARD_TELEGRAM=20;
+// ✅✅✅ USD SYSTEM — সব রিওয়ার্ড এখন ডলারে ✅✅✅
+let REWARD_AD_WATCH=0.05,REWARD_BOST_CLICK=0.02,REWARD_REFERRAL=0.02,REWARD_TELEGRAM=0.20;
 let PASSIVE_COMMISSION_RATE=20;
 
+// 💱 Exchange Rate: 1 USD = ? BDT
+let USD_TO_BDT_RATE=110;
+
+// ✅✅✅ নতুন বট — takaincomaw_bot ✅✅✅
+const TELEGRAM_CHANNEL_URL="https://t.me/takaincomaw_bot";
+const TELEGRAM_BOT_USERNAME="takaincomaw_bot";
+
 const LIVE_WITHDRAWAL_LIMITS={
-'Bkash':{min:50,max:100,label:'বিকাশ'},
-'Nagad':{min:50,max:100,label:'নগদ'},
-'Mobile Recharge':{min:20,max:100,label:'মোবাইল রিচার্জ'}
+'Bkash':{min:50,max:20000,label:'বিকাশ'},
+'Nagad':{min:50,max:20000,label:'নগদ'},
+'Mobile Recharge':{min:20,max:20000,label:'মোবাইল রিচার্জ'}
 };
 let WITHDRAW_LIMITS={...LIVE_WITHDRAWAL_LIMITS};
 
 function getWithdrawalLimit(method){return WITHDRAW_LIMITS[method]||WITHDRAW_LIMITS['Bkash'];}
 
 const DAILY_CLICK_LIMIT=500,DAILY_CLICK_LIMIT_VERIFIED=800;
-const TELEGRAM_CHANNEL_URL="https://t.me/takaincomebot26";
-const TELEGRAM_BOT_USERNAME="takaincome100k_bot";
 
 const FALLBACK_TASKS=[
-{id:'ad1',icon:'🎬',label:'Watch & Earn',reward:10,type:'ad',desc:'🎥 দেখুন ও ৳১০ আয়',cooldown:5,dailyLimit:10,totalLimit:0,order:1},
-{id:'ad2',icon:'📢',label:'Explore & Earn',reward:10,type:'ad',desc:'🔍 এক্সপ্লোর',cooldown:5,dailyLimit:10,totalLimit:0,order:2},
-{id:'ad3',icon:'📱',label:'Discover Offers',reward:10,type:'ad',desc:'🎁 নতুন অফার',cooldown:5,dailyLimit:10,totalLimit:0,order:3},
-{id:'ad4',icon:'🧠',label:'Quiz & Win',reward:10,type:'ad',desc:'❓ কুইজ',cooldown:5,dailyLimit:10,totalLimit:0,order:4}
+{id:'ad1',icon:'🎬',label:'Watch & Earn',reward:0.05,type:'ad',desc:'🎥 দেখুন ও $0.05 আয়',cooldown:5,dailyLimit:10,totalLimit:0,order:1},
+{id:'ad2',icon:'📢',label:'Explore & Earn',reward:0.05,type:'ad',desc:'🔍 এক্সপ্লোর',cooldown:5,dailyLimit:10,totalLimit:0,order:2},
+{id:'ad3',icon:'📱',label:'Discover Offers',reward:0.05,type:'ad',desc:'🎁 নতুন অফার',cooldown:5,dailyLimit:10,totalLimit:0,order:3},
+{id:'ad4',icon:'🧠',label:'Quiz & Win',reward:0.05,type:'ad',desc:'❓ কুইজ',cooldown:5,dailyLimit:10,totalLimit:0,order:4}
 ];
 
 function escapeHtml(str){if(!str)return'';return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 window.escapeHtml=escapeHtml;
 
-// ✅✅✅ সব Reward Display Sync করার একটাই ফাংশন ✅✅✅
+// USD ↔ BDT helper
+function usdToBdt(usd){return(usd*USD_TO_BDT_RATE);}
+function bdtToUsd(bdt){return(bdt/USD_TO_BDT_RATE);}
+function fmtUsd(usd){return Number(usd||0).toFixed(2);}
+window.usdToBdt=usdToBdt;
+window.bdtToUsd=bdtToUsd;
+window.fmtUsd=fmtUsd;
+
 function syncAllRewardDisplays(){
-const rad=document.getElementById('refer-amount-display');if(rad)rad.textContent=REWARD_REFERRAL;
-const rbd=document.getElementById('refer-bonus-display');if(rbd)rbd.textContent=REWARD_REFERRAL;
-const tbd=document.getElementById('telegram-reward-display');if(tbd)tbd.textContent=REWARD_TELEGRAM;
-const brd=document.getElementById('bost-reward-display');if(brd)brd.textContent=REWARD_BOST_CLICK;
-const bca=document.getElementById('bost-circle-amount');if(bca)bca.textContent=REWARD_BOST_CLICK;
-const dba=document.getElementById('daily-bonus-amount');if(dba)dba.textContent='৳'+REWARD_DAILY_BONUS;
+const rad=document.getElementById('refer-amount-display');if(rad)rad.textContent=fmtUsd(REWARD_REFERRAL);
+const rbd=document.getElementById('refer-bonus-display');if(rbd)rbd.textContent=fmtUsd(REWARD_REFERRAL);
+const tbd=document.getElementById('telegram-reward-display');if(tbd)tbd.textContent=fmtUsd(REWARD_TELEGRAM);
+const brd=document.getElementById('bost-reward-display');if(brd)brd.textContent=fmtUsd(REWARD_BOST_CLICK);
+const bca=document.getElementById('bost-circle-amount');if(bca)bca.textContent=fmtUsd(REWARD_BOST_CLICK);
 const rb=document.getElementById('rule-min-bkash');if(rb)rb.textContent=WITHDRAW_LIMITS.Bkash.min;
 const rmb=document.getElementById('rule-max-bkash');if(rmb)rmb.textContent=WITHDRAW_LIMITS.Bkash.max;
 const rr=document.getElementById('rule-min-recharge');if(rr)rr.textContent=WITHDRAW_LIMITS['Mobile Recharge'].min;
 const rmr=document.getElementById('rule-max-recharge');if(rmr)rmr.textContent=WITHDRAW_LIMITS['Mobile Recharge'].max;
-// Notification banner এর জন্য
+const erd=document.getElementById('exchange-rate-display');if(erd)erd.textContent=USD_TO_BDT_RATE;
+const hrd=document.getElementById('home-rate-display');if(hrd)hrd.textContent=USD_TO_BDT_RATE;
 if(typeof updateBostUI==='function'&&userData){try{updateBostUI();}catch(e){}}
 }
 window.syncAllRewardDisplays=syncAllRewardDisplays;
 
-// ✅✅✅ Telegram Mini App Functions ✅✅✅
 function getTelegramReferralCode(){
 try{
 if(!window.Telegram||!window.Telegram.WebApp)return null;
@@ -992,7 +993,7 @@ const tg=window.Telegram.WebApp;
 tg.ready();
 tg.expand();
 try{tg.setHeaderColor('#05050a');tg.setBackgroundColor('#05050a');}catch(e){}
-console.log('✅ Telegram WebApp initialized');
+console.log('✅ Telegram WebApp — takaincomaw_bot');
 }
 }catch(e){console.warn('Telegram init error:',e);}
 }
@@ -1005,11 +1006,11 @@ return`https://t.me/${TELEGRAM_BOT_USERNAME}?start=${code}`;
 function showAlert(message){
 let icon='💬',title='বিজ্ঞপ্তি',c1='#10b981',c2='#fbbf24';
 const m=(message||'').toLowerCase();
-if(m.includes('সফল')||m.includes('🎉')||m.includes('+৳')){icon='🎉';title='অভিনন্দন!';}
+if(m.includes('সফল')||m.includes('🎉')||m.includes('+$')){icon='🎉';title='অভিনন্দন!';}
 else if(m.includes('সমস্যা')||m.includes('❌')||m.includes('ভুল')){icon='⚠️';title='সমস্যা';c1='#ef4444';c2='#f97316';}
 else if(m.includes('অপেক্ষা')||m.includes('⏳')){icon='⏳';title='অপেক্ষা';c1='#f59e0b';}
 else if(m.includes('লগইন')){icon='🔐';title='লগইন';c1='#3b82f6';c2='#8b5cf6';}
-else if(m.includes('টাকা')||m.includes('৳')){icon='💰';title='টাকা';}
+else if(m.includes('ডলার')||m.includes('$')){icon='💵';title='ডলার';}
 const o=`<div class="premium-popup-overlay" id="premium-alert-overlay" onclick="if(event.target===this)closePremiumAlert()"><div class="premium-popup-box" onclick="event.stopPropagation()"><div class="popup-top-bar" style="background:linear-gradient(90deg,transparent,${c1},${c2},${c1},transparent)"></div><div class="popup-icon-wrap"><div class="popup-icon-circle" style="background:linear-gradient(135deg,${c1}22,${c2}15);border-color:${c1}55;box-shadow:0 0 40px ${c1}44">${icon}</div></div><h2 class="popup-title-v2" style="background:linear-gradient(135deg,${c1},${c2});-webkit-background-clip:text;background-clip:text;color:transparent">${title}</h2><div class="popup-divider" style="background:linear-gradient(90deg,transparent,${c1}88,${c2}88,transparent)"></div><p class="popup-msg-v2">${escapeHtml(message).replace(/\n/g,'<br>')}</p><button onclick="closePremiumAlert()" class="popup-btn-v2" style="background:linear-gradient(135deg,${c1},${c2})">✓ ঠিক আছে</button></div></div>`;
 document.getElementById('premium-alert-overlay')?.remove();
 document.body.insertAdjacentHTML('beforeend',o);
@@ -1022,10 +1023,10 @@ if(!userData)return;
 const fullName=(userData.name||'বন্ধু').trim();
 const firstName=fullName.split(' ')[0];
 const initial=firstName.charAt(0).toUpperCase()||'U';
-const balance=(userData.taka||0).toFixed(2);
+const balance=fmtUsd(userData.taka||0);
 const isNewUser=!userData.welcomeShown;
 const avatarImg=userData.photoURL?`<img src="${userData.photoURL}">`:`<span>${initial}</span>`;
-const w=`<div class="welcome-overlay" id="welcome-popup" onclick="if(event.target===this)closeWelcomePopup()"><div class="welcome-box" onclick="event.stopPropagation()"><div class="wc-top-badge"><span class="dot"></span><span>${isNewUser?'নতুন সদস্য':'প্রিয় সদস্য'}</span></div><div class="wc-header"><div class="wc-avatar-wrap"><div class="wc-avatar-ring"></div><div class="wc-avatar">${avatarImg}</div><div class="wc-avatar-badge">${isNewUser?'🎉':'👋'}</div></div><p class="wc-greet">${isNewUser?'✦ স্বাগতম ✦':'✦ আবার স্বাগতম ✦'}</p><h1 class="wc-title">${isNewUser?'স্বাগতম!':'হ্যালো আবার!'}</h1><p class="wc-name">হ্যালো, <span class="wc-name-highlight">${escapeHtml(firstName)}</span> <span class="wc-wave">👋</span></p><p class="wc-subtitle">টাকা কামাও — বাংলাদেশের সেরা আর্নিং প্ল্যাটফর্ম</p><div class="wc-balance-chip"><span class="label">💰 ব্যালেন্স</span><span class="amount">৳${balance}</span></div></div><div class="wc-features"><div class="wc-feature"><div class="wf-icon-wrap">🎬</div><div class="wf-text"><div class="wf-title">অ্যাড</div><div class="wf-desc">+৳${REWARD_AD_WATCH}</div></div></div><div class="wc-feature"><div class="wf-icon-wrap">🧠</div><div class="wf-text"><div class="wf-title">কুইজ</div><div class="wf-desc">+৳ টাকা</div></div></div><div class="wc-feature"><div class="wf-icon-wrap">👥</div><div class="wf-text"><div class="wf-title">রেফার</div><div class="wf-desc">+৳${REWARD_REFERRAL}</div></div></div><div class="wc-feature"><div class="wf-icon-wrap">⚡</div><div class="wf-text"><div class="wf-title">Boost</div><div class="wf-desc">+৳${REWARD_BOST_CLICK}</div></div></div></div><div class="wc-cta-wrap"><button onclick="closeWelcomePopup()" class="wc-btn"><span style="font-size:18px">🚀</span><span>${isNewUser?'এখনই শুরু করুন':'আরও টাকা কামান'}</span></button></div><div class="wc-trust"><i data-lucide="shield-check"></i><span>১০০% নিরাপদ</span></div></div></div>`;
+const w=`<div class="welcome-overlay" id="welcome-popup" onclick="if(event.target===this)closeWelcomePopup()"><div class="welcome-box" onclick="event.stopPropagation()"><div class="wc-top-badge"><span class="dot"></span><span>${isNewUser?'নতুন সদস্য':'প্রিয় সদস্য'}</span></div><div class="wc-header"><div class="wc-avatar-wrap"><div class="wc-avatar-ring"></div><div class="wc-avatar">${avatarImg}</div><div class="wc-avatar-badge">${isNewUser?'🎉':'👋'}</div></div><p class="wc-greet">${isNewUser?'✦ স্বাগতম ✦':'✦ আবার স্বাগতম ✦'}</p><h1 class="wc-title">${isNewUser?'স্বাগতম!':'হ্যালো আবার!'}</h1><p class="wc-name">হ্যালো, <span class="wc-name-highlight">${escapeHtml(firstName)}</span> <span class="wc-wave">👋</span></p><p class="wc-subtitle">ডলার কামাও — বাংলাদেশের সেরা আর্নিং প্ল্যাটফর্ম</p><div class="wc-balance-chip"><span class="label">💵 ব্যালেন্স</span><span class="amount">$${balance}</span></div></div><div class="wc-features"><div class="wc-feature"><div class="wf-icon-wrap">🎬</div><div class="wf-text"><div class="wf-title">অ্যাড</div><div class="wf-desc">+$${fmtUsd(REWARD_AD_WATCH)}</div></div></div><div class="wc-feature"><div class="wf-icon-wrap">🧠</div><div class="wf-text"><div class="wf-title">কুইজ</div><div class="wf-desc">+$ ডলার</div></div></div><div class="wc-feature"><div class="wf-icon-wrap">👥</div><div class="wf-text"><div class="wf-title">রেফার</div><div class="wf-desc">+$${fmtUsd(REWARD_REFERRAL)}</div></div></div><div class="wc-feature"><div class="wf-icon-wrap">⚡</div><div class="wf-text"><div class="wf-title">Boost</div><div class="wf-desc">+$${fmtUsd(REWARD_BOST_CLICK)}</div></div></div></div><div class="wc-cta-wrap"><button onclick="closeWelcomePopup()" class="wc-btn"><span style="font-size:18px">🚀</span><span>${isNewUser?'এখনই শুরু করুন':'আরও ডলার কামান'}</span></button></div><div class="wc-trust"><i data-lucide="shield-check"></i><span>১০০% নিরাপদ</span></div></div></div>`;
 document.getElementById('welcome-popup')?.remove();
 document.body.insertAdjacentHTML('beforeend',w);
 if(typeof lucide!=='undefined')lucide.createIcons();
@@ -1033,7 +1034,7 @@ if(isNewUser&&currentUser){updateDoc(doc(db,"users",currentUser.uid),{welcomeSho
 }
 window.closeWelcomePopup=function(){const el=document.getElementById('welcome-popup');if(!el)return;el.style.transition='opacity .4s';el.style.opacity='0';setTimeout(()=>el.remove(),400);};
 
-let quizState={questions:[],currentIdx:0,correct:0,wrong:0,answers:[],timer:null,timeLeft:30,isAnswered:false,rewardPerQ:1,quizId:null,quizDate:null,totalQuestions:20};
+let quizState={questions:[],currentIdx:0,correct:0,wrong:0,answers:[],timer:null,timeLeft:30,isAnswered:false,rewardPerQ:0.01,quizId:null,quizDate:null,totalQuestions:20};
 
 async function loadTodayQuiz(){
 if(!currentUser||!userData)return;
@@ -1060,8 +1061,8 @@ const subSnap=await getDoc(doc(db,"quiz_submissions",hist.submissionId)).catch((
 if(subSnap&&subSnap.exists()){
 const sub=subSnap.data();
 startBtn.classList.add('hidden');
-if(sub.status==='pending'){pendingBox.classList.remove('hidden');document.getElementById('quiz-pending-amount').textContent=sub.expectedReward||0;}
-else if(sub.status==='approved'){approvedBox.classList.remove('hidden');document.getElementById('quiz-earned-amount').textContent=sub.finalReward||0;}
+if(sub.status==='pending'){pendingBox.classList.remove('hidden');document.getElementById('quiz-pending-amount').textContent=fmtUsd(sub.expectedReward||0);}
+else if(sub.status==='approved'){approvedBox.classList.remove('hidden');document.getElementById('quiz-earned-amount').textContent=fmtUsd(sub.finalReward||0);}
 else{noQuizBox.classList.remove('hidden');}
 infoText.textContent='আজ অংশ নিয়েছেন';
 if(slotDisplay)slotDisplay.classList.add('hidden');
@@ -1089,13 +1090,13 @@ if(slotDisplay)slotDisplay.classList.add('hidden');
 return;
 }
 quizState.questions=data.questions||[];
-quizState.rewardPerQ=data.rewardPerQuestion||1;
+quizState.rewardPerQ=data.rewardPerQuestion||0.01;
 quizState.quizId=today;
 quizState.quizDate=today;
 quizState.totalQuestions=quizState.questions.length;
 document.getElementById('quiz-total-display').textContent=quizState.totalQuestions;
-document.getElementById('quiz-reward-display').textContent=quizState.rewardPerQ;
-document.getElementById('quiz-max-display').textContent=(quizState.totalQuestions*quizState.rewardPerQ).toFixed(0);
+document.getElementById('quiz-reward-display').textContent=fmtUsd(quizState.rewardPerQ);
+document.getElementById('quiz-max-display').textContent=fmtUsd(quizState.totalQuestions*quizState.rewardPerQ);
 if(maxP>0&&slotDisplay){
 slotDisplay.classList.remove('hidden');
 const remaining=maxP-currentP;
@@ -1103,10 +1104,10 @@ const pct=(currentP/maxP)*100;
 document.getElementById('quiz-slot-text').textContent=`${currentP}/${maxP}`;
 document.getElementById('quiz-slot-bar-fill').style.width=pct+'%';
 document.getElementById('quiz-slot-remaining').textContent=`🎯 বাকি আছে ${remaining} স্লট (আগে এলে সুযোগ!)`;
-infoText.innerHTML=`${quizState.totalQuestions}টি প্রশ্ন • প্রতি সঠিক ৳${quizState.rewardPerQ}`;
+infoText.innerHTML=`${quizState.totalQuestions}টি প্রশ্ন • প্রতি সঠিক $${fmtUsd(quizState.rewardPerQ)}`;
 }else if(slotDisplay){
 slotDisplay.classList.add('hidden');
-infoText.textContent=`${quizState.totalQuestions}টি প্রশ্ন • প্রতি সঠিক ৳${quizState.rewardPerQ}`;
+infoText.textContent=`${quizState.totalQuestions}টি প্রশ্ন • প্রতি সঠিক $${fmtUsd(quizState.rewardPerQ)}`;
 }
 }catch(e){console.error(e);}
 }
@@ -1229,10 +1230,10 @@ async function endQuizGame(){
 if(quizState.timer)clearInterval(quizState.timer);
 document.getElementById('quiz-game-card').classList.add('hidden');
 const correct=quizState.correct;
-const expectedReward=correct*quizState.rewardPerQ;
+const expectedReward=Number((correct*quizState.rewardPerQ).toFixed(4));
 document.getElementById('result-correct').textContent=correct;
 document.getElementById('result-wrong').textContent=quizState.wrong;
-document.getElementById('result-reward').textContent=expectedReward.toFixed(0);
+document.getElementById('result-reward').textContent=fmtUsd(expectedReward);
 document.getElementById('quiz-result-card').classList.remove('hidden');
 const today=new Date().toISOString().split('T')[0];
 try{
@@ -1253,7 +1254,7 @@ if(existingHistory[today])throw new Error("ALREADY_PLAYED");
 const newHistory={...existingHistory};
 newHistory[today]={status:'pending',submissionId:null};
 transaction.update(quizRef,{currentParticipants:currentP+1});
-transaction.update(userRef,{quizTotalPlayed:(uData.quizTotalPlayed||0)+1,quizTotalCorrect:(uData.quizTotalCorrect||0)+correct,quizPendingReward:(uData.quizPendingReward||0)+expectedReward,quizHistory:newHistory});
+transaction.update(userRef,{quizTotalPlayed:(uData.quizTotalPlayed||0)+1,quizTotalCorrect:(uData.quizTotalCorrect||0)+correct,quizPendingReward:Number(((uData.quizPendingReward||0)+expectedReward).toFixed(4)),quizHistory:newHistory});
 return{success:true};
 });
 const subDoc=await addDoc(collection(db,"quiz_submissions"),{userId:currentUser.uid,userName:userData.name||'User',userEmail:userData.email||'',quizDate:today,quizId:quizState.quizId,answers:quizState.answers,totalCorrect:correct,totalWrong:quizState.wrong,rewardPerQuestion:quizState.rewardPerQ,expectedReward:expectedReward,finalReward:0,status:'pending',submittedAt:serverTimestamp()});
@@ -1270,7 +1271,7 @@ console.error('Quiz submit error:',e);
 if(e.message==="SLOT_FULL"){
 document.getElementById('quiz-result-card').classList.add('hidden');
 document.getElementById('quiz-start-card').classList.remove('hidden');
-showAlert("❌ স্লট শেষ!\n\n২০ জন ইতিমধ্যে খেলেছে।");
+showAlert("❌ স্লট শেষ!");
 loadTodayQuiz();
 }else if(e.message==="ALREADY_PLAYED"){
 showAlert("⚠️ আপনি আজ ইতিমধ্যে খেলেছেন!");
@@ -1304,9 +1305,9 @@ async function renderUserEvents(){
 const le=document.getElementById('events-user-list');if(!le)return;
 if(userData&&userEvents.length>0){for(const ev of userEvents){if(ev.isActive!==false&&!isEventExpired(ev)){await ensureEventBaseline(ev.id);}}}
 const ci=userData?.claimedEvents||[];
-let tb=0;userEvents.forEach(ev=>{if(ci.includes(ev.id))tb+=(ev.bonusTaka||0);});
+let tb=0;userEvents.forEach(ev=>{if(ci.includes(ev.id))tb+=(ev.bonusUsd||ev.bonusTaka||0);});
 const te=document.getElementById('ev-total');const ce=document.getElementById('ev-claimed');const be=document.getElementById('ev-bonus');
-if(te)te.textContent=userEvents.length;if(ce)ce.textContent=ci.length;if(be)be.textContent=tb.toFixed(0);
+if(te)te.textContent=userEvents.length;if(ce)ce.textContent=ci.length;if(be)be.textContent=fmtUsd(tb);
 if(userEvents.length===0){le.innerHTML=`<div class="text-center py-12"><p class="text-5xl mb-3">🎁</p><p class="text-gray-500 text-sm">এখনো কোনো ইভেন্ট নেই</p></div>`;return;}
 le.innerHTML=userEvents.map(ev=>{
 const p=getEventProgress(ev);const cl=isEventClaimed(ev);const ex=isEventExpired(ev);const ac=ev.isActive!==false&&!ex;
@@ -1318,7 +1319,8 @@ else if(p.complete)btn=`<button onclick="claimEvent('${ev.id}')" class="event-cl
 else btn=`<button disabled class="event-claim-btn">🔒 ${p.current}/${p.required}</button>`;
 let ph='';
 if(p.required>0&&!cl){ph=`<div class="mt-3"><div class="flex justify-between text-[10px] text-gray-400 mb-1"><span>🎯 নতুন রেফার</span><span class="font-bold ${p.complete?'text-emerald-400':'text-yellow-400'}">${p.current}/${p.required}</span></div><div class="event-progress-bar"><div class="fill" style="width:${p.percent}%"></div></div></div>`;}
-return`<div class="event-user-card ${cl?'claimed-event':ex?'expired-event':ac?'active-event':''}"><div class="flex items-start gap-3"><div class="text-4xl">${ev.icon||'🎉'}</div><div class="flex-1 min-w-0"><p class="font-bold text-sm text-white">${escapeHtml(ev.title||'ইভেন্ট')}</p><p class="text-[11px] text-gray-400 mt-0.5">${escapeHtml(ev.message||'')}</p>${ev.bonusTaka>0?`<div class="mt-2"><span class="event-reward-badge">💰 ৳${ev.bonusTaka}</span></div>`:''}${ph}<div class="mt-3">${btn}</div></div></div></div>`;
+const bonusUsd=ev.bonusUsd||ev.bonusTaka||0;
+return`<div class="event-user-card ${cl?'claimed-event':ex?'expired-event':ac?'active-event':''}"><div class="flex items-start gap-3"><div class="text-4xl">${ev.icon||'🎉'}</div><div class="flex-1 min-w-0"><p class="font-bold text-sm text-white">${escapeHtml(ev.title||'ইভেন্ট')}</p><p class="text-[11px] text-gray-400 mt-0.5">${escapeHtml(ev.message||'')}</p>${bonusUsd>0?`<div class="mt-2"><span class="event-reward-badge">💵 $${fmtUsd(bonusUsd)}</span></div>`:''}${ph}<div class="mt-3">${btn}</div></div></div></div>`;
 }).join('');
 }
 window.claimEvent=async function(eventId){
@@ -1327,15 +1329,16 @@ const ev=userEvents.find(e=>e.id===eventId);if(!ev)return showAlert("❌ নে�
 if(isEventClaimed(ev))return showAlert("⚠️ করেছেন!");
 const p=getEventProgress(ev);
 if(!p.complete)return showAlert(`🎯 আরও ${p.required-p.current} জন!`);
-if(!confirm(`🎁 "${ev.title}" ক্লেইম?\n💰 ৳${ev.bonusTaka||0}`))return;
+const bonusUsd=Number(ev.bonusUsd||ev.bonusTaka||0);
+if(!confirm(`🎁 "${ev.title}" ক্লেইম?\n💵 $${fmtUsd(bonusUsd)}`))return;
 loader.style.display='flex';
 try{
 const uSnap=await getDoc(doc(db,"users",currentUser.uid));const u=uSnap.data();
-const bt=ev.bonusTaka||0;const nce=[...(u.claimedEvents||[]),eventId];
-await updateDoc(doc(db,"users",currentUser.uid),{taka:(u.taka||0)+bt,totalEarned:increment(bt),claimedEvents:nce});
-userData.taka=(userData.taka||0)+bt;userData.totalEarned=(userData.totalEarned||0)+bt;userData.claimedEvents=nce;
+const nce=[...(u.claimedEvents||[]),eventId];
+await updateDoc(doc(db,"users",currentUser.uid),{taka:Number(((u.taka||0)+bonusUsd).toFixed(4)),totalEarned:increment(bonusUsd),claimedEvents:nce});
+userData.taka=(userData.taka||0)+bonusUsd;userData.totalEarned=(userData.totalEarned||0)+bonusUsd;userData.claimedEvents=nce;
 loader.style.display='none';
-const o=document.createElement('div');o.className='celebration-overlay';o.innerHTML=`<div class="celebration-box"><div class="celebration-icon">🎉</div><div class="celebration-taka">৳${bt}</div><div class="celebration-success">✅ ক্লেইম সফল!</div><button onclick="this.closest('.celebration-overlay').remove()" class="btn-accent mt-5 px-6 py-2.5 rounded-xl text-sm font-bold">দারুণ! 🎊</button></div>`;document.body.appendChild(o);
+const o=document.createElement('div');o.className='celebration-overlay';o.innerHTML=`<div class="celebration-box"><div class="celebration-icon">🎉</div><div class="celebration-taka">$${fmtUsd(bonusUsd)}</div><div class="celebration-success">✅ ক্লেইম সফল!</div><button onclick="this.closest('.celebration-overlay').remove()" class="btn-accent mt-5 px-6 py-2.5 rounded-xl text-sm font-bold">দারুণ! 🎊</button></div>`;document.body.appendChild(o);
 setTimeout(()=>{o.style.transition='opacity .5s';o.style.opacity='0';setTimeout(()=>o.remove(),500);},6000);
 updateUI();renderUserEvents();
 }catch(e){loader.style.display='none';showAlert("❌ "+e.message);}
@@ -1346,26 +1349,26 @@ window.closeSideMenu=function(){document.getElementById('side-menu').classList.r
 window.menuNavigate=function(p){closeSideMenu();setTimeout(()=>navigateTo(p),250);};
 window.menuLogout=function(){closeSideMenu();setTimeout(()=>{if(confirm('লগআউট?'))handleLogout();},250);};
 window.menuTelegramChannel=function(){closeSideMenu();setTimeout(()=>window.open(TELEGRAM_CHANNEL_URL,'_blank'),250);};
-window.showAboutApp=function(){closeSideMenu();setTimeout(()=>showAlert(`ℹ️ টাকা কামাও\n📱 ভার্সন: 4.7.0`),250);};
-window.showContactInfo=function(){closeSideMenu();setTimeout(()=>showAlert(`📞 যোগাযোগ\n📢 t.me/takaincomebot26`),250);};
+window.showAboutApp=function(){closeSideMenu();setTimeout(()=>showAlert(`ℹ️ ডলার কামাও\n📱 ভার্সন: 5.0.0 (USD)\n🤖 বট: @takaincomaw_bot\n💱 1$ = ৳${USD_TO_BDT_RATE}`),250);};
+window.showContactInfo=function(){closeSideMenu();setTimeout(()=>showAlert(`📞 যোগাযোগ\n📢 t.me/takaincomaw_bot`),250);};
 
 function updateSideMenuUserInfo(){
 if(!userData)return;
 const ne=document.getElementById('menu-user-name');const ee=document.getElementById('menu-user-email');const te=document.getElementById('menu-user-taka');const av=document.getElementById('menu-avatar');
-if(ne)ne.textContent=userData.name||'User';if(ee)ee.textContent=userData.email||'';if(te)te.textContent=(userData.taka||0).toFixed(2);
+if(ne)ne.textContent=userData.name||'User';if(ee)ee.textContent=userData.email||'';if(te)te.textContent=fmtUsd(userData.taka||0);
 if(userData.photoURL)av.innerHTML=`<img src="${userData.photoURL}">`;
 else{const i=(userData.name||'U').split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);av.innerHTML=`<span>${i||'U'}</span>`;}
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSideMenu();});
 
-async function sendPassiveCommission(adReward){
+async function sendPassiveCommission(adRewardUsd){
 try{
 if(!userData||!userData.referredBy)return;
-const ca=Math.floor(adReward*PASSIVE_COMMISSION_RATE/100);if(ca<=0)return;
+const ca=Number((adRewardUsd*PASSIVE_COMMISSION_RATE/100).toFixed(4));if(ca<=0)return;
 const q=query(collection(db,"users"),where("referralCode","==",userData.referredBy));
 const rs=await getDocs(q);if(rs.empty)return;
 const rd=rs.docs[0];const rr=doc(db,"users",rd.id);const rdata=rd.data();
-await updateDoc(rr,{taka:(rdata.taka||0)+ca,totalEarned:increment(ca),referralCommission:(rdata.referralCommission||0)+ca,passiveIncomeTotal:increment(ca)});
+await updateDoc(rr,{taka:Number(((rdata.taka||0)+ca).toFixed(4)),totalEarned:increment(ca),referralCommission:Number(((rdata.referralCommission||0)+ca).toFixed(4)),passiveIncomeTotal:increment(ca)});
 }catch(e){}
 }
 
@@ -1395,11 +1398,11 @@ if(cb){cb.disabled=false;cb.style.opacity='1';cb.textContent='জয়েন';}
 return;
 }
 const freshData=freshSnap.data();
-const nt=(freshData.taka||0)+REWARD_TELEGRAM;
+const nt=Number(((freshData.taka||0)+REWARD_TELEGRAM).toFixed(4));
 await updateDoc(doc(db,"users",currentUser.uid),{taka:nt,telegramBonusClaimed:true,telegramBonusClaimedAt:serverTimestamp(),totalEarned:increment(REWARD_TELEGRAM)});
 userData.taka=nt;userData.telegramBonusClaimed=true;userData.totalEarned=(userData.totalEarned||0)+REWARD_TELEGRAM;
 updateUI();updateLevelAndStreak();updateTelegramBonusUI();
-showAlert(`🎉 +৳${REWARD_TELEGRAM} বোনাস পেয়েছেন!`);
+showAlert(`🎉 +$${fmtUsd(REWARD_TELEGRAM)} বোনাস পেয়েছেন!`);
 }catch(e){showAlert('❌ সমস্যা হয়েছে!');if(cb){cb.disabled=false;cb.style.opacity='1';cb.textContent='জয়েন';}}
 telegramClaimInProgress=false;loader.style.display='none';
 },5000);
@@ -1410,7 +1413,7 @@ const c=document.getElementById('telegram-bonus-card');const cb=document.getElem
 if(!c||!userData)return;
 c.classList.remove('hidden');
 const trd=document.getElementById('telegram-reward-display');
-if(trd)trd.textContent=REWARD_TELEGRAM;
+if(trd)trd.textContent=fmtUsd(REWARD_TELEGRAM);
 if(userData.telegramBonusClaimed){cb.classList.add('hidden');cbd.classList.remove('hidden');}
 else{cb.classList.remove('hidden');cbd.classList.add('hidden');}
 }
@@ -1513,27 +1516,25 @@ unsubscribeConfigListener=onSnapshot(doc(db,"config","main"),(snap)=>{
 if(snap.exists()){
 const d=snap.data();
 verificationEnabled=d.verificationEnabled!==false;
-if(d.rewardAd!==undefined) REWARD_AD_WATCH=parseInt(d.rewardAd)||10;
-if(d.rewardBost!==undefined) REWARD_BOST_CLICK=parseInt(d.rewardBost)||5;
-if(d.rewardDaily!==undefined) REWARD_DAILY_BONUS=parseInt(d.rewardDaily)||10;
-if(d.rewardReferral!==undefined) REWARD_REFERRAL=parseInt(d.rewardReferral)||0;
-if(d.rewardTelegram!==undefined) REWARD_TELEGRAM=parseInt(d.rewardTelegram)||20;
-if(d.referralCommission!==undefined) PASSIVE_COMMISSION_RATE=d.referralCommission;
+if(d.rewardAd!==undefined) REWARD_AD_WATCH=parseFloat(d.rewardAd)||0.05;
+if(d.rewardBost!==undefined) REWARD_BOST_CLICK=parseFloat(d.rewardBost)||0.02;
+if(d.rewardReferral!==undefined) REWARD_REFERRAL=parseFloat(d.rewardReferral)||0.02;
+if(d.rewardTelegram!==undefined) REWARD_TELEGRAM=parseFloat(d.rewardTelegram)||0.20;
+if(d.referralCommission!==undefined) PASSIVE_COMMISSION_RATE=parseFloat(d.referralCommission)||20;
+if(d.usdToBdtRate!==undefined) USD_TO_BDT_RATE=parseFloat(d.usdToBdtRate)||110;
 if(d.withdrawalLimits){
 WITHDRAW_LIMITS={
-'Bkash':d.withdrawalLimits['Bkash']||{min:50,max:100,label:'বিকাশ'},
-'Nagad':d.withdrawalLimits['Nagad']||{min:50,max:100,label:'নগদ'},
-'Mobile Recharge':d.withdrawalLimits['Mobile Recharge']||{min:20,max:100,label:'মোবাইল রিচার্জ'}
+'Bkash':d.withdrawalLimits['Bkash']||{min:50,max:20000,label:'বিকাশ'},
+'Nagad':d.withdrawalLimits['Nagad']||{min:50,max:20000,label:'নগদ'},
+'Mobile Recharge':d.withdrawalLimits['Mobile Recharge']||{min:20,max:20000,label:'মোবাইল রিচার্জ'}
 };
 if(typeof selectPayment==='function')selectPayment(selectedMethod);
 }
-// ✅ সব display sync
 syncAllRewardDisplays();
 checkVerificationNotification();
 updateVerificationUI(userData?.isVerified||false,verificationStatus==='pending');
 updateBostUI();
 if(typeof renderTasks==='function')renderTasks();
-if(typeof updateDailyBonusUI==='function')updateDailyBonusUI();
 if(typeof updateTelegramBonusUI==='function')updateTelegramBonusUI();
 }
 });
@@ -1579,9 +1580,21 @@ const opBox=document.getElementById('operator-select-box');
 if(opBox){if(m==='Mobile Recharge')opBox.classList.remove('hidden');else opBox.classList.add('hidden');}
 const limit=getWithdrawalLimit(m);
 const hint=document.getElementById('withdraw-limit-hint');
-const amtInput=document.getElementById('withdraw-amount');
+const amtInput=document.getElementById('withdraw-amount-usd');
 if(hint){hint.innerHTML=`💡 <b>${limit.label}</b> — সর্বনিম্ন ৳${limit.min}, সর্বোচ্চ ৳${limit.max}`;hint.className='text-[10px] text-emerald-400 mt-1 font-medium';}
-if(amtInput){amtInput.min=limit.min;amtInput.max=limit.max;amtInput.placeholder=`সর্বনিম্ন ৳${limit.min} – সর্বোচ্চ ৳${limit.max}`;amtInput.value='';}
+if(amtInput){amtInput.value='';document.getElementById('withdraw-amount').value='';}
+};
+
+// ✅ USD → BDT Live Conversion
+window.updateWithdrawConversion=function(){
+const usdInput=document.getElementById('withdraw-amount-usd');
+const bdtInput=document.getElementById('withdraw-amount');
+const hint=document.getElementById('withdraw-conversion-hint');
+const usd=parseFloat(usdInput.value)||0;
+const bdt=Math.round(usd*USD_TO_BDT_RATE);
+bdtInput.value=bdt||'';
+if(usd>0){hint.innerHTML=`💱 <b>$${fmtUsd(usd)}</b> × ${USD_TO_BDT_RATE} = <b class="text-yellow-400">৳${bdt}</b>`;hint.className='text-[10px] text-yellow-400 mt-1 font-medium';}
+else{hint.innerHTML='💡 ডলার লিখলে অটো টাকায় কনভার্ট হবে';hint.className='text-[10px] text-emerald-400 mt-1 font-medium';}
 };
 
 function updateWithdrawCycleUI(){
@@ -1610,8 +1623,8 @@ if(!userData.taskHistory[tid])userData.taskHistory[tid]={daily:{},total:0};
 const th=userData.taskHistory[tid];const tc=th.daily?.[today]||0;
 const totalDone=th.total||0;
 if(t.dailyLimit&&t.dailyLimit>0&&tc>=t.dailyLimit)return showAlert(`⚠️ আজকের লিমিট শেষ!\n\n📅 আগামীকাল আবার আসুন`);
-if(t.totalLimit&&t.totalLimit>0&&totalDone>=t.totalLimit)return showAlert(`⚠️ এই টাস্কের মোট লিমিট শেষ!\n\n✅ আপনি ইতিমধ্যে ${totalDone}/${t.totalLimit} বার করেছেন`);
-const r=t.reward||REWARD_AD_WATCH;
+if(t.totalLimit&&t.totalLimit>0&&totalDone>=t.totalLimit)return showAlert(`⚠️ এই টাস্কের মোট লিমিট শেষ!`);
+const r=parseFloat(t.reward)||REWARD_AD_WATCH;
 loader.style.display='flex';
 try{
 if(['link','youtube','facebook','telegram','tiktok'].includes(t.type||'ad')&&t.link){window.open(t.link,'_blank');await new Promise(x=>setTimeout(x,3000));}
@@ -1621,11 +1634,11 @@ const aw=userData.adWatchCount||{};aw[tid]=(aw[tid]||0)+1;
 const tt=(userData.totalTasksCompleted||0)+1;
 userData.taskHistory[tid].daily[today]=tc+1;
 userData.taskHistory[tid].total=(userData.taskHistory[tid].total||0)+1;
-const nt=(userData.taka||0)+r;
+const nt=Number(((userData.taka||0)+r).toFixed(4));
 await updateDoc(doc(db,"users",currentUser.uid),{totalTasksCompleted:tt,adWatchCount:aw,totalEarned:increment(r),taskHistory:userData.taskHistory,taka:nt});
 userData.totalTasksCompleted=tt;userData.adWatchCount=aw;userData.totalEarned=(userData.totalEarned||0)+r;userData.taka=nt;
 await sendPassiveCommission(r);
-showAlert(`🎉 +৳${r}!`);
+showAlert(`🎉 +$${fmtUsd(r)}!`);
 renderTasks();updateUI();updateLevelAndStreak();
 }catch(e){showAlert("সমস্যা!");}
 loader.style.display='none';
@@ -1634,25 +1647,27 @@ loader.style.display='none';
 function updateUI(){
 if(!userData)return;
 const tb=userData.taka||0;const iv=userData.isVerified||false;const ip=verificationStatus==='pending';
-if(homeTakaBalanceEl)homeTakaBalanceEl.textContent=tb.toFixed(2);
-if(walletTakaBalanceEl)walletTakaBalanceEl.textContent=tb.toFixed(2);
+if(homeTakaBalanceEl)homeTakaBalanceEl.textContent=fmtUsd(tb);
+if(walletTakaBalanceEl)walletTakaBalanceEl.textContent=fmtUsd(tb);
+const htc=document.getElementById('home-taka-converted');if(htc)htc.textContent=Math.round(usdToBdt(tb));
+const wtc=document.getElementById('wallet-taka-converted');if(wtc)wtc.textContent=Math.round(usdToBdt(tb));
 if(profileNameEl)profileNameEl.textContent=userData.name||'No Name';
 if(profileEmailEl)profileEmailEl.textContent=userData.email||'No Email';
 const pu=document.getElementById('profile-username');if(pu)pu.textContent=userData.name||'---';
-const pt=document.getElementById('profile-taka');if(pt)pt.textContent=tb.toFixed(2);
+const pt=document.getElementById('profile-taka');if(pt)pt.textContent=fmtUsd(tb);
+const ptc=document.getElementById('profile-taka-converted');if(ptc)ptc.textContent=Math.round(usdToBdt(tb));
 const prc=document.getElementById('profile-referral-count');if(prc)prc.textContent=(userData.totalReferrals||0)+' জন';
 const pi=document.getElementById('profile-initials');if(pi){const i=(userData.name||'U').split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);pi.textContent=i||'U';}
 const prf=document.getElementById('profile-referral-code');if(prf)prf.textContent=userData.referralCode||'N/A';
 if(userData.createdAt){const d=userData.createdAt.toDate?userData.createdAt.toDate():new Date();const jd=document.getElementById('profile-joined-date');if(jd)jd.textContent=d.toLocaleDateString('bn-BD',{year:'numeric',month:'long',day:'numeric'});}
 if(referralCodeEl)referralCodeEl.textContent=userData.referralCode||'...';
 if(userData.photoURL)updateProfilePhoto(userData.photoURL);
-const tpt=document.getElementById('task-page-taka');if(tpt)tpt.textContent=tb.toFixed(2);
+const tpt=document.getElementById('task-page-taka');if(tpt)tpt.textContent=fmtUsd(tb);
 
-// ✅ সব রিওয়ার্ড ডিসপ্লে sync
 syncAllRewardDisplays();
 
 updateVerificationUI(iv,ip);renderTasks();renderSocialTasks();updateHomeTaskPreview();
-selectPayment(selectedMethod);loadReferralStats();updateBostUI();updateDailyBonusUI();
+selectPayment(selectedMethod);loadReferralStats();updateBostUI();
 updateLevelAndStreak();checkVerificationNotification();updateClickProgress();updateTelegramBonusUI();
 updateSideMenuUserInfo();renderUserEvents();updateQuizStatus();updateWithdrawCycleUI();
 }
@@ -1670,7 +1685,7 @@ if(be)be.style.width=Math.min((tc/l)*100,100)+'%';
 function updateBostUI(){
 if(!userData)return;
 const bc=userData.bostClicks||0;
-const ee=document.getElementById('bost-total-earned');if(ee)ee.textContent=(userData.bostEarned||0).toFixed(0);
+const ee=document.getElementById('bost-total-earned');if(ee)ee.textContent=fmtUsd(userData.bostEarned||0);
 const ce=document.getElementById('bost-total-clicks');if(ce)ce.textContent=bc;
 const ae=document.getElementById('bost-ad-count');if(ae)ae.textContent=userData.bostAdCount||0;
 const ne=document.getElementById('bost-next-ad');if(ne)ne.textContent=userData.bostNextAd||5;
@@ -1690,7 +1705,7 @@ const today=new Date().toISOString().split('T')[0];
 const tc=(userData.bostHistory||{})[today]||0;
 const l=(userData.isVerified?DAILY_CLICK_LIMIT_VERIFIED:DAILY_CLICK_LIMIT);
 if(tc>=l)return showAlert(`⚠️ লিমিট!`);
-const r=REWARD_BOST_CLICK;const nt=(userData.taka||0)+r;
+const r=REWARD_BOST_CLICK;const nt=Number(((userData.taka||0)+r).toFixed(4));
 try{
 await updateDoc(doc(db,"users",currentUser.uid),{bostEarned:increment(r),bostClicks:increment(1),taka:nt,totalEarned:increment(r),[`bostHistory.${today}`]:tc+1});
 userData.bostEarned=(userData.bostEarned||0)+r;userData.bostClicks=(userData.bostClicks||0)+1;userData.taka=nt;
@@ -1698,7 +1713,7 @@ userData.totalEarned=(userData.totalEarned||0)+r;
 if(!userData.bostHistory)userData.bostHistory={};userData.bostHistory[today]=tc+1;
 await sendPassiveCommission(r);
 updateBostUI();updateUI();updateLevelAndStreak();
-showAlert(`💵 +৳${r}!`);
+showAlert(`💵 +$${fmtUsd(r)}!`);
 bostState.isCooldown=true;setTimeout(()=>{bostState.isCooldown=false;updateBostUI();},5000);
 }catch(e){showAlert("সমস্যা!");}
 }
@@ -1708,7 +1723,6 @@ document.querySelectorAll('.sub-page').forEach(x=>x.classList.remove('active'));
 const t=document.getElementById(p);if(t)t.classList.add('active');
 document.querySelectorAll('.nav-link').forEach(l=>{l.classList.remove('active','text-accent');if(l.dataset&&l.dataset.page===p)l.classList.add('active','text-accent');});
 
-// ✅ প্রতি navigation এ সব reward display sync
 syncAllRewardDisplays();
 
 if(p==='wallet-page'){
@@ -1744,7 +1758,6 @@ updateQuizStatus();
 window.navigateTo=navigateTo;
 
 function setupEventListeners(){
-// Telegram Referral Code Auto-Apply
 const tgRef = getTelegramReferralCode();
 if(tgRef){
 console.log('🎁 Telegram referral detected:', tgRef);
@@ -1764,12 +1777,11 @@ if(authContainer && !document.getElementById('refBanner')){
 const banner = document.createElement('div');
 banner.id = 'refBanner';
 banner.className = 'ref-banner';
-banner.innerHTML = `<span style="font-size:26px">🎁</span><div style="flex:1"><p style="font-size:13px;font-weight:900;color:#10b981;margin-bottom:2px">রেফারেল বোনাস!</p><p style="font-size:11px;color:#d1d5db">কোড: <b style="color:#fff;font-family:monospace">${tgRef}</b> • <b style="color:#fbbf24">৳${REWARD_REFERRAL}</b> পাবেন</p></div>`;
+banner.innerHTML = `<span style="font-size:26px">🎁</span><div style="flex:1"><p style="font-size:13px;font-weight:900;color:#10b981;margin-bottom:2px">রেফারেল বোনাস!</p><p style="font-size:11px;color:#d1d5db">কোড: <b style="color:#fff;font-family:monospace">${tgRef}</b> • <b style="color:#fbbf24">$${fmtUsd(REWARD_REFERRAL)}</b> পাবেন</p></div>`;
 authContainer.insertBefore(banner, authContainer.firstChild);
 }
 }
 
-// URL ?ref= backup
 const urlParams = new URLSearchParams(window.location.search);
 const urlRef = urlParams.get('ref');
 if(urlRef && !tgRef){
@@ -1798,7 +1810,7 @@ document.getElementById('withdraw-btn')?.addEventListener('click',handleWithdraw
 document.getElementById('home-withdraw-btn')?.addEventListener('click',()=>navigateTo('wallet-page'));
 document.getElementById('apply-referral-btn')?.addEventListener('click',handleApplyReferralCode);
 document.getElementById('bost-circle')?.addEventListener('click',handleBostClick);
-document.getElementById('daily-bonus-btn')?.addEventListener('click',claimDailyBonus);
+document.getElementById('withdraw-amount-usd')?.addEventListener('input',updateWithdrawConversion);
 const tb=document.getElementById('telegram-claim-btn');if(tb)tb.addEventListener('click',claimTelegramBonus);
 setInterval(()=>{checkAutoApprovePending();},60000);
 }
@@ -1836,7 +1848,7 @@ try{
 const uc=await createUserWithEmailAndPassword(auth,em,pw);
 const orc=Math.random().toString(36).substring(2,8).toUpperCase();
 const ur=doc(db,"users",uc.user.uid);
-const dd={uid:uc.user.uid,name:n,email:em,taka:0,referralCode:orc,referredBy:null,referralCommission:0,totalReferrals:0,createdAt:serverTimestamp(),totalTasksCompleted:0,isBlocked:false,isVerified:false,adWatchCount:{},taskHistory:{},totalEarned:0,dailyBonus:{lastClaimed:null,streak:0},bostHistory:{},photoURL:null,telegramBonusClaimed:false,withdrawCycle:0,cycleReferrals:0,cycleVerifiedReferrals:0,badges:[],claimedEvents:[],referralHistory:[],passiveIncomeTotal:0,completedSocialTasks:[],pendingSocialTasks:[],eventBaselines:{},bostEarned:0,bostClicks:0,bostAdCount:0,bostNextAd:5,welcomeShown:false,quizHistory:{},quizTotalPlayed:0,quizTotalCorrect:0,quizPendingReward:0,quizEarnedTotal:0};
+const dd={uid:uc.user.uid,name:n,email:em,taka:0,referralCode:orc,referredBy:null,referralCommission:0,totalReferrals:0,createdAt:serverTimestamp(),totalTasksCompleted:0,isBlocked:false,isVerified:false,adWatchCount:{},taskHistory:{},totalEarned:0,bostHistory:{},photoURL:null,telegramBonusClaimed:false,withdrawCycle:0,cycleReferrals:0,cycleVerifiedReferrals:0,badges:[],claimedEvents:[],referralHistory:[],passiveIncomeTotal:0,completedSocialTasks:[],pendingSocialTasks:[],eventBaselines:{},bostEarned:0,bostClicks:0,bostAdCount:0,bostNextAd:5,welcomeShown:false,quizHistory:{},quizTotalPlayed:0,quizTotalCorrect:0,quizPendingReward:0,quizEarnedTotal:0};
 await setDoc(ur,dd);userData=dd;
 
 if(rc){
@@ -1845,10 +1857,10 @@ const qs=await getDocs(q);
 if(!qs.empty){
 const rd=qs.docs[0];const rr=doc(db,"users",rd.id);const rdata=rd.data();
 const ch=rdata.referralHistory||[];ch.push({id:uc.user.uid,name:n,joinedAt:new Date().toISOString()});
-await updateDoc(rr,{taka:(rdata.taka||0)+REWARD_REFERRAL,totalReferrals:(rdata.totalReferrals||0)+1,cycleReferrals:(rdata.cycleReferrals||0)+1,totalEarned:increment(REWARD_REFERRAL),referralHistory:ch});
+await updateDoc(rr,{taka:Number(((rdata.taka||0)+REWARD_REFERRAL).toFixed(4)),totalReferrals:(rdata.totalReferrals||0)+1,cycleReferrals:(rdata.cycleReferrals||0)+1,totalEarned:increment(REWARD_REFERRAL),referralHistory:ch});
 await updateDoc(ur,{taka:REWARD_REFERRAL,referredBy:rc});
 userData.taka=REWARD_REFERRAL;userData.referredBy=rc;
-showAlert(`🎉 অ্যাকাউন্ট তৈরি!\n\n🎁 রেফারেল বোনাস: ৳${REWARD_REFERRAL}\n👤 রেফারার: ${rc}`);
+showAlert(`🎉 অ্যাকাউন্ট তৈরি!\n\n🎁 রেফারেল বোনাস: $${fmtUsd(REWARD_REFERRAL)}\n👤 রেফারার: ${rc}`);
 }else{
 showAlert("✅ অ্যাকাউন্ট তৈরি!\n\n⚠️ রেফারেল কোড সঠিক নয়।");
 }
@@ -1885,7 +1897,7 @@ else if(s==='rejected'){sc='text-red-400';st='❌ বাতিল';}
 const d=r.requestedAt?r.requestedAt.toDate().toLocaleDateString('bn-BD'):'N/A';
 const isRecharge=r.type==='recharge'||r.method==='Mobile Recharge';
 const methodDisplay=isRecharge?`📞 ${r.operator||'Mobile'} (রিচার্জ)`:(r.method||'—');
-hl.innerHTML+=`<div class="card-bg p-3 rounded-xl flex items-center justify-between border border-white/5"><div><p class="font-semibold text-sm">৳${r.amount}</p><p class="text-xs text-gray-500">${methodDisplay} • ${d}</p>${isRecharge?'<p class="text-[10px] text-purple-400 font-bold mt-1">📱 মোবাইল রিচার্জ</p>':''}</div><p class="font-bold text-xs ${sc}">${st}</p></div>`;
+hl.innerHTML+=`<div class="card-bg p-3 rounded-xl flex items-center justify-between border border-white/5"><div><p class="font-semibold text-sm">৳${r.amountBdt||r.amount} ${r.amountUsd?`<span class="text-[10px] text-gray-500">($${fmtUsd(r.amountUsd)})</span>`:''}</p><p class="text-xs text-gray-500">${methodDisplay} • ${d}</p>${isRecharge?'<p class="text-[10px] text-purple-400 font-bold mt-1">📱 মোবাইল রিচার্জ</p>':''}</div><p class="font-bold text-xs ${sc}">${st}</p></div>`;
 });
 }catch(e){hl.innerHTML='<p class="text-red-400 text-sm text-center py-4">লোড সমস্যা</p>';}
 }
@@ -1913,8 +1925,10 @@ verificationStatus='pending';updateUI();showAlert("✅ জমা!");closeVerific
 loader.style.display='none';
 };
 
+// ✅ USD Withdraw — টাকায় কনভার্ট হবে
 async function handleWithdrawal(){
-const amount=parseInt(document.getElementById('withdraw-amount').value);
+const usdAmount=parseFloat(document.getElementById('withdraw-amount-usd').value);
+const bdtAmount=parseInt(document.getElementById('withdraw-amount').value);
 const pd=document.getElementById('payment-number').value.trim();
 const wc=userData.withdrawCycle||0;
 const tr=userData.totalReferrals||0;
@@ -1929,11 +1943,11 @@ showWithdrawPopup(`<div style="text-align:center"><div style="font-size:70px;mar
 return;
 }
 }
-if(!amount||amount<=0)return showAlert("⚠️ টাকার পরিমাণ দিন!");
+if(!usdAmount||usdAmount<=0)return showAlert("⚠️ ডলার পরিমাণ দিন!");
+if(usdAmount>(userData.taka||0))return showAlert(`⚠️ ব্যালেন্স কম!\n\nআপনার ব্যালেন্স: $${fmtUsd(userData.taka||0)}\nদরকার: $${fmtUsd(usdAmount)}`);
 const limit=getWithdrawalLimit(selectedMethod);
-if(amount<limit.min)return showAlert(`💰 ${limit.label}\n\nসর্বনিম্ন উত্তোলন: ৳${limit.min}\nআপনি দিয়েছেন: ৳${amount}`);
-if(amount>limit.max)return showAlert(`💰 ${limit.label}\n\nসর্বোচ্চ উত্তোলন: ৳${limit.max}\nআপনি দিয়েছেন: ৳${amount}`);
-if(amount>(userData.taka||0))return showAlert(`⚠️ ব্যালেন্স কম!\n\nআপনার ব্যালেন্স: ৳${(userData.taka||0).toFixed(2)}\nদরকার: ৳${amount}`);
+if(bdtAmount<limit.min)return showAlert(`💰 ${limit.label}\n\nসর্বনিম্ন উত্তোলন: ৳${limit.min} (≈ $${fmtUsd(bdtToUsd(limit.min))})\nআপনার: ৳${bdtAmount}`);
+if(bdtAmount>limit.max)return showAlert(`💰 ${limit.label}\n\nসর্বোচ্চ উত্তোলন: ৳${limit.max}\nআপনার: ৳${bdtAmount}`);
 if(!pd)return showAlert("📱 মোবাইল নাম্বার দিন!");
 if(pd.length<11)return showAlert("⚠️ সঠিক ১১ ডিজিটের নাম্বার দিন!");
 let operator='';
@@ -1941,12 +1955,26 @@ if(selectedMethod==='Mobile Recharge'){
 operator=document.getElementById('mobile-operator')?.value||'';
 if(!operator)return showAlert("📞 অপারেটর সিলেক্ট করুন!");
 }
+if(!confirm(`✅ নিশ্চিত করুন\n\n💵 ডলার: $${fmtUsd(usdAmount)}\n💱 রেট: $1 = ৳${USD_TO_BDT_RATE}\n💰 টাকা: ৳${bdtAmount}\n📱 মেথড: ${selectedMethod}\n📞 নম্বর: ${pd}`))return;
 loader.style.display='flex';
 try{
-const nt=(userData.taka||0)-amount;
+const nt=Number(((userData.taka||0)-usdAmount).toFixed(4));
 await updateDoc(doc(db,"users",currentUser.uid),{taka:nt});
 userData.taka=nt;updateUI();
-const withdrawalData={userId:currentUser.uid,userName:userData.name,userEmail:userData.email,amount,method:selectedMethod,paymentDetail:pd,status:"pending",cycleNumber:wc+1,requestedAt:serverTimestamp()};
+const withdrawalData={
+userId:currentUser.uid,
+userName:userData.name,
+userEmail:userData.email,
+amount:usdAmount,
+amountUsd:usdAmount,
+amountBdt:bdtAmount,
+usdToBdtRate:USD_TO_BDT_RATE,
+method:selectedMethod,
+paymentDetail:pd,
+status:"pending",
+cycleNumber:wc+1,
+requestedAt:serverTimestamp()
+};
 if(selectedMethod==='Mobile Recharge'){
 withdrawalData.operator=operator;
 withdrawalData.type='recharge';
@@ -1958,15 +1986,16 @@ if(wc===0){
 await updateDoc(doc(db,"users",currentUser.uid),{withdrawCycle:1,firstWithdrawAt:serverTimestamp()});
 userData.withdrawCycle=1;
 }
-showAlert(`✅ জমা!\n\n💰 ৳${amount}\n📱 ${selectedMethod}`);
+showAlert(`✅ জমা!\n\n💵 $${fmtUsd(usdAmount)}\n💰 ৳${bdtAmount} (রেট $1=৳${USD_TO_BDT_RATE})\n📱 ${selectedMethod}`);
+document.getElementById('withdraw-amount-usd').value='';
 document.getElementById('withdraw-amount').value='';
 document.getElementById('payment-number').value='';
 loadWithdrawalHistory();
 updateWithdrawCycleUI();
 }catch(e){
 showAlert("সমস্যা!");
-await updateDoc(doc(db,"users",currentUser.uid),{taka:userData.taka+amount});
-userData.taka+=amount;updateUI();
+await updateDoc(doc(db,"users",currentUser.uid),{taka:userData.taka+usdAmount});
+userData.taka+=usdAmount;updateUI();
 }
 loader.style.display='none';
 }
@@ -1997,7 +2026,7 @@ let f=socialTasks;if(currentTaskFilter!=='all')f=f.filter(t=>(t.platform||'').to
 const cid=userData?.completedSocialTasks||[];const pid=userData?.pendingSocialTasks||[];
 const te=document.getElementById('lp-total-tasks');const ce=document.getElementById('lp-completed');const pe=document.getElementById('lp-pending');
 if(te)te.textContent=f.length;if(ce)ce.textContent=cid.length;if(pe)pe.textContent=pid.length;
-const tp=document.getElementById('task-page-taka');if(tp)tp.textContent=(userData?.taka||0).toFixed(2);
+const tp=document.getElementById('task-page-taka');if(tp)tp.textContent=fmtUsd(userData?.taka||0);
 if(f.length===0){c.innerHTML=`<div class="text-center py-12"><p class="text-5xl mb-3">📭</p><p class="text-gray-500 text-sm">টাস্ক নেই</p></div>`;return;}
 const pi={tiktok:{icon:'🎵',label:'TikTok',color:'#f472b6'},youtube:{icon:'📺',label:'YouTube',color:'#f87171'},facebook:{icon:'👍',label:'Facebook',color:'#60a5fa'},instagram:{icon:'📸',label:'Instagram',color:'#c084fc'},telegram:{icon:'✈️',label:'Telegram',color:'#38bdf8'}};
 const tl={follow:'Follow',like:'Like',subscribe:'Subscribe',comment:'Comment',share:'Share',view:'View'};
@@ -2005,8 +2034,9 @@ c.innerHTML=f.map(t=>{
 const p=pi[t.platform]||{icon:'🌐',label:t.platform,color:'#9ca3af'};
 const done=t.completedCount||0;const slots=t.slots||1;const pct=Math.min((done/slots)*100,100);
 const ic=cid.includes(t.id);const ip=pid.includes(t.id);const full=done>=slots;
+const rewardUsd=t.perUserUsd||t.perUserTaka||0;
 let b='';if(ic)b=`<button disabled class="btn-task completed-btn">✅ সম্পন্ন</button>`;else if(ip)b=`<button disabled class="btn-task cooldown-btn">⏳ অপেক্ষমাণ</button>`;else if(full)b=`<button disabled class="btn-task completed-btn">🎯 স্লট শেষ</button>`;else b=`<button onclick="openScreenshotModal('${t.id}')" class="btn-task">🚀 শুরু</button>`;
-return`<div class="task-card"><div class="flex items-start justify-between gap-2 mb-2"><div class="flex items-center gap-3 flex-1 min-w-0"><span class="text-3xl">${p.icon}</span><div class="flex-1 min-w-0"><div class="flex items-center gap-2 flex-wrap"><p class="font-bold text-sm">${escapeHtml(t.client||'Task')}</p><span class="social-type-badge ${t.platform}" style="background:${p.color}20;color:${p.color}">${p.icon} ${p.label}</span></div><p class="text-xs text-emerald-400 font-bold mt-1">🎯 ${tl[t.taskType]||t.taskType}</p><div class="flex flex-wrap gap-2 mt-2"><span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-bold">💰 ৳${t.perUserTaka}</span><span class="text-[10px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full">👥 ${done}/${slots}</span></div><div class="progress-bar-mini mt-2"><div class="fill" style="width:${pct}%"></div></div></div></div></div><div class="flex justify-end mt-1">${b}</div></div>`;
+return`<div class="task-card"><div class="flex items-start justify-between gap-2 mb-2"><div class="flex items-center gap-3 flex-1 min-w-0"><span class="text-3xl">${p.icon}</span><div class="flex-1 min-w-0"><div class="flex items-center gap-2 flex-wrap"><p class="font-bold text-sm">${escapeHtml(t.client||'Task')}</p><span class="social-type-badge ${t.platform}" style="background:${p.color}20;color:${p.color}">${p.icon} ${p.label}</span></div><p class="text-xs text-emerald-400 font-bold mt-1">🎯 ${tl[t.taskType]||t.taskType}</p><div class="flex flex-wrap gap-2 mt-2"><span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-bold">💵 $${fmtUsd(rewardUsd)}</span><span class="text-[10px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full">👥 ${done}/${slots}</span></div><div class="progress-bar-mini mt-2"><div class="fill" style="width:${pct}%"></div></div></div></div></div><div class="flex justify-end mt-1">${b}</div></div>`;
 }).join('');
 }
 window.renderSocialTasks=renderSocialTasks;
@@ -2014,8 +2044,9 @@ window.renderSocialTasks=renderSocialTasks;
 window.openScreenshotModal=function(tid){
 const t=socialTasks.find(x=>x.id===tid);if(!t)return showAlert("❌ নেই!");
 currentSocialTask=t;taskLinkOpened=false;taskTimerCompleted=false;
+const rewardUsd=t.perUserUsd||t.perUserTaka||0;
 document.getElementById('su-task-name').textContent=`${t.client||'Task'} • ${t.taskType||'follow'}`;
-document.getElementById('su-reward').textContent=`৳${t.perUserTaka}`;
+document.getElementById('su-reward').textContent=`$${fmtUsd(rewardUsd)}`;
 document.getElementById('su-confirm-check').checked=false;
 document.getElementById('su-timer-box').classList.add('hidden');
 document.getElementById('su-submit-btn').disabled=true;
@@ -2063,12 +2094,13 @@ const cid=userData.completedSocialTasks||[];const pid=userData.pendingSocialTask
 if(cid.includes(currentSocialTask.id)){loader.style.display='none';btn.disabled=false;btn.textContent='✅ আমি করেছি';return showAlert("⚠️ করেছেন!");}
 if(pid.includes(currentSocialTask.id)){loader.style.display='none';btn.disabled=false;btn.textContent='✅ আমি করেছি';return showAlert("⏳ Approve হয়নি!");}
 const now=new Date();const aa=new Date(now.getTime()+24*60*60*1000);
-await addDoc(collection(db,"task_verifications"),{userId:currentUser.uid,userName:userData.name||'User',userEmail:userData.email||'',taskId:currentSocialTask.id,campaignId:currentSocialTask.id,taskName:`${currentSocialTask.platform?.toUpperCase()} ${currentSocialTask.taskType}`,platform:currentSocialTask.platform,taskType:currentSocialTask.taskType,taskLink:currentSocialTask.link,rewardTaka:currentSocialTask.perUserTaka,status:'pending',autoApprove:true,autoApproveAt:aa,createdAt:serverTimestamp()});
+const rewardUsd=currentSocialTask.perUserUsd||currentSocialTask.perUserTaka||0;
+await addDoc(collection(db,"task_verifications"),{userId:currentUser.uid,userName:userData.name||'User',userEmail:userData.email||'',taskId:currentSocialTask.id,campaignId:currentSocialTask.id,taskName:`${currentSocialTask.platform?.toUpperCase()} ${currentSocialTask.taskType}`,platform:currentSocialTask.platform,taskType:currentSocialTask.taskType,taskLink:currentSocialTask.link,rewardUsd:rewardUsd,rewardTaka:rewardUsd,status:'pending',autoApprove:true,autoApproveAt:aa,createdAt:serverTimestamp()});
 const np=[...pid,currentSocialTask.id];
 await updateDoc(doc(db,"users",currentUser.uid),{pendingSocialTasks:np});
 userData.pendingSocialTasks=np;
 loader.style.display='none';btn.disabled=false;btn.textContent='✅ আমি করেছি';
-showAlert(`✅ জমা!\n💰 পাবেন: ৳${currentSocialTask.perUserTaka}`);
+showAlert(`✅ জমা!\n💵 পাবেন: $${fmtUsd(rewardUsd)}`);
 closeScreenshotModal();renderSocialTasks();updateHomeTaskPreview();
 }catch(e){loader.style.display='none';btn.disabled=false;btn.textContent='✅ আমি করেছি';showAlert("❌ "+e.message);}
 };
@@ -2083,9 +2115,10 @@ const v=ds.data();const aa=v.autoApproveAt?.toDate?.();
 if(v.autoApprove===false)continue;if(!aa||aa>now)continue;
 try{
 const us=await getDoc(doc(db,"users",currentUser.uid));const u=us.data();
+const reward=v.rewardUsd||v.rewardTaka||0;
 await updateDoc(doc(db,"task_verifications",ds.id),{status:'approved',approvedBy:'auto-system',processedAt:serverTimestamp()});
-await updateDoc(doc(db,"users",currentUser.uid),{taka:(u.taka||0)+(v.rewardTaka||0),totalEarned:increment(v.rewardTaka||0),completedSocialTasks:[...(u.completedSocialTasks||[]),v.taskId],pendingSocialTasks:(u.pendingSocialTasks||[]).filter(x=>x!==v.taskId)});
-userData.taka=(userData.taka||0)+(v.rewardTaka||0);
+await updateDoc(doc(db,"users",currentUser.uid),{taka:Number(((u.taka||0)+reward).toFixed(4)),totalEarned:increment(reward),completedSocialTasks:[...(u.completedSocialTasks||[]),v.taskId],pendingSocialTasks:(u.pendingSocialTasks||[]).filter(x=>x!==v.taskId)});
+userData.taka=(userData.taka||0)+reward;
 userData.completedSocialTasks=[...(userData.completedSocialTasks||[]),v.taskId];
 userData.pendingSocialTasks=(userData.pendingSocialTasks||[]).filter(x=>x!==v.taskId);
 ac++;
@@ -2105,14 +2138,13 @@ if(userData.totalReferrals!==total){await updateDoc(doc(db,"users",currentUser.u
 const tre=document.getElementById('total-referrals');if(tre)tre.textContent=total;
 const rb=document.getElementById('referral-count-badge');if(rb)rb.textContent=total+' জন';
 const cm=userData.referralCommission||0;
-const cd=document.getElementById('referral-commission-display');if(cd)cd.textContent=cm.toFixed(2);
-const ct=document.getElementById('referral-commission-total');if(ct)ct.textContent=cm.toFixed(2);
-// ✅ Dynamic REWARD_REFERRAL দিয়ে গুণ
-const re=document.getElementById('referral-earnings');if(re)re.textContent=(total*REWARD_REFERRAL).toFixed(0);
+const cd=document.getElementById('referral-commission-display');if(cd)cd.textContent=fmtUsd(cm);
+const ct=document.getElementById('referral-commission-total');if(ct)ct.textContent=fmtUsd(cm);
+const re=document.getElementById('referral-earnings');if(re)re.textContent=fmtUsd(total*REWARD_REFERRAL);
 const prc=document.getElementById('profile-referral-count');if(prc)prc.textContent=total+' জন';
 const le=document.getElementById('referred-users-list');if(!le)return;
 if(qs.empty)le.innerHTML='<p class="text-gray-500 text-sm text-center py-4">কেউ করেনি</p>';
-else{le.innerHTML='';qs.forEach(d=>{const data=d.data();le.innerHTML+=`<div class="card-bg p-3 rounded-xl flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-400 to-purple-400 flex items-center justify-center text-white text-xs font-bold">${(data.name||'U').charAt(0).toUpperCase()}</div><div><p class="text-sm font-medium">${escapeHtml(data.name||'User')}</p></div></div><span class="text-xs text-emerald-400 font-bold">+৳${REWARD_REFERRAL}</span></div>`;});}
+else{le.innerHTML='';qs.forEach(d=>{const data=d.data();le.innerHTML+=`<div class="card-bg p-3 rounded-xl flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-400 to-purple-400 flex items-center justify-center text-white text-xs font-bold">${(data.name||'U').charAt(0).toUpperCase()}</div><div><p class="text-sm font-medium">${escapeHtml(data.name||'User')}</p></div></div><span class="text-xs text-emerald-400 font-bold">+$${fmtUsd(REWARD_REFERRAL)}</span></div>`;});}
 }catch(e){}
 }
 async function handleApplyReferralCode(){
@@ -2132,17 +2164,17 @@ const qs=await getDocs(q);
 if(!qs.empty){
 const rd=qs.docs[0];const rr=doc(db,"users",rd.id);const rdata=rd.data();
 const ch=rdata.referralHistory||[];ch.push({id:currentUser.uid,name:userData?.name||'User',joinedAt:new Date().toISOString()});
-await updateDoc(rr,{taka:(rdata.taka||0)+REWARD_REFERRAL,totalReferrals:(rdata.totalReferrals||0)+1,cycleReferrals:(rdata.cycleReferrals||0)+1,totalEarned:increment(REWARD_REFERRAL),referralHistory:ch});
-await updateDoc(doc(db,"users",currentUser.uid),{taka:(userData.taka||0)+REWARD_REFERRAL,referredBy:rc,totalEarned:increment(REWARD_REFERRAL)});
+await updateDoc(rr,{taka:Number(((rdata.taka||0)+REWARD_REFERRAL).toFixed(4)),totalReferrals:(rdata.totalReferrals||0)+1,cycleReferrals:(rdata.cycleReferrals||0)+1,totalEarned:increment(REWARD_REFERRAL),referralHistory:ch});
+await updateDoc(doc(db,"users",currentUser.uid),{taka:Number(((userData.taka||0)+REWARD_REFERRAL).toFixed(4)),referredBy:rc,totalEarned:increment(REWARD_REFERRAL)});
 userData.taka+=REWARD_REFERRAL;userData.referredBy=rc;userData.totalEarned=(userData.totalEarned||0)+REWARD_REFERRAL;
 updateUI();updateLevelAndStreak();
-if(im)showAlert(`✅ ৳${REWARD_REFERRAL}!`);
+if(im)showAlert(`✅ $${fmtUsd(REWARD_REFERRAL)}!`);
 await loadReferralStats();
 }else{if(im)showAlert("❌ ভুল কোড।");}
 }catch(e){}
 }
 function copyReferralCode(){copyToClipboard(getReferralLink(referralCodeEl.textContent));showAlert("✅ কপি!");}
-function shareReferralCode(){const c=userData.referralCode;const l=getReferralLink(c);const t=`💰 টাকা কামাও!\n🔗 ${l}\n🎁 ৳${REWARD_REFERRAL} বোনাস!`;if(navigator.share)navigator.share({title:'টাকা কামাও',text:t,url:l}).catch(()=>{});else{copyToClipboard(t);showAlert("✅ কপি!");}}
+function shareReferralCode(){const c=userData.referralCode;const l=getReferralLink(c);const t=`💵 ডলার কামাও!\n🔗 ${l}\n🎁 $${fmtUsd(REWARD_REFERRAL)} বোনাস!`;if(navigator.share)navigator.share({title:'ডলার কামাও',text:t,url:l}).catch(()=>{});else{copyToClipboard(t);showAlert("✅ কপি!");}}
 
 async function showAdWithFallback(){
 try{if(typeof show_11338816==='function'){const r=await show_11338816();if(r)return true;}}catch(e){}
@@ -2153,7 +2185,7 @@ try{if(typeof show_11543636==='function'){const r=await show_11543636();if(r)ret
 return new Promise(res=>{
 const o=document.createElement('div');
 o.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center';
-o.innerHTML=`<div style="background:linear-gradient(145deg,#1a1a2e,#0d0d1a);border:2px solid rgba(16,185,129,.3);border-radius:24px;padding:40px 30px;max-width:350px;width:90%;text-align:center"><div style="font-size:64px;margin-bottom:16px">💰</div><h3 style="color:#10b981;font-size:20px;font-weight:700;margin-bottom:8px">টাকা কামাও</h3><button onclick="this.closest('div[style]').parentElement.remove()" style="background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-weight:700;padding:12px 32px;border-radius:12px;border:none;cursor:pointer;font-size:16px">✅ ৳${REWARD_AD_WATCH} নিন</button></div>`;
+o.innerHTML=`<div style="background:linear-gradient(145deg,#1a1a2e,#0d0d1a);border:2px solid rgba(16,185,129,.3);border-radius:24px;padding:40px 30px;max-width:350px;width:90%;text-align:center"><div style="font-size:64px;margin-bottom:16px">💵</div><h3 style="color:#10b981;font-size:20px;font-weight:700;margin-bottom:8px">ডলার কামাও</h3><button onclick="this.closest('div[style]').parentElement.remove()" style="background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-weight:700;padding:12px 32px;border-radius:12px;border:none;cursor:pointer;font-size:16px">✅ $${fmtUsd(REWARD_AD_WATCH)} নিন</button></div>`;
 document.body.appendChild(o);
 o.querySelector('button').addEventListener('click',()=>{o.remove();res(true);});
 });
@@ -2166,7 +2198,7 @@ try{
 const us=await getDoc(ur);
 if(us.exists()){
 userData=us.data();
-const defaults={isVerified:false,totalTasksCompleted:0,referralCommission:0,totalReferrals:0,adWatchCount:{},taskHistory:{},taka:0,balance:0,totalEarned:0,dailyBonus:{lastClaimed:null,streak:0},bostHistory:{},photoURL:null,totalWithdrawals:0,telegramBonusClaimed:false,withdrawCycle:0,cycleReferrals:0,cycleVerifiedReferrals:0,badges:[],claimedEvents:[],referralHistory:[],passiveIncomeTotal:0,completedSocialTasks:[],pendingSocialTasks:[],eventBaselines:{},bostEarned:0,bostClicks:0,bostAdCount:0,bostNextAd:5,welcomeShown:false,quizHistory:{},quizTotalPlayed:0,quizTotalCorrect:0,quizPendingReward:0,quizEarnedTotal:0};
+const defaults={isVerified:false,totalTasksCompleted:0,referralCommission:0,totalReferrals:0,adWatchCount:{},taskHistory:{},taka:0,balance:0,totalEarned:0,bostHistory:{},photoURL:null,totalWithdrawals:0,telegramBonusClaimed:false,withdrawCycle:0,cycleReferrals:0,cycleVerifiedReferrals:0,badges:[],claimedEvents:[],referralHistory:[],passiveIncomeTotal:0,completedSocialTasks:[],pendingSocialTasks:[],eventBaselines:{},bostEarned:0,bostClicks:0,bostAdCount:0,bostNextAd:5,welcomeShown:false,quizHistory:{},quizTotalPlayed:0,quizTotalCorrect:0,quizPendingReward:0,quizEarnedTotal:0};
 let nu=false;
 for(const[k,v]of Object.entries(defaults)){if(userData[k]===undefined){userData[k]=v;nu=true;}}
 if(nu)await updateDoc(ur,userData);
@@ -2179,17 +2211,17 @@ const cs=await getDoc(doc(db,"config","main"));
 if(cs.exists()){
 appConfig=cs.data();
 verificationEnabled=appConfig.verificationEnabled!==false;
-if(appConfig.rewardAd!==undefined) REWARD_AD_WATCH=parseInt(appConfig.rewardAd)||10;
-if(appConfig.rewardBost!==undefined) REWARD_BOST_CLICK=parseInt(appConfig.rewardBost)||5;
-if(appConfig.rewardDaily!==undefined) REWARD_DAILY_BONUS=parseInt(appConfig.rewardDaily)||10;
-if(appConfig.rewardReferral!==undefined) REWARD_REFERRAL=parseInt(appConfig.rewardReferral)||0;
-if(appConfig.rewardTelegram!==undefined) REWARD_TELEGRAM=parseInt(appConfig.rewardTelegram)||20;
-if(appConfig.referralCommission!==undefined) PASSIVE_COMMISSION_RATE=appConfig.referralCommission;
+if(appConfig.rewardAd!==undefined) REWARD_AD_WATCH=parseFloat(appConfig.rewardAd)||0.05;
+if(appConfig.rewardBost!==undefined) REWARD_BOST_CLICK=parseFloat(appConfig.rewardBost)||0.02;
+if(appConfig.rewardReferral!==undefined) REWARD_REFERRAL=parseFloat(appConfig.rewardReferral)||0.02;
+if(appConfig.rewardTelegram!==undefined) REWARD_TELEGRAM=parseFloat(appConfig.rewardTelegram)||0.20;
+if(appConfig.referralCommission!==undefined) PASSIVE_COMMISSION_RATE=parseFloat(appConfig.referralCommission)||20;
+if(appConfig.usdToBdtRate!==undefined) USD_TO_BDT_RATE=parseFloat(appConfig.usdToBdtRate)||110;
 if(appConfig.withdrawalLimits){
 WITHDRAW_LIMITS={
-'Bkash':appConfig.withdrawalLimits['Bkash']||{min:50,max:100,label:'বিকাশ'},
-'Nagad':appConfig.withdrawalLimits['Nagad']||{min:50,max:100,label:'নগদ'},
-'Mobile Recharge':appConfig.withdrawalLimits['Mobile Recharge']||{min:20,max:100,label:'মোবাইল রিচার্জ'}
+'Bkash':appConfig.withdrawalLimits['Bkash']||{min:50,max:20000,label:'বিকাশ'},
+'Nagad':appConfig.withdrawalLimits['Nagad']||{min:50,max:20000,label:'নগদ'},
+'Mobile Recharge':appConfig.withdrawalLimits['Mobile Recharge']||{min:20,max:20000,label:'মোবাইল রিচার্জ'}
 };
 }
 syncAllRewardDisplays();
@@ -2264,6 +2296,7 @@ const totalLim=t.totalLimit||0;
 const cd=taskCooldowns[t.id]&&taskCooldowns[t.id]>Date.now();
 const dailyReached=dailyLim>0&&tc>=dailyLim;
 const totalReached=totalLim>0&&totalDone>=totalLim;
+const reward=parseFloat(t.reward)||REWARD_AD_WATCH;
 let btn='';
 let statusText='';
 if(cd){
@@ -2281,12 +2314,12 @@ statusText='<span class="text-[10px] bg-orange-500/20 text-orange-400 px-2 py-0.
 else{
 btn=`<button onclick="handleTaskClick('${t.id}')" class="btn-task">🎯 শুরু</button>`;
 }
-return`<div class="task-card flex items-center gap-3"><div class="text-4xl">${t.icon||'🎬'}</div><div class="flex-1 min-w-0"><p class="font-bold text-sm">${escapeHtml(t.label||'Task')}</p><p class="text-xs text-gray-400 mt-0.5">${escapeHtml(t.desc||'')}</p><div class="flex items-center gap-2 mt-1 flex-wrap"><span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-bold">💰 ৳${t.reward||REWARD_AD_WATCH}</span>${dailyLim>0?`<span class="text-[10px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full">📅 ${tc}/${dailyLim}</span>`:''}${totalLim>0?`<span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full">♾️ ${totalDone}/${totalLim}</span>`:''}${statusText}</div></div><div>${btn}</div></div>`;
+return`<div class="task-card flex items-center gap-3"><div class="text-4xl">${t.icon||'🎬'}</div><div class="flex-1 min-w-0"><p class="font-bold text-sm">${escapeHtml(t.label||'Task')}</p><p class="text-xs text-gray-400 mt-0.5">${escapeHtml(t.desc||'')}</p><div class="flex items-center gap-2 mt-1 flex-wrap"><span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-bold">💵 $${fmtUsd(reward)}</span>${dailyLim>0?`<span class="text-[10px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full">📅 ${tc}/${dailyLim}</span>`:''}${totalLim>0?`<span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full">♾️ ${totalDone}/${totalLim}</span>`:''}${statusText}</div></div><div>${btn}</div></div>`;
 }).join('');
 }
 window.renderTasks=renderTasks;
 
-const LEVELS=[{id:1,name:'ব্রোঞ্জ',emoji:'🥉',minCoins:0,badgeClass:'bronze'},{id:2,name:'সিলভার',emoji:'🥈',minCoins:100,badgeClass:'silver'},{id:3,name:'গোল্ড',emoji:'🥇',minCoins:500,badgeClass:'gold'},{id:4,name:'প্লাটিনাম',emoji:'💎',minCoins:1000,badgeClass:'platinum'},{id:5,name:'ডায়মন্ড',emoji:'👑',minCoins:5000,badgeClass:'diamond'}];
+const LEVELS=[{id:1,name:'ব্রোঞ্জ',emoji:'🥉',minCoins:0,badgeClass:'bronze'},{id:2,name:'সিলভার',emoji:'🥈',minCoins:1,badgeClass:'silver'},{id:3,name:'গোল্ড',emoji:'🥇',minCoins:5,badgeClass:'gold'},{id:4,name:'প্লাটিনাম',emoji:'💎',minCoins:10,badgeClass:'platinum'},{id:5,name:'ডায়মন্ড',emoji:'👑',minCoins:50,badgeClass:'diamond'}];
 function getUserLevel(te){let l=LEVELS[0];for(let i=LEVELS.length-1;i>=0;i--)if(te>=LEVELS[i].minCoins){l=LEVELS[i];break;}return l;}
 function getNextLevel(te){for(let i=0;i<LEVELS.length;i++)if(te<LEVELS[i].minCoins)return LEVELS[i];return null;}
 function updateLevelAndStreak(){
@@ -2296,40 +2329,11 @@ const cl=getUserLevel(te);const nl=getNextLevel(te);
 document.getElementById('user-level').textContent=cl.id;
 const be=document.getElementById('user-level-badge');
 be.textContent=`${cl.emoji} ${cl.name}`;be.className=`level-badge ${cl.badgeClass}`;
-if(nl){const p=((te-cl.minCoins)/(nl.minCoins-cl.minCoins))*100;document.getElementById('level-progress-fill').style.width=Math.min(p,100)+'%';document.getElementById('next-level-progress').textContent=`৳${te.toFixed(0)} / ৳${nl.minCoins}`;}
+if(nl){const p=((te-cl.minCoins)/(nl.minCoins-cl.minCoins))*100;document.getElementById('level-progress-fill').style.width=Math.min(p,100)+'%';document.getElementById('next-level-progress').textContent=`$${fmtUsd(te)} / $${nl.minCoins}`;}
 else{document.getElementById('level-progress-fill').style.width='100%';document.getElementById('next-level-progress').textContent='🎉 সর্বোচ্চ!';}
-document.getElementById('total-earned-display').textContent=te.toFixed(2);
+document.getElementById('total-earned-display').textContent=fmtUsd(te);
 }
 
-async function claimDailyBonus(){
-if(!currentUser||!userData)return showAlert("লগইন!");
-const today=new Date().toISOString().split('T')[0];
-const db_=userData.dailyBonus||{lastClaimed:null,streak:0};
-if(db_.lastClaimed===today)return showAlert("আজ ক্লেইম করেছেন!");
-const y=new Date();y.setDate(y.getDate()-1);
-const is=db_.lastClaimed===y.toISOString().split('T')[0];
-const ns=is?(db_.streak||0)+1:1;
-try{
-await showAdWithFallback();
-const nt=(userData.taka||0)+REWARD_DAILY_BONUS;
-await updateDoc(doc(db,"users",currentUser.uid),{taka:nt,totalEarned:(userData.totalEarned||0)+REWARD_DAILY_BONUS,dailyBonus:{lastClaimed:today,streak:ns}});
-userData.taka=nt;userData.totalEarned=(userData.totalEarned||0)+REWARD_DAILY_BONUS;userData.dailyBonus={lastClaimed:today,streak:ns};
-updateUI();updateDailyBonusUI();updateLevelAndStreak();
-showAlert(`🎉 +৳${REWARD_DAILY_BONUS}!`);
-}catch(e){showAlert("সমস্যা!");}
-}
-function updateDailyBonusUI(){
-if(!userData)return;
-const db_=userData.dailyBonus||{lastClaimed:null,streak:0};
-const today=new Date().toISOString().split('T')[0];
-const ic=db_.lastClaimed===today;const s=db_.streak||0;
-document.getElementById('daily-bonus-streak').textContent=s;
-const ba=document.getElementById('daily-bonus-amount');if(ba)ba.textContent='৳'+REWARD_DAILY_BONUS;
-for(let i=0;i<7;i++){const d=document.getElementById(`streak-dot-${i}`);if(d)d.className=i<s?'h-1 flex-1 rounded-full bg-yellow-400':'h-1 flex-1 rounded-full bg-gray-700';}
-const b=document.getElementById('daily-bonus-btn');const st=document.getElementById('daily-bonus-status');
-if(ic){b.textContent='✅ ক্লেইম';b.disabled=true;b.className='text-xs px-4 py-2 mt-1 rounded-xl bg-gray-500/20 text-gray-400';st.textContent='আজ ক্লেইম!';st.className='text-xs text-green-400';}
-else{b.textContent='🎯 ক্লেইম';b.disabled=false;b.className='btn-accent text-xs px-4 py-2 mt-1 rounded-xl';st.textContent='আজ ক্লেইম করুন!';st.className='text-xs text-yellow-400';}
-}
 async function loadLeaderboard(){
 const le=document.getElementById('leaderboard-list');if(!le)return;
 le.innerHTML='<p class="text-gray-400 text-center py-8">লোড...</p>';
@@ -2343,7 +2347,7 @@ const ic=currentUser&&doc.id===currentUser.uid;
 let rc=r===1?'gold':r===2?'silver':r===3?'bronze':'';
 const m=r===1?'🥇':r===2?'🥈':r===3?'🥉':`#${r}`;
 const tc=r<=3?`top-${r}`:'';
-le.innerHTML+=`<div class="leaderboard-item ${tc} ${ic?'border-accent':''}"><span class="rank ${rc}">${m}</span><div class="flex-1"><p class="text-sm font-medium text-white">${escapeHtml(d.name||'User')} ${ic?'👈':''}</p></div><div class="text-right"><p class="text-sm font-bold text-emerald-400">৳${(d.totalEarned||0).toFixed(0)}</p></div></div>`;
+le.innerHTML+=`<div class="leaderboard-item ${tc} ${ic?'border-accent':''}"><span class="rank ${rc}">${m}</span><div class="flex-1"><p class="text-sm font-medium text-white">${escapeHtml(d.name||'User')} ${ic?'👈':''}</p></div><div class="text-right"><p class="text-sm font-bold text-emerald-400">$${fmtUsd(d.totalEarned||0)}</p></div></div>`;
 r++;
 });
 }catch(e){le.innerHTML='<p class="text-red-400 text-sm text-center py-8">লোড সমস্যা</p>';}
@@ -2370,7 +2374,6 @@ try{setupSocialTasksListener();}catch(e){}
 try{setupUserEventsListener();}catch(e){}
 try{updateUI();}catch(e){}
 showMainPage('app-container');navigateTo('home-page');loader.style.display='none';
-try{updateDailyBonusUI();}catch(e){}
 try{updateLevelAndStreak();}catch(e){}
 try{await loadLeaderboard();}catch(e){}
 try{setupNotificationListener();}catch(e){}
@@ -2401,7 +2404,7 @@ showMainPage('auth-section');
 }
 }
 
-console.log("✅ User Panel v4.7 Loaded — Full Sync Applied!");
+console.log("✅ USD Panel v5.0 Loaded — Bot: @takaincomaw_bot | 1$ = " + USD_TO_BDT_RATE + "৳");
 </script>
 </body>
 </html>
